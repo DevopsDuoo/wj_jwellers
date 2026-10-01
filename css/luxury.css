@@ -591,12 +591,13 @@ body.theme-ivory .main-luxury-nav {
   font-family: 'Cinzel', serif;
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--text-muted);
   transition: color 0.3s ease;
   padding: 6px 0;
   display: inline-block;
+  white-space: nowrap !important;
 }
 
 .nav-link-item:hover,

@@ -75,10 +75,10 @@
     
     <!-- Top Live Bullion Marquee Ticker with Automated API Sync -->
     <aside class="top-bullion-bar py-2 overflow-hidden relative z-40">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div class="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
         
         <!-- Live Ticker Label & Auto Sync Trigger -->
-        <div class="flex items-center gap-2.5 pr-4 z-10 shrink-0 border-r border-white/10">
+        <div class="flex items-center gap-2.5 pr-4 z-10 shrink-0 border-r border-white/10 whitespace-nowrap">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-green"></span>
           <span class="text-[10px] font-cinzel font-semibold tracking-widest text-[#E5C558] uppercase">
             Live Bullion Feed
@@ -93,18 +93,18 @@
         </div>
 
         <!-- Marquee Ticker Track with Soft Fade Mask -->
-        <div class="overflow-hidden flex-1 relative ticker-fade-mask px-3">
+        <div class="overflow-hidden flex-1 relative ticker-fade-mask px-4">
           <div id="metal-rates-marquee" class="ticker-track">
             <!-- Dynamic Rates Rendered via Showcase.renderMetalRates() -->
           </div>
         </div>
 
         <!-- Timestamp & Staff Portal Link -->
-        <div class="hidden md:flex items-center gap-4 pl-4 z-10 shrink-0 border-l border-white/10">
+        <div class="hidden md:flex items-center gap-4 pl-4 z-10 shrink-0 border-l border-white/10 whitespace-nowrap">
           <span id="rates-sync-timestamp" class="text-[10px] font-mono text-gray-400">
             Automated API Feed
           </span>
-          <a href="#/admin" class="text-[11px] font-cinzel tracking-wider text-gray-300 hover:text-[#F3E5AB] transition-colors flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-white/10 hover:border-[#D4AF37]/50">
+          <a href="#/admin" class="text-[11px] font-cinzel tracking-wider text-gray-300 hover:text-[#F3E5AB] transition-colors flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-white/10 hover:border-[#D4AF37]/50 whitespace-nowrap">
             <i class="fa-solid fa-key text-[10px] text-[#D4AF37]"></i> Atelier Portal
           </a>
         </div>
@@ -113,14 +113,14 @@
 
     <!-- Floating Luxury Glassmorphism Navbar -->
     <nav id="main-navbar" class="main-luxury-nav sticky top-0 z-40 transition-all duration-300">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <div class="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 h-20 flex items-center justify-between gap-6">
         
         <!-- Brand Emblem & Logo -->
-        <a href="#/" class="flex items-center gap-3.5 group shrink-0">
+        <a href="#/" class="flex items-center gap-3.5 group shrink-0 whitespace-nowrap">
           <div class="w-11 h-11 rounded-full border border-[#D4AF37]/60 flex items-center justify-center bg-gradient-to-tr from-[#2A0A13] to-[#1E070D] shadow-[0_0_18px_var(--glow-color)] group-hover:border-[#E8B676] group-hover:scale-105 transition-all">
             <span class="font-cinzel text-[#E8B676] text-base font-bold tracking-tight">WJ</span>
           </div>
-          <div class="flex flex-col">
+          <div class="flex flex-col whitespace-nowrap">
             <span class="font-cinzel font-bold text-base sm:text-lg tracking-[0.22em] text-white group-hover:text-[#F3E5AB] transition-colors leading-none">
               WJ JEWELLERS
             </span>
@@ -130,17 +130,17 @@
           </div>
         </a>
 
-        <!-- Desktop Navigation Links with Gold Underline Animation -->
-        <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
-          <a href="#/bridal" class="nav-link-item">Bridal Showcase</a>
-          <a href="#/collections" class="nav-link-item">Curated Vault</a>
-          <a href="#/story" class="nav-link-item">Artisanal Heritage</a>
-          <a href="#bespoke" class="nav-link-item">Bespoke Atelier</a>
-          <a href="#/contact" class="nav-link-item">Flagship Salon</a>
+        <!-- Desktop Navigation Links with Gold Underline Animation (Strictly Single Line) -->
+        <div class="hidden lg:flex items-center space-x-5 xl:space-x-8 shrink-0 whitespace-nowrap">
+          <a href="#/bridal" class="nav-link-item whitespace-nowrap">Bridal Showcase</a>
+          <a href="#/collections" class="nav-link-item whitespace-nowrap">Curated Vault</a>
+          <a href="#/story" class="nav-link-item whitespace-nowrap">Artisanal Heritage</a>
+          <a href="#bespoke" class="nav-link-item whitespace-nowrap">Bespoke Atelier</a>
+          <a href="#/contact" class="nav-link-item whitespace-nowrap">Flagship Salon</a>
         </div>
 
-        <!-- Right Utilities & Actions -->
-        <div class="flex items-center gap-2.5 shrink-0">
+        <!-- Right Utilities & Actions (Strictly Single Line) -->
+        <div class="flex items-center gap-2.5 sm:gap-3 shrink-0 whitespace-nowrap">
           
           <!-- All-in-One Luxury Palette Switcher -->
           <div class="lux-control-pill" title="Theme Palette">
@@ -186,7 +186,7 @@
           <!-- Book Viewing CTA Button -->
           <a 
             href="#/contact" 
-            class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-cinzel font-semibold tracking-wider uppercase gold-btn-gradient shrink-0"
+            class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-cinzel font-semibold tracking-wider uppercase gold-btn-gradient shrink-0 whitespace-nowrap"
           >
             <i class="fa-regular fa-calendar-check text-xs"></i> 
             <span class="hidden md:inline">Book</span> Viewing
