@@ -622,8 +622,8 @@ const DataStore = {
   },
 
   getPalette() {
-    if (typeof localStorage === 'undefined') return 'emerald';
-    return localStorage.getItem(STORAGE_KEYS.PALETTE) || 'emerald';
+    if (typeof localStorage === 'undefined') return 'burgundy';
+    return localStorage.getItem(STORAGE_KEYS.PALETTE) || 'burgundy';
   },
 
   setPalette(paletteId) {

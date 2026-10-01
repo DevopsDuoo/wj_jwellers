@@ -28,12 +28,10 @@ const Showcase = {
     document.querySelectorAll('[data-category-filter]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         document.querySelectorAll('[data-category-filter]').forEach(b => {
-          b.classList.remove('bg-[#D4AF37]', 'text-black', 'border-[#D4AF37]');
-          b.classList.add('bg-[#141416]', 'text-gray-300', 'border-gray-800');
+          b.classList.remove('category-pill-active', 'bg-[#D4AF37]', 'text-black', 'border-[#D4AF37]');
         });
         const target = e.currentTarget;
-        target.classList.add('bg-[#D4AF37]', 'text-black', 'border-[#D4AF37]');
-        target.classList.remove('bg-[#141416]', 'text-gray-300', 'border-gray-800');
+        target.classList.add('category-pill-active');
 
         this.currentCategory = target.getAttribute('data-category-filter');
         this.renderCollections();

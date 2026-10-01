@@ -8,14 +8,14 @@ const Utils = {
   initPalette() {
     const savedPalette = (typeof DataStore !== 'undefined' && DataStore.getPalette)
       ? DataStore.getPalette()
-      : 'emerald';
+      : 'burgundy';
     this.applyPalette(savedPalette, false);
     this.bindPaletteEvents();
   },
 
   applyPalette(paletteId, notify = false) {
     const validPalettes = ['emerald', 'burgundy', 'sapphire', 'ivory'];
-    const activePalette = validPalettes.includes(paletteId) ? paletteId : 'emerald';
+    const activePalette = validPalettes.includes(paletteId) ? paletteId : 'burgundy';
     const body = document.body;
     const html = document.documentElement;
 

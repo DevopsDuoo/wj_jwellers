@@ -63,7 +63,7 @@
   <!-- Custom Luxury Styling & Animations -->
   <link rel="stylesheet" href="css/luxury.css" />
 </head>
-<body class="bg-[#0A0A0A] text-[#F5F5F7] min-h-screen flex flex-col font-sans selection:bg-[#D4AF37] selection:text-black theme-emerald">
+<body class="bg-[#150409] text-[#FCF7F6] min-h-screen flex flex-col font-sans selection:bg-[#E8B676] selection:text-black theme-burgundy">
 
   <!-- Toast Notification Floating Container -->
   <div id="toast-container" class="fixed top-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none max-w-sm w-full"></div>
@@ -74,11 +74,11 @@
   <div id="public-showcase-view" class="flex-1 flex flex-col">
     
     <!-- Top Live Bullion Marquee Ticker with Automated API Sync -->
-    <header class="bg-[#0D0D0F] border-b border-[#D4AF37]/25 py-2 overflow-hidden relative z-40">
-      <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
+    <aside class="top-bullion-bar py-2 overflow-hidden relative z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
         <!-- Live Ticker Label & Auto Sync Trigger -->
-        <div class="flex items-center gap-2.5 pr-4 bg-[#0D0D0F] z-10 shrink-0 border-r border-white/10">
+        <div class="flex items-center gap-2.5 pr-4 z-10 shrink-0 border-r border-white/10">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-green"></span>
           <span class="text-[10px] font-cinzel font-semibold tracking-widest text-[#E5C558] uppercase">
             Live Bullion Feed
@@ -92,112 +92,93 @@
           </button>
         </div>
 
-        <!-- Marquee Ticker Track -->
-        <div class="overflow-hidden flex-1 relative mask-gradient">
+        <!-- Marquee Ticker Track with Soft Fade Mask -->
+        <div class="overflow-hidden flex-1 relative ticker-fade-mask px-3">
           <div id="metal-rates-marquee" class="ticker-track">
             <!-- Dynamic Rates Rendered via Showcase.renderMetalRates() -->
           </div>
         </div>
 
         <!-- Timestamp & Staff Portal Link -->
-        <div class="hidden md:flex items-center gap-4 pl-4 bg-[#0D0D0F] z-10 shrink-0 border-l border-white/10">
-          <span id="rates-sync-timestamp" class="text-[10px] font-mono text-gray-500">
+        <div class="hidden md:flex items-center gap-4 pl-4 z-10 shrink-0 border-l border-white/10">
+          <span id="rates-sync-timestamp" class="text-[10px] font-mono text-gray-400">
             Automated API Feed
           </span>
-          <a href="#/admin" class="text-[11px] font-cinzel tracking-wider text-gray-400 hover:text-[#F3E5AB] transition-colors flex items-center gap-1.5">
+          <a href="#/admin" class="text-[11px] font-cinzel tracking-wider text-gray-300 hover:text-[#F3E5AB] transition-colors flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-white/10 hover:border-[#D4AF37]/50">
             <i class="fa-solid fa-key text-[10px] text-[#D4AF37]"></i> Atelier Portal
           </a>
         </div>
       </div>
-    </header>
+    </aside>
 
     <!-- Floating Luxury Glassmorphism Navbar -->
-    <nav id="main-navbar" class="sticky top-0 z-40 transition-all duration-300 bg-black/75 backdrop-blur-xl border-b border-[#D4AF37]/20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <nav id="main-navbar" class="main-luxury-nav sticky top-0 z-40 transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         
         <!-- Brand Emblem & Logo -->
-        <a href="#/" class="flex items-center gap-3.5 group">
-          <div class="w-11 h-11 rounded-full border border-[#D4AF37]/70 flex items-center justify-center bg-gradient-to-tr from-[#1A1A1A] to-[#2E2818] shadow-[0_0_18px_rgba(212,175,55,0.25)] group-hover:border-[#D4AF37] group-hover:scale-105 transition-all">
-            <span class="font-cinzel text-[#D4AF37] text-base font-bold tracking-tight">WJ</span>
+        <a href="#/" class="flex items-center gap-3.5 group shrink-0">
+          <div class="w-11 h-11 rounded-full border border-[#D4AF37]/60 flex items-center justify-center bg-gradient-to-tr from-[#2A0A13] to-[#1E070D] shadow-[0_0_18px_var(--glow-color)] group-hover:border-[#E8B676] group-hover:scale-105 transition-all">
+            <span class="font-cinzel text-[#E8B676] text-base font-bold tracking-tight">WJ</span>
           </div>
           <div class="flex flex-col">
-            <span class="font-cinzel font-bold text-lg tracking-[0.22em] text-white group-hover:text-[#F3E5AB] transition-colors leading-none">
+            <span class="font-cinzel font-bold text-base sm:text-lg tracking-[0.22em] text-white group-hover:text-[#F3E5AB] transition-colors leading-none">
               WJ JEWELLERS
             </span>
-            <span class="text-[9px] font-cinzel tracking-[0.25em] text-[#D4AF37] uppercase mt-1">
+            <span class="text-[8px] sm:text-[9px] font-cinzel tracking-[0.25em] text-[#E8B676] uppercase mt-1">
               Heritage Gold & Polki · Est. 1984
             </span>
           </div>
         </a>
 
-        <!-- Desktop Navigation Links -->
-        <div class="hidden lg:flex items-center space-x-8">
-          <a href="#/bridal" class="text-xs font-cinzel font-medium text-gray-300 hover:text-[#F3E5AB] tracking-widest uppercase transition-colors">
-            Bridal Showcase
-          </a>
-          <a href="#/collections" class="text-xs font-cinzel font-medium text-gray-300 hover:text-[#F3E5AB] tracking-widest uppercase transition-colors">
-            Curated Vault
-          </a>
-          <a href="#/story" class="text-xs font-cinzel font-medium text-gray-300 hover:text-[#F3E5AB] tracking-widest uppercase transition-colors">
-            Artisanal Heritage
-          </a>
-          <a href="#bespoke" class="text-xs font-cinzel font-medium text-gray-300 hover:text-[#F3E5AB] tracking-widest uppercase transition-colors">
-            Bespoke Atelier
-          </a>
-          <a href="#/contact" class="text-xs font-cinzel font-medium text-gray-300 hover:text-[#F3E5AB] tracking-widest uppercase transition-colors">
-            Flagship Salon
-          </a>
+        <!-- Desktop Navigation Links with Gold Underline Animation -->
+        <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          <a href="#/bridal" class="nav-link-item">Bridal Showcase</a>
+          <a href="#/collections" class="nav-link-item">Curated Vault</a>
+          <a href="#/story" class="nav-link-item">Artisanal Heritage</a>
+          <a href="#bespoke" class="nav-link-item">Bespoke Atelier</a>
+          <a href="#/contact" class="nav-link-item">Flagship Salon</a>
         </div>
 
         <!-- Right Utilities & Actions -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2.5 shrink-0">
           
           <!-- All-in-One Luxury Palette Switcher -->
-          <div class="relative flex items-center">
-            <div class="flex items-center bg-[#141416] border border-[#D4AF37]/35 rounded-xl px-2.5 py-1.5 gap-2 hover:border-[#D4AF37] transition-all shadow-sm">
-              <i class="fa-solid fa-palette text-xs text-[#E5C558]"></i>
-              <select 
-                class="palette-selector-select bg-transparent text-[#F3E5AB] text-xs font-cinzel font-medium focus:outline-none cursor-pointer pr-1"
-                title="Switch Theme Palette"
-              >
-                <option value="emerald" class="bg-[#0C261B] text-[#F5FAF6]">🟢 Royal Emerald</option>
-                <option value="burgundy" class="bg-[#250A11] text-[#FCF7F6]">🍷 Imperial Burgundy</option>
-                <option value="sapphire" class="bg-[#0D1C34] text-[#F4F7FC]">💎 Sapphire Navy</option>
-                <option value="ivory" class="bg-[#FAF7F2] text-[#1D1C20]">🏛️ Pearl Ivory</option>
-              </select>
-            </div>
+          <div class="lux-control-pill" title="Theme Palette">
+            <i class="fa-solid fa-palette text-xs text-[#E8B676]"></i>
+            <select 
+              class="palette-selector-select bg-transparent text-[#F3E5AB] text-xs font-cinzel font-medium focus:outline-none cursor-pointer pr-1"
+              title="Switch Theme Palette"
+            >
+              <option value="burgundy" class="bg-[#1E070D] text-[#FCF7F6]">🍷 Burgundy</option>
+              <option value="emerald" class="bg-[#0A2218] text-[#F5FAF6]">🟢 Emerald</option>
+              <option value="sapphire" class="bg-[#0B172B] text-[#F4F7FC]">💎 Sapphire</option>
+              <option value="ivory" class="bg-[#FFFFFF] text-[#1D1C20]">🏛️ Ivory</option>
+            </select>
           </div>
 
-          <!-- Day / Night Mode Toggle Button -->
-          <button 
-            class="theme-toggle-btn p-2 rounded-xl border border-[#D4AF37]/30 hover:border-[#D4AF37] text-gray-300 hover:text-[#F3E5AB] transition-all flex items-center justify-center w-9 h-9"
-            title="Toggle Day / Night Mode"
-          >
-            <i class="theme-toggle-icon fa-solid fa-sun text-[#F3E5AB] text-sm"></i>
-          </button>
-
-          <!-- Currency Selector -->
-          <div class="relative">
+          <!-- Currency Selector Pill -->
+          <div class="lux-control-pill" title="Display Currency">
+            <i class="fa-solid fa-coins text-xs text-[#E8B676] hidden sm:inline"></i>
             <select 
               id="currency-selector" 
-              class="bg-[#141416] text-[#F3E5AB] text-xs font-cinzel rounded-lg px-2.5 py-1.5 border border-[#D4AF37]/30 hover:border-[#D4AF37] focus:outline-none transition-all cursor-pointer"
+              class="bg-transparent text-[#F3E5AB] text-xs font-cinzel font-medium focus:outline-none cursor-pointer"
               title="Select Display Currency"
             >
-              <option value="INR">INR (₹)</option>
-              <option value="USD">USD ($)</option>
-              <option value="GBP">GBP (£)</option>
-              <option value="AED">AED</option>
+              <option value="INR" class="bg-[#1E070D]">INR (₹)</option>
+              <option value="USD" class="bg-[#1E070D]">USD ($)</option>
+              <option value="GBP" class="bg-[#1E070D]">GBP (£)</option>
+              <option value="AED" class="bg-[#1E070D]">AED</option>
             </select>
           </div>
 
           <!-- Wishlist Drawer Trigger -->
           <button 
             onclick="Showcase.openWishlistDrawer()" 
-            class="relative p-2 text-gray-300 hover:text-[#D4AF37] transition-colors"
+            class="lux-control-pill relative p-2.5 text-gray-300 hover:text-[#E8B676] transition-colors"
             title="Curated Wishlist"
           >
-            <i class="fa-regular fa-heart text-lg"></i>
-            <span class="wishlist-counter-badge hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#D4AF37] text-black text-[9px] font-bold flex items-center justify-center font-mono">
+            <i class="fa-regular fa-heart text-sm"></i>
+            <span class="wishlist-counter-badge hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#E8B676] text-black text-[9px] font-bold flex items-center justify-center font-mono">
               0
             </span>
           </button>
@@ -205,18 +186,19 @@
           <!-- Book Viewing CTA Button -->
           <a 
             href="#/contact" 
-            class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-cinzel font-semibold tracking-wider uppercase gold-btn-gradient"
+            class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-cinzel font-semibold tracking-wider uppercase gold-btn-gradient shrink-0"
           >
-            <i class="fa-regular fa-calendar-check text-xs"></i> Book Viewing
+            <i class="fa-regular fa-calendar-check text-xs"></i> 
+            <span class="hidden md:inline">Book</span> Viewing
           </a>
 
           <!-- Mobile Hamburger Toggle -->
           <button 
             id="mobile-menu-btn" 
-            class="lg:hidden text-gray-300 hover:text-[#D4AF37] p-2 focus:outline-none"
+            class="lg:hidden lux-control-pill text-gray-300 hover:text-[#E8B676] p-2 focus:outline-none"
             aria-label="Toggle Navigation Menu"
           >
-            <i class="fa-solid fa-bars text-xl"></i>
+            <i class="fa-solid fa-bars text-base"></i>
           </button>
         </div>
       </div>
@@ -266,8 +248,8 @@
             class="palette-selector-select bg-[#18181A] text-[#F3E5AB] text-xs font-cinzel rounded px-2.5 py-1 border border-gray-700 focus:outline-none"
             title="Switch Theme Palette"
           >
-            <option value="emerald">🟢 Royal Emerald</option>
             <option value="burgundy">🍷 Imperial Burgundy</option>
+            <option value="emerald">🟢 Royal Emerald</option>
             <option value="sapphire">💎 Sapphire Navy</option>
             <option value="ivory">🏛️ Pearl Ivory</option>
           </select>
@@ -482,31 +464,31 @@
           <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
             <button 
               data-category-filter="all" 
-              class="px-5 py-2.5 rounded-full text-xs font-cinzel tracking-wider uppercase transition-all bg-[#D4AF37] text-black border border-[#D4AF37] font-semibold"
+              class="category-pill category-pill-active"
             >
               All Creations
             </button>
             <button 
               data-category-filter="bridal" 
-              class="px-5 py-2.5 rounded-full text-xs font-cinzel tracking-wider uppercase transition-all bg-[#141416] text-gray-300 border border-gray-800 hover:border-[#D4AF37]/50 font-medium"
+              class="category-pill"
             >
               Bridal Sets
             </button>
             <button 
               data-category-filter="polki" 
-              class="px-5 py-2.5 rounded-full text-xs font-cinzel tracking-wider uppercase transition-all bg-[#141416] text-gray-300 border border-gray-800 hover:border-[#D4AF37]/50 font-medium"
+              class="category-pill"
             >
               Polki & Kundan
             </button>
             <button 
               data-category-filter="bangles" 
-              class="px-5 py-2.5 rounded-full text-xs font-cinzel tracking-wider uppercase transition-all bg-[#141416] text-gray-300 border border-gray-800 hover:border-[#D4AF37]/50 font-medium"
+              class="category-pill"
             >
               Gold Bangles & Kadas
             </button>
             <button 
               data-category-filter="diamonds" 
-              class="px-5 py-2.5 rounded-full text-xs font-cinzel tracking-wider uppercase transition-all bg-[#141416] text-gray-300 border border-gray-800 hover:border-[#D4AF37]/50 font-medium"
+              class="category-pill"
             >
               Diamond Rings
             </button>
@@ -1151,45 +1133,37 @@
   <div id="admin-app-container" class="hidden flex-1 flex flex-col bg-[#0A0A0C]">
     
     <!-- Admin Topbar -->
-    <header class="bg-[#121214] border-b border-[#D4AF37]/25 px-4 sm:px-8 py-3.5 flex items-center justify-between sticky top-0 z-30 shadow-xl">
+    <header class="main-luxury-nav px-4 sm:px-8 py-3.5 flex items-center justify-between sticky top-0 z-30 shadow-xl">
       <div class="flex items-center gap-4">
         <a href="#/admin" class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-full border border-[#D4AF37] bg-black flex items-center justify-center text-[#D4AF37] font-cinzel font-bold text-xs">
+          <div class="w-8 h-8 rounded-full border border-[#D4AF37] bg-gradient-to-tr from-[#2A0A13] to-[#1E070D] flex items-center justify-center text-[#E8B676] font-cinzel font-bold text-xs shadow-sm">
             WJ
           </div>
           <div>
             <span class="font-cinzel text-sm font-bold text-white tracking-widest block leading-tight">WJ JEWELLERS</span>
-            <span class="text-[9px] font-cinzel text-[#D4AF37] tracking-wider block">ATELIER OPERATIONS</span>
+            <span class="text-[9px] font-cinzel text-[#E8B676] tracking-wider block">ATELIER OPERATIONS</span>
           </div>
         </a>
-        <span class="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-[10px] font-cinzel bg-emerald-950 text-emerald-300 border border-emerald-800/40">
+        <span class="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-[10px] font-cinzel bg-emerald-950/80 text-emerald-300 border border-emerald-800/40">
           <i class="fa-solid fa-shield-check mr-1 text-[8px]"></i> Session Verified
         </span>
       </div>
 
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3">
         
         <!-- Admin Palette Selector -->
-        <div class="flex items-center bg-[#141416] border border-[#D4AF37]/35 rounded-xl px-2 py-1 gap-1.5 hover:border-[#D4AF37] transition-all">
-          <i class="fa-solid fa-palette text-xs text-[#E5C558]"></i>
+        <div class="lux-control-pill" title="Theme Palette">
+          <i class="fa-solid fa-palette text-xs text-[#E8B676]"></i>
           <select 
             class="palette-selector-select bg-transparent text-[#F3E5AB] text-xs font-cinzel font-medium focus:outline-none cursor-pointer pr-1"
             title="Switch Theme Palette"
           >
-            <option value="emerald" class="bg-[#0C261B] text-[#F5FAF6]">🟢 Royal Emerald</option>
-            <option value="burgundy" class="bg-[#250A11] text-[#FCF7F6]">🍷 Imperial Burgundy</option>
-            <option value="sapphire" class="bg-[#0D1C34] text-[#F4F7FC]">💎 Sapphire Navy</option>
-            <option value="ivory" class="bg-[#FAF7F2] text-[#1D1C20]">🏛️ Pearl Ivory</option>
+            <option value="burgundy" class="bg-[#1E070D] text-[#FCF7F6]">🍷 Burgundy</option>
+            <option value="emerald" class="bg-[#0A2218] text-[#F5FAF6]">🟢 Emerald</option>
+            <option value="sapphire" class="bg-[#0B172B] text-[#F4F7FC]">💎 Sapphire</option>
+            <option value="ivory" class="bg-[#FFFFFF] text-[#1D1C20]">🏛️ Ivory</option>
           </select>
         </div>
-
-        <!-- Day / Night Mode Toggle inside Admin -->
-        <button 
-          class="theme-toggle-btn p-2 rounded-xl border border-[#D4AF37]/30 hover:border-[#D4AF37] text-gray-300 hover:text-[#F3E5AB] transition-all flex items-center justify-center w-8 h-8"
-          title="Toggle Day / Night Mode"
-        >
-          <i class="theme-toggle-icon fa-solid fa-sun text-[#F3E5AB] text-xs"></i>
-        </button>
 
         <!-- Live Link to public site -->
         <a 
