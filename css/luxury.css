@@ -1,0 +1,337 @@
+/* ==========================================================================
+   Aurelia Fine Jewels - Luxury Haute Joaillerie Design System
+   Palettes: Obsidian Black (#0A0A0A) & Imperial Metallic Gold (#D4AF37)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-obsidian: #0A0A0A;
+  --bg-surface: #121212;
+  --bg-elevated: #18181A;
+  --bg-card: #141416;
+  --gold-primary: #D4AF37;
+  --gold-light: #F3E5AB;
+  --gold-glow: #E5C558;
+  --gold-antique: #AA771C;
+  --gold-dark: #78530B;
+  --text-main: #F5F5F7;
+  --text-muted: #9E9EA7;
+  --text-subtle: #63636E;
+  --border-gold-subtle: rgba(212, 175, 55, 0.2);
+  --border-gold-medium: rgba(212, 175, 55, 0.4);
+  --border-gold-bright: rgba(212, 175, 55, 0.8);
+}
+
+/* Base resets & typography */
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--bg-obsidian);
+  color: var(--text-main);
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  selection-background-color: #D4AF37;
+  selection-color: #0A0A0A;
+}
+
+::selection {
+  background: #D4AF37;
+  color: #0A0A0A;
+}
+
+/* Custom Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: #2E2818;
+  border-radius: 4px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+/* Luxury Font Utilities */
+.font-serif-lux {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.15em;
+}
+
+/* Metallic Gold Gradients */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #CF9C38 0%, #FFF3B3 30%, #D4AF37 55%, #FDF4C8 75%, #A1741B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.gold-gradient-text-subtle {
+  background: linear-gradient(135deg, #E5C558 0%, #FFF8D6 40%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+}
+
+.gold-btn-gradient {
+  background: linear-gradient(135deg, #D4AF37 0%, #F5DF88 50%, #AA771C 100%);
+  color: #0A0A0A;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.25);
+}
+
+.gold-btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.45);
+  background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #C59B27 100%);
+}
+
+.gold-outline-btn {
+  border: 1px solid var(--gold-primary);
+  color: var(--gold-primary);
+  background: rgba(212, 175, 55, 0.04);
+  transition: all 0.3s ease;
+}
+
+.gold-outline-btn:hover {
+  background: rgba(212, 175, 55, 0.15);
+  color: #FFF8D6;
+  border-color: #F3E5AB;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+/* Glassmorphism & Borders */
+.glass-panel {
+  background: rgba(18, 18, 20, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-gold-subtle);
+}
+
+.glass-panel-elevated {
+  background: rgba(24, 24, 28, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-gold-medium);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.luxury-card {
+  background: rgba(20, 20, 22, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card:hover {
+  border-color: rgba(212, 175, 55, 0.55);
+  box-shadow: 0 12px 35px -5px rgba(212, 175, 55, 0.18), 0 0 20px rgba(0, 0, 0, 0.8);
+  transform: translateY(-4px);
+}
+
+/* Ambient glows */
+.hero-radial-glow {
+  background: radial-gradient(circle at 50% 18%, rgba(212, 175, 55, 0.14) 0%, rgba(10, 10, 10, 0) 65%);
+}
+
+.ambient-gold-sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  background: rgba(212, 175, 55, 0.08);
+}
+
+/* Subtle Shimmer Animation */
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-badge {
+  background: linear-gradient(90deg, rgba(212,175,55,0.1) 0%, rgba(243,229,171,0.3) 50%, rgba(212,175,55,0.1) 100%);
+  background-size: 200% 100%;
+  animation: goldShimmer 4s infinite linear;
+}
+
+/* Live Rate Marquee Ticker */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 35s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* Pulse beacon */
+.pulse-green {
+  animation: pulseBeacon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulseBeacon {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: .4;
+    transform: scale(1.15);
+  }
+}
+
+/* Image Zoom & Vignette in Showcase */
+.lux-img-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.lux-img-container img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+}
+
+.lux-img-container:hover img {
+  transform: scale(1.08);
+}
+
+.lux-img-vignette::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.2) 50%, rgba(10, 10, 10, 0.1) 100%);
+  pointer-events: none;
+}
+
+/* Modals & Backdrop Blur */
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.modal-content-animation {
+  animation: modalScaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Toast Notification */
+.toast-slide-in {
+  animation: toastSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastSlide {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Shake Animation for Auth Errors */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+.auth-shake {
+  animation: shake 0.45s ease-in-out;
+}
+
+/* Custom Table Styles for Admin */
+.lux-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.lux-table th {
+  background: #151518;
+  color: #A0A0A8;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.lux-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.875rem;
+  color: #E2E2E6;
+}
+
+.lux-table tr:hover td {
+  background: rgba(212, 175, 55, 0.035);
+}
+
+/* Print Styles for Staff Payroll & Daily Ledger Receipts */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  .no-print, header, footer, #admin-sidebar, .toast-container, button {
+    display: none !important;
+  }
+  .print-area {
+    display: block !important;
+    width: 100% !important;
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  .lux-table th {
+    background: #EAEAEA !important;
+    color: #000000 !important;
+    border-bottom: 2px solid #000000 !important;
+  }
+  .lux-table td {
+    color: #000000 !important;
+    border-bottom: 1px solid #CCCCCC !important;
+  }
+}
