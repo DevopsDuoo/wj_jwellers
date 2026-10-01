@@ -502,6 +502,33 @@ body {
   left: 0;
 }
 
+/* ==========================================================================
+   WJ Royal Indian Surya (Sun) Logo Styles
+   ========================================================================== */
+.wj-sun-logo {
+  display: inline-block;
+  vertical-align: middle;
+  filter: drop-shadow(0 0 8px rgba(232, 182, 118, 0.35));
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
+}
+
+.wj-sun-logo .wj-sun-rays,
+.wj-sun-rays {
+  transform-origin: 50px 50px;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .wj-sun-logo,
+.wj-sun-logo:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 16px rgba(232, 182, 118, 0.65));
+}
+
+.group:hover .wj-sun-logo .wj-sun-rays,
+.wj-sun-logo:hover .wj-sun-rays {
+  transform: rotate(22.5deg);
+}
+
 /* Luxury Selector Glass Pill */
 .lux-control-pill {
   background: var(--bg-card);

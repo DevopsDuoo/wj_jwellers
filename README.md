@@ -23,6 +23,7 @@ The application requires **zero build steps or backend servers**, deploying seam
 - **Signature Haute Joaillerie Palette:** Deep royal wine velvet backgrounds (`#150409`, `#1E070D`, `#2A0A13`) paired with luminescent antique rose gold accents (`#E8B676`, `#FBE0B8`), warm amber glow, and crisp off-white typography (`#FCF7F6`).
 - **Unified Visual Identity:** Uniquely tailored for royal bridal and Indian heirloom jewelry across both the Public Showcase and the Atelier Operations Panel.
 - **Strict Single-Line Header:** Ultra-clean navigation header with no text wrapping, optimized spacing, and streamlined controls.
+- **Royal Indian Surya (Sun) Logo:** Handcrafted geometric emblem featuring radiating curved solar flames ("curvy lits") with an inner beaded filigree circle surrounding the central gold "WJ" monogram, inspired by traditional Indian temple jewelry and Kundan sunburst pendants.
 
 ### 2. ⚡ Live Automated Bullion Price API Integration
 - **Automated Daily Price Updates:** Fetches real-time spot gold prices directly from public bullion market feeds without requiring complex backend servers.

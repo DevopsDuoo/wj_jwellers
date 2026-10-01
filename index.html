@@ -10,8 +10,8 @@
   <meta name="keywords" content="WJ Jewellers, Indian bridal jewelry, 22k gold necklace, jadau polki choker, temple kadas, uncut diamonds, BIS 916 gold rate today" />
   <meta name="author" content="WJ Jewellers" />
   
-  <!-- Favicon with Gold Monogram Emblem -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,5 92,30 92,70 50,95 8,70 8,30' fill='%230A0A0A' stroke='%23D4AF37' stroke-width='4'/%3E%3Ctext x='50' y='64' font-family='serif' font-size='42' font-weight='bold' fill='%23D4AF37' text-anchor='middle'%3EWJ%3C/text%3E%3C/svg%3E" />
+  <!-- Favicon with Royal Indian Surya Gold Monogram -->
+  <link rel="icon" type="image/svg+xml" href="assets/wj_sun_logo.svg" />
 
   <!-- Google Fonts: Cormorant Garamond, Cinzel, Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -113,11 +113,49 @@
     <nav id="main-navbar" class="main-luxury-nav sticky top-0 z-40 transition-all duration-300">
       <div class="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 h-20 flex items-center justify-between gap-6">
         
-        <!-- Brand Emblem & Logo -->
-        <a href="#/" class="flex items-center gap-3.5 group shrink-0 whitespace-nowrap">
-          <div class="w-11 h-11 rounded-full border border-[#D4AF37]/60 flex items-center justify-center bg-gradient-to-tr from-[#2A0A13] to-[#1E070D] shadow-[0_0_18px_var(--glow-color)] group-hover:border-[#E8B676] group-hover:scale-105 transition-all">
-            <span class="font-cinzel text-[#E8B676] text-base font-bold tracking-tight">WJ</span>
-          </div>
+        <!-- Brand Emblem & Logo (Royal Indian Surya Motif) -->
+        <a href="#/" class="flex items-center gap-3.5 group shrink-0 whitespace-nowrap" title="WJ Jewellers Homepage">
+          <svg class="wj-sun-logo w-11 h-11 sm:w-12 sm:h-12 shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="wjNavGoldGrad" x1="15%" y1="0%" x2="85%" y2="100%">
+                <stop offset="0%" stop-color="#FBE0B8"/>
+                <stop offset="40%" stop-color="#E8B676"/>
+                <stop offset="75%" stop-color="#D4AF37"/>
+                <stop offset="100%" stop-color="#BA8540"/>
+              </linearGradient>
+              <radialGradient id="wjNavSunCoreGrad" cx="40%" cy="35%" r="65%">
+                <stop offset="0%" stop-color="#340C18"/>
+                <stop offset="70%" stop-color="#1E070D"/>
+                <stop offset="100%" stop-color="#120207"/>
+              </radialGradient>
+              <radialGradient id="wjNavAuraGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="60%" stop-color="#E8B676" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#E8B676" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="50" cy="50" r="48" fill="url(#wjNavAuraGrad)"/>
+            <g class="wj-sun-rays">
+              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(0 50 50)" fill="url(#wjNavGoldGrad)"/>
+              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(22.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
+              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(45 50 50)" fill="url(#wjNavGoldGrad)"/>
+              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(67.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
+              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(90 50 50)" fill="url(#wjNavGoldGrad)"/>
+              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(112.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
+              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(135 50 50)" fill="url(#wjNavGoldGrad)"/>
+              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(157.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
+              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(180 50 50)" fill="url(#wjNavGoldGrad)"/>
+              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(202.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
+              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(225 50 50)" fill="url(#wjNavGoldGrad)"/>
+              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(247.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
+              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(270 50 50)" fill="url(#wjNavGoldGrad)"/>
+              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(292.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
+              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(315 50 50)" fill="url(#wjNavGoldGrad)"/>
+              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(337.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
+            </g>
+            <circle cx="50" cy="50" r="23.5" fill="url(#wjNavSunCoreGrad)" stroke="url(#wjNavGoldGrad)" stroke-width="1.8"/>
+            <circle cx="50" cy="50" r="19.5" fill="none" stroke="url(#wjNavGoldGrad)" stroke-width="0.8" stroke-dasharray="1.8 1.4" opacity="0.75"/>
+            <text x="50" y="56.5" font-family="'Cinzel', serif" font-weight="700" font-size="16" letter-spacing="0.6" text-anchor="middle" fill="url(#wjNavGoldGrad)">WJ</text>
+          </svg>
           <div class="flex flex-col whitespace-nowrap">
             <span class="font-cinzel font-bold text-base sm:text-lg tracking-[0.22em] text-white group-hover:text-[#F3E5AB] transition-colors leading-none">
               WJ JEWELLERS
@@ -194,9 +232,12 @@
     <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-[#0F0F12] border-l border-[#D4AF37]/30 z-50 transform translate-x-full transition-transform duration-300 ease-in-out p-6 flex flex-col justify-between pointer-events-none">
       <div>
         <div class="flex items-center justify-between pb-6 border-b border-white/10">
-          <div class="flex items-center gap-2">
-            <span class="font-cinzel text-lg font-bold text-white">WJ JEWELLERS</span>
-            <span class="text-[9px] font-cinzel text-[#D4AF37]">EST. 1984</span>
+          <div class="flex items-center gap-3">
+            <img src="assets/wj_sun_logo.svg" alt="WJ Jewellers Logo" class="wj-sun-logo w-9 h-9 shrink-0" />
+            <div>
+              <span class="font-cinzel text-base font-bold text-white block leading-tight">WJ JEWELLERS</span>
+              <span class="text-[9px] font-cinzel text-[#E8B676] tracking-wider block">EST. 1984</span>
+            </div>
           </div>
           <button id="mobile-drawer-close" class="text-gray-400 hover:text-white p-2">
             <i class="fa-solid fa-xmark text-lg"></i>
@@ -882,9 +923,7 @@
         
         <div class="space-y-4">
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full border border-[#D4AF37] flex items-center justify-center font-cinzel text-[#D4AF37] text-xs font-bold">
-              WJ
-            </div>
+            <img src="assets/wj_sun_logo.svg" alt="WJ Jewellers Logo" class="wj-sun-logo w-9 h-9 shrink-0" />
             <span class="font-cinzel text-base tracking-[0.2em] text-white font-bold">WJ JEWELLERS</span>
           </div>
           <p class="text-xs text-gray-400 leading-relaxed">
@@ -1009,11 +1048,9 @@
         <i class="fa-solid fa-arrow-left text-[10px]"></i> Boutique
       </a>
 
-      <!-- Security Crest -->
+      <!-- Security Crest with WJ Sun Emblem -->
       <div class="text-center pt-4 mb-8">
-        <div class="w-16 h-16 rounded-full border-2 border-[#D4AF37] mx-auto flex items-center justify-center bg-black/60 shadow-[0_0_25px_rgba(212,175,55,0.25)] mb-4">
-          <i class="fa-solid fa-key text-xl text-[#D4AF37]"></i>
-        </div>
+        <img src="assets/wj_sun_logo.svg" alt="WJ Jewellers Security Emblem" class="wj-sun-logo w-16 h-16 mx-auto mb-4" />
         <span class="text-[10px] font-cinzel font-semibold tracking-[0.25em] text-[#D4AF37] uppercase block">
           WJ Jewellers Security
         </span>
@@ -1097,10 +1134,8 @@
     <!-- Admin Topbar -->
     <header class="main-luxury-nav px-4 sm:px-8 py-3.5 flex items-center justify-between sticky top-0 z-30 shadow-xl">
       <div class="flex items-center gap-4">
-        <a href="#/admin" class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-full border border-[#D4AF37] bg-gradient-to-tr from-[#2A0A13] to-[#1E070D] flex items-center justify-center text-[#E8B676] font-cinzel font-bold text-xs shadow-sm">
-            WJ
-          </div>
+        <a href="#/admin" class="flex items-center gap-2.5 group">
+          <img src="assets/wj_sun_logo.svg" alt="WJ Jewellers Logo" class="wj-sun-logo w-8 h-8 shrink-0" />
           <div>
             <span class="font-cinzel text-sm font-bold text-white tracking-widest block leading-tight">WJ JEWELLERS</span>
             <span class="text-[9px] font-cinzel text-[#E8B676] tracking-wider block">ATELIER OPERATIONS</span>
