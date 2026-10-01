@@ -1,6 +1,7 @@
 /**
- * Aurelia Fine Jewels - Public Showcase Module
- * Collection grids, filters, quick-view modal, live metal ticker, wishlist drawer, and VIP consultation booking.
+ * WJ Jewellers - Public Showcase Module
+ * Curated Indian jewelry showcase, horizontal scrollable & animated carousel,
+ * automated live bullion API sync, quick-view modal, and wishlist drawer.
  */
 
 const Showcase = {
@@ -9,12 +10,17 @@ const Showcase = {
   filterPurity: 'all',
   sortBy: 'featured',
   activeQuickViewProduct: null,
+  isApiSyncing: false,
 
   init() {
     this.renderMetalRates();
+    this.renderIndianBridalCarousel();
     this.renderCollections();
     this.updateWishlistCount();
     this.bindEvents();
+
+    // Auto-sync live bullion rates on page load (daily automatic sync)
+    this.triggerDailyApiCheck();
   },
 
   bindEvents() {
@@ -71,16 +77,59 @@ const Showcase = {
     }
   },
 
+  // Trigger automated daily API rate check
+  async triggerDailyApiCheck() {
+    const result = await DataStore.fetchLiveGoldRates(false);
+    if (result.success && result.source === 'live') {
+      this.renderMetalRates();
+      Utils.showToast('Gold Rates Synced', 'Today\'s 24K and 22K rates updated via Live Bullion API.', 'success');
+    }
+  },
+
+  // Manual trigger for Live Gold API sync
+  async syncLiveGoldRates() {
+    if (this.isApiSyncing) return;
+    this.isApiSyncing = true;
+
+    const syncBtnIcons = document.querySelectorAll('.api-sync-icon');
+    syncBtnIcons.forEach(icon => icon.classList.add('spin-active'));
+
+    Utils.showToast('Connecting Bullion API', 'Fetching real-time 24K & 22K gold spot prices...', 'gold');
+
+    try {
+      const result = await DataStore.fetchLiveGoldRates(true);
+      if (result.success) {
+        this.renderMetalRates();
+        if (Admin && typeof Admin.renderRatesEditor === 'function') {
+          Admin.renderRatesEditor();
+        }
+        Utils.showToast(
+          'Automated Sync Complete',
+          `Live Spot Rates updated successfully (${result.rates.gold24k.change} 24h change).`,
+          'success'
+        );
+      } else {
+        Utils.showToast('Using Latest Cached Rates', 'Market data feed temporarily offline, using cached rates.', 'gold');
+      }
+    } catch (e) {
+      Utils.showToast('Sync Notice', 'Using cached market rates.', 'gold');
+    } finally {
+      this.isApiSyncing = false;
+      syncBtnIcons.forEach(icon => icon.classList.remove('spin-active'));
+    }
+  },
+
   // Render the animated precious metals ticker
   renderMetalRates() {
     const tickerContainer = document.getElementById('metal-rates-marquee');
+    const syncStatusEl = document.getElementById('rates-sync-timestamp');
     if (!tickerContainer) return;
 
     const rates = DataStore.getRates();
     const items = [
-      { label: 'Gold 24K (999)', price: rates.gold24k.priceUsdPerGram, change: rates.gold24k.change },
-      { label: 'Gold 22K (916)', price: rates.gold22k.priceUsdPerGram, change: rates.gold22k.change },
-      { label: 'Gold 18K (750)', price: rates.gold18k.priceUsdPerGram, change: rates.gold18k.change },
+      { label: '24K Pure Gold (999)', price: rates.gold24k.priceUsdPerGram, change: rates.gold24k.change },
+      { label: '22K Hallmark Gold (916)', price: rates.gold22k.priceUsdPerGram, change: rates.gold22k.change },
+      { label: '18K Jewelry Gold (750)', price: rates.gold18k.priceUsdPerGram, change: rates.gold18k.change },
       { label: 'Platinum 950', price: rates.platinum950.priceUsdPerGram, change: rates.platinum950.change },
       { label: 'Fine Silver 999', price: rates.silver999.priceUsdPerGram, change: rates.silver999.change }
     ];
@@ -88,8 +137,8 @@ const Showcase = {
     const generateTickerHtml = () => items.map(item => `
       <div class="inline-flex items-center gap-2.5 mx-6 text-xs whitespace-nowrap">
         <span class="text-gray-400 font-cinzel tracking-wider">${item.label}:</span>
-        <span class="font-semibold text-[#F3E5AB]">${Utils.formatGramRate(item.price)}</span>
-        <span class="text-[10px] px-1.5 py-0.5 rounded ${item.change.startsWith('+') ? 'bg-emerald-950/80 text-emerald-400 border border-emerald-800/40' : 'bg-rose-950/80 text-rose-400 border border-rose-800/40'}">
+        <span class="font-semibold text-[#F3E5AB] font-mono">${Utils.formatGramRate(item.price)}</span>
+        <span class="text-[10px] px-1.5 py-0.5 rounded font-mono ${item.change.startsWith('+') ? 'bg-emerald-950/80 text-emerald-400 border border-emerald-800/40' : 'bg-rose-950/80 text-rose-400 border border-rose-800/40'}">
           ${item.change}
         </span>
       </div>
@@ -97,6 +146,108 @@ const Showcase = {
 
     // Duplicate ticker for seamless infinite CSS marquee scroll
     tickerContainer.innerHTML = generateTickerHtml() + generateTickerHtml();
+
+    if (syncStatusEl) {
+      const timeStr = rates.lastUpdated ? new Date(rates.lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Live';
+      syncStatusEl.textContent = `Auto-Synced ${timeStr} · ${rates.source || 'Live API'}`;
+    }
+  },
+
+  // Render Horizontal Animated & Scrollable Indian Bridal Carousel
+  renderIndianBridalCarousel() {
+    const carouselContainer = document.getElementById('indian-bridal-carousel');
+    if (!carouselContainer) return;
+
+    const products = DataStore.getProducts();
+    const featuredPieces = products.filter(p => p.featured || p.category === 'bridal' || p.category === 'polki').slice(0, 6);
+    const wishlist = DataStore.getWishlist();
+
+    carouselContainer.innerHTML = featuredPieces.map(piece => {
+      const isWishlisted = wishlist.includes(piece.id);
+      return `
+        <div class="horizontal-scroll-item luxury-card rounded-2xl overflow-hidden flex flex-col group relative">
+          <!-- Image -->
+          <div class="lux-img-container aspect-[4/3] bg-black/60 relative lux-img-vignette cursor-pointer" onclick="Showcase.openQuickView('${piece.id}')">
+            <img 
+              src="${piece.image}" 
+              alt="${piece.name}" 
+              loading="lazy"
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+              onerror="this.src='assets/indian_bridal_hero.jpg'"
+            />
+            <div class="absolute top-3 left-3 flex flex-col gap-1 z-10">
+              <span class="text-[10px] font-cinzel font-semibold px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md text-[#F3E5AB] border border-[#D4AF37]/50">
+                ${piece.indianType || piece.categoryName}
+              </span>
+              <span class="text-[9px] font-cinzel px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 backdrop-blur-md">
+                <i class="fa-solid fa-crown text-[8px] mr-1"></i>Royal Heritage
+              </span>
+            </div>
+
+            <!-- Wishlist Button -->
+            <button 
+              onclick="event.stopPropagation(); Showcase.toggleWishlist('${piece.id}')"
+              class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-[#D4AF37]/40 flex items-center justify-center text-gray-300 hover:text-rose-400 transition-all z-10"
+              title="Bookmark to Wishlist"
+            >
+              <i class="fa-${isWishlisted ? 'solid text-rose-500' : 'regular'} fa-heart text-xs"></i>
+            </button>
+          </div>
+
+          <!-- Body -->
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] text-amber-400/90 font-cinzel block mb-1">
+                ${piece.metalPurity.split('(')[0]}
+              </span>
+              <h3 
+                onclick="Showcase.openQuickView('${piece.id}')" 
+                class="font-serif-lux text-lg font-medium text-white hover:text-[#F3E5AB] transition-colors cursor-pointer leading-snug line-clamp-1 mb-1.5"
+              >
+                ${piece.name}
+              </h3>
+              <p class="text-xs text-gray-400 line-clamp-2 leading-relaxed mb-3">
+                ${piece.description}
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
+              <div>
+                <span class="text-[9px] uppercase font-cinzel text-gray-500 block">Acquisition Value</span>
+                <span class="text-base font-cinzel font-bold gold-gradient-text">
+                  ${Utils.formatPrice(piece.price)}
+                </span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button 
+                  onclick="Showcase.openQuickView('${piece.id}')"
+                  class="px-3 py-1.5 rounded-lg text-xs border border-[#D4AF37]/40 text-[#F3E5AB] hover:bg-[#D4AF37]/15 transition-all"
+                >
+                  Quick View
+                </button>
+                <button 
+                  onclick="Showcase.inquireForProduct('${piece.id}')"
+                  class="px-3 py-1.5 rounded-lg text-xs font-semibold gold-btn-gradient"
+                >
+                  Inquire
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  },
+
+  // Scroll horizontal carousel with golden arrows
+  scrollCarousel(direction) {
+    const container = document.getElementById('indian-bridal-carousel');
+    if (!container) return;
+    const scrollAmount = 380;
+    container.scrollBy({
+      left: direction * scrollAmount,
+      behavior: 'smooth'
+    });
   },
 
   // Filter and sort products
@@ -114,7 +265,8 @@ const Showcase = {
         p.name.toLowerCase().includes(this.searchQuery) ||
         p.metalPurity.toLowerCase().includes(this.searchQuery) ||
         p.gemstones.toLowerCase().includes(this.searchQuery) ||
-        p.description.toLowerCase().includes(this.searchQuery)
+        p.description.toLowerCase().includes(this.searchQuery) ||
+        (p.indianType && p.indianType.toLowerCase().includes(this.searchQuery))
       );
     }
 
@@ -131,7 +283,6 @@ const Showcase = {
     } else if (this.sortBy === 'name') {
       list.sort((a, b) => a.name.localeCompare(b.name));
     } else {
-      // featured default
       list.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
     }
 
@@ -171,17 +322,17 @@ const Showcase = {
               alt="${prod.name}" 
               loading="lazy"
               class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-              onerror="this.src='https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80'"
+              onerror="this.src='assets/indian_bridal_hero.jpg'"
             />
             
             <!-- Badges -->
             <div class="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
               <span class="text-[10px] font-cinzel font-semibold px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-[#F3E5AB] border border-[#D4AF37]/40">
-                ${prod.categoryName}
+                ${prod.indianType || prod.categoryName}
               </span>
               ${prod.featured ? `
-                <span class="text-[9px] font-cinzel tracking-wider px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                  <i class="fa-solid fa-crown text-[8px] mr-1"></i>Curated
+                <span class="text-[9px] font-cinzel tracking-wider px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 backdrop-blur-md">
+                  <i class="fa-solid fa-crown text-[8px] mr-1"></i>Curated Heirloom
                 </span>
               ` : ''}
             </div>
@@ -287,10 +438,10 @@ const Showcase = {
             src="${product.image}" 
             alt="${product.name}" 
             class="w-full h-full object-cover object-center"
-            onerror="this.src='https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80'"
+            onerror="this.src='assets/indian_bridal_hero.jpg'"
           />
           <div class="absolute bottom-3 left-3 bg-black/75 backdrop-blur-md px-3 py-1 rounded-full text-xs text-amber-300 font-cinzel border border-amber-500/30">
-            ${product.categoryName} · ${product.sku}
+            WJ Jewellers · ${product.sku}
           </div>
         </div>
 
@@ -298,7 +449,7 @@ const Showcase = {
         <div class="flex flex-col justify-between h-full">
           <div>
             <div class="flex items-center justify-between gap-4 mb-2">
-              <span class="text-xs font-cinzel text-amber-400 tracking-widest uppercase">Maison Aurelia Certified</span>
+              <span class="text-xs font-cinzel text-amber-400 tracking-widest uppercase">WJ Jewellers Certified Purity</span>
               <span class="text-xs px-2.5 py-0.5 rounded-full ${product.status === 'In Stock' ? 'bg-emerald-950 text-emerald-400 border border-emerald-800/40' : 'bg-amber-950 text-amber-400 border border-amber-800/40'}">
                 <i class="fa-solid fa-circle text-[6px] mr-1.5 align-middle"></i>${product.status}
               </span>
@@ -312,7 +463,7 @@ const Showcase = {
               <span class="text-2xl font-cinzel font-bold gold-gradient-text">
                 ${Utils.formatPrice(product.price)}
               </span>
-              <span class="text-xs text-gray-500 ml-2">(Includes all artisanal crafting & hallmarking fees)</span>
+              <span class="text-xs text-gray-500 ml-2">(Includes 100% BIS Hallmarking & Insurance)</span>
             </div>
 
             <p class="text-sm text-gray-300 leading-relaxed mb-6 pb-6 border-b border-white/10">
@@ -327,7 +478,7 @@ const Showcase = {
 
               <div class="grid grid-cols-2 gap-y-2.5 text-xs">
                 <div>
-                  <span class="text-gray-500 block text-[10px] uppercase font-cinzel">Precious Metal Purity</span>
+                  <span class="text-gray-500 block text-[10px] uppercase font-cinzel">Gold Purity Standard</span>
                   <span class="text-white font-medium">${product.metalPurity}</span>
                 </div>
                 <div>
@@ -339,11 +490,11 @@ const Showcase = {
                   <span class="text-white font-medium">${product.netGoldWeight}</span>
                 </div>
                 <div>
-                  <span class="text-gray-500 block text-[10px] uppercase font-cinzel">Diamond Clarity & Color</span>
+                  <span class="text-gray-500 block text-[10px] uppercase font-cinzel">Diamond / Stone Grade</span>
                   <span class="text-white font-medium">${product.diamondGrade}</span>
                 </div>
                 <div class="col-span-2">
-                  <span class="text-gray-500 block text-[10px] uppercase font-cinzel">Gemstone Details</span>
+                  <span class="text-gray-500 block text-[10px] uppercase font-cinzel">Gemstone Breakdown</span>
                   <span class="text-white font-medium">${product.gemstones}</span>
                 </div>
                 <div class="col-span-2">
@@ -351,7 +502,7 @@ const Showcase = {
                   <span class="text-amber-300 font-medium">${product.certification}</span>
                 </div>
                 <div class="col-span-2">
-                  <span class="text-gray-500 block text-[10px] uppercase font-cinzel">Artisanal Making Charges</span>
+                  <span class="text-gray-500 block text-[10px] uppercase font-cinzel">Craftsmanship & Making Charges</span>
                   <span class="text-gray-300">${product.makingCharges}</span>
                 </div>
               </div>
@@ -400,6 +551,7 @@ const Showcase = {
     DataStore.saveWishlist(wishlist);
     this.updateWishlistCount();
     this.renderCollections();
+    this.renderIndianBridalCarousel();
 
     if (updateModal) {
       const btn = document.getElementById('modal-wishlist-btn');
@@ -453,7 +605,7 @@ const Showcase = {
       totalUsd += item.price;
       return `
         <div class="flex items-center gap-4 p-3 rounded-xl bg-black/40 border border-white/5">
-          <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg border border-[#D4AF37]/20" />
+          <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg border border-[#D4AF37]/20" onerror="this.src='assets/indian_bridal_hero.jpg'" />
           <div class="flex-1 min-w-0">
             <h4 class="text-xs font-serif-lux text-white truncate font-medium">${item.name}</h4>
             <span class="text-[11px] text-amber-400/90 font-cinzel block mt-0.5">${Utils.formatPrice(item.price)}</span>
@@ -511,7 +663,7 @@ const Showcase = {
     }
 
     if (notesField) {
-      notesField.value = `I am interested in scheduling a private salon viewing for "${product.name}" (${product.sku}) priced at ${Utils.formatPrice(product.price)}. Please contact me with available viewing appointments and custom styling options.`;
+      notesField.value = `Namaste WJ Jewellers. I am interested in scheduling a private salon appointment for "${product.name}" (${product.sku}) priced at ${Utils.formatPrice(product.price)}. Please contact me with availability and customization options.`;
     }
 
     const contactSection = document.getElementById('contact');
@@ -519,7 +671,7 @@ const Showcase = {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
 
-    Utils.showToast('Product Selected', `Details for ${product.name} have been populated into the appointment form below.`, 'gold');
+    Utils.showToast('Product Selected', `Details for ${product.name} populated into the appointment form below.`, 'gold');
   },
 
   // Inquire all wishlist items
@@ -537,7 +689,7 @@ const Showcase = {
     const titles = items.map(i => `• ${i.name} (${i.sku} - ${Utils.formatPrice(i.price)})`).join('\n');
     const notesField = document.getElementById('inquiry-notes');
     if (notesField) {
-      notesField.value = `I would like to arrange a private viewing for the following curated pieces from my wishlist:\n\n${titles}\n\nPlease advise available dates and salon suite availability.`;
+      notesField.value = `Namaste WJ Jewellers. I would like to arrange a private viewing for the following curated Indian bridal pieces from my wishlist:\n\n${titles}\n\nPlease advise available viewing dates.`;
     }
 
     const contactSection = document.getElementById('contact');
@@ -585,7 +737,7 @@ const Showcase = {
 
     Utils.showToast(
       'Private Viewing Requested',
-      `Thank you, ${clientName}. Our Master Concierge will contact you within 24 hours to finalize your salon appointment.`,
+      `Thank you, ${clientName}. The WJ Jewellers concierge team will contact you within 24 hours.`,
       'success'
     );
   }
@@ -594,4 +746,3 @@ const Showcase = {
 if (typeof window !== 'undefined') {
   window.Showcase = Showcase;
 }
-

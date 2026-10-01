@@ -1,10 +1,13 @@
 /**
- * Aurelia Fine Jewels - Main Application Controller & Client-Side Hash Router
- * Smooth static hosting routing (GitHub Pages & Netlify compatible), state orchestration.
+ * WJ Jewellers - Main Application Controller & Client-Side Hash Router
+ * Single Page Application router, theme coordinator, and event listeners.
  */
 
 const App = {
   init() {
+    // Initialize Day/Night mode
+    Utils.initTheme();
+
     this.setupCurrencySelector();
     this.setupRouter();
     this.setupGlobalEvents();
@@ -35,14 +38,13 @@ const App = {
   changeCurrency(newCurrency) {
     DataStore.setCurrency(newCurrency);
 
-    // Sync other selectors
     const selector = document.getElementById('currency-selector');
     const mobileSelector = document.getElementById('mobile-currency-selector');
     if (selector) selector.value = newCurrency;
     if (mobileSelector) mobileSelector.value = newCurrency;
 
-    // Refresh displays
     Showcase.renderMetalRates();
+    Showcase.renderIndianBridalCarousel();
     Showcase.renderCollections();
     Showcase.renderWishlistDrawer();
 
@@ -66,13 +68,11 @@ const App = {
     const loginView = document.getElementById('admin-login-view');
 
     if (hash.startsWith('#/admin')) {
-      // Check session
       if (!Utils.isAdminAuthenticated()) {
         Admin.showLoginView();
         return;
       }
 
-      // Route to appropriate admin tab
       Admin.showDashboardView();
 
       if (hash === '#/admin/payroll') {
@@ -89,7 +89,6 @@ const App = {
         Admin.switchTab('dashboard');
       }
     } else {
-      // Public Showcase route
       if (adminApp) adminApp.classList.add('hidden');
       if (loginView) loginView.classList.add('hidden');
       if (showcaseView) showcaseView.classList.remove('hidden');
@@ -97,6 +96,11 @@ const App = {
       if (hash === '#/collections') {
         setTimeout(() => {
           const el = document.getElementById('collections');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else if (hash === '#/bridal') {
+        setTimeout(() => {
+          const el = document.getElementById('indian-bridal-section');
           if (el) el.scrollIntoView({ behavior: 'smooth' });
         }, 100);
       } else if (hash === '#/story') {
@@ -116,6 +120,22 @@ const App = {
   },
 
   setupGlobalEvents() {
+    // Theme toggle buttons (Day / Night mode)
+    document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => Utils.toggleTheme());
+    });
+
+    // Carousel navigation buttons
+    const prevBtn = document.getElementById('carousel-prev-btn');
+    const nextBtn = document.getElementById('carousel-next-btn');
+    if (prevBtn) prevBtn.addEventListener('click', () => Showcase.scrollCarousel(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => Showcase.scrollCarousel(1));
+
+    // Live Bullion API sync trigger button
+    document.querySelectorAll('.trigger-api-sync-btn').forEach(btn => {
+      btn.addEventListener('click', () => Showcase.syncLiveGoldRates());
+    });
+
     // Mobile navigation toggle
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileDrawer = document.getElementById('mobile-drawer');
@@ -216,17 +236,14 @@ const App = {
       const nav = document.getElementById('main-navbar');
       if (!nav) return;
       if (window.scrollY > 40) {
-        nav.classList.add('bg-black/90', 'border-[#D4AF37]/30', 'shadow-2xl');
-        nav.classList.remove('bg-black/60', 'border-[#D4AF37]/15');
+        nav.classList.add('shadow-2xl');
       } else {
-        nav.classList.remove('bg-black/90', 'border-[#D4AF37]/30', 'shadow-2xl');
-        nav.classList.add('bg-black/60', 'border-[#D4AF37]/15');
+        nav.classList.remove('shadow-2xl');
       }
     });
   }
 };
 
-// Auto boot on DOM Content Loaded
 if (typeof window !== 'undefined') {
   window.App = App;
 }
@@ -234,4 +251,3 @@ if (typeof window !== 'undefined') {
 document.addEventListener('DOMContentLoaded', () => {
   App.init();
 });
-

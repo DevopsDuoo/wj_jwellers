@@ -1,7 +1,7 @@
 /**
- * Aurelia Fine Jewels - Protected Admin Panel Module
+ * WJ Jewellers - Protected Admin Panel Module
  * Secure session guard, dashboard overview, staff salary & payroll tracker,
- * daily shop ledger notebook, stock inventory manager, and inquiry management.
+ * daily shop ledger notebook, stock inventory manager, and live bullion API control.
  */
 
 const Admin = {
@@ -66,7 +66,7 @@ const Admin = {
     if (username === 'admin' && password === 'jewel2026') {
       Utils.setAdminSession(username);
       if (errorMsg) errorMsg.classList.add('hidden');
-      Utils.showToast('Authentication Successful', 'Welcome to Aurelia Atelier Operations Center.', 'success');
+      Utils.showToast('Authentication Successful', 'Welcome to WJ Jewellers Atelier Operations Center.', 'success');
       this.showDashboardView();
     } else {
       if (errorMsg) {
@@ -94,7 +94,7 @@ const Admin = {
   // Handle Logout
   handleLogout() {
     Utils.clearAdminSession();
-    Utils.showToast('Session Terminated', 'You have been safely signed out of the Atelier Portal.', 'gold');
+    Utils.showToast('Session Terminated', 'You have been safely signed out of WJ Jewellers Portal.', 'gold');
     window.location.hash = '#/';
     const showcaseView = document.getElementById('public-showcase-view');
     const adminApp = document.getElementById('admin-app-container');
@@ -188,7 +188,7 @@ const Admin = {
     const inquiriesCountEl = document.getElementById('dash-inquiries-count');
 
     if (inventoryValEl) inventoryValEl.textContent = Utils.formatPrice(totalInventoryValue);
-    if (inventoryCountEl) inventoryCountEl.textContent = `${totalStockUnits} master pieces across ${products.length} catalog items`;
+    if (inventoryCountEl) inventoryCountEl.textContent = `${totalStockUnits} Indian master pieces across ${products.length} catalog items`;
 
     if (payrollValEl) payrollValEl.textContent = Utils.formatPrice(monthlyPayrollTotal);
     if (payrollStatusEl) payrollStatusEl.textContent = `${paidStaffCount} of ${staff.length} staff paid for current cycle`;
@@ -272,7 +272,7 @@ const Admin = {
       );
     }
 
-    // Metric Summary Calculation
+    // Summary Calculation
     const allStaff = DataStore.getStaff();
     const totalPayroll = allStaff.reduce((sum, s) => sum + s.baseSalary + (s.bonus || 0), 0);
     const paidSum = allStaff
@@ -398,7 +398,7 @@ const Admin = {
     const form = document.getElementById('staff-form');
     if (form) form.reset();
     const title = document.getElementById('staff-modal-title');
-    if (title) title.textContent = 'Add Employee to Atelier Payroll';
+    if (title) title.textContent = 'Add Employee to WJ Jewellers Payroll';
     Utils.openModal('staff-modal');
   },
 
@@ -426,7 +426,6 @@ const Admin = {
     Utils.openModal('staff-modal');
   },
 
-  // Save staff form (Add or Edit)
   handleStaffFormSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -448,7 +447,6 @@ const Admin = {
     let staff = DataStore.getStaff();
 
     if (this.editingStaffId) {
-      // Edit
       const emp = staff.find(s => s.id === this.editingStaffId);
       if (emp) {
         emp.name = name;
@@ -463,11 +461,10 @@ const Admin = {
       }
       Utils.showToast('Staff Record Updated', `${name}'s payroll details saved.`, 'success');
     } else {
-      // Add
       const nextNum = staff.length + 1;
       const newEmp = {
         id: 'emp-' + Date.now().toString(36),
-        empId: 'AUR-EMP-' + (nextNum < 10 ? '0' + nextNum : nextNum),
+        empId: 'WJ-EMP-' + (nextNum < 10 ? '0' + nextNum : nextNum),
         name,
         role,
         department,
@@ -488,7 +485,6 @@ const Admin = {
     this.renderDashboardOverview();
   },
 
-  // Delete staff record
   deleteStaffRecord(empId) {
     const staff = DataStore.getStaff();
     const emp = staff.find(s => s.id === empId);
@@ -503,7 +499,6 @@ const Admin = {
     }
   },
 
-  // Export payroll to CSV
   exportPayrollCsv() {
     const staff = DataStore.getStaff();
     const headers = ['Employee ID', 'Name', 'Role', 'Department', 'Base Salary (USD)', 'Bonus (USD)', 'Total (USD)', 'Status', 'Payment Date', 'Payment Method', 'Notes'];
@@ -521,7 +516,7 @@ const Admin = {
       s.notes || ''
     ]);
 
-    Utils.exportToCsv(`Aurelia_Payroll_Report_${new Date().toISOString().split('T')[0]}.csv`, headers, rows);
+    Utils.exportToCsv(`WJ_Jewellers_Payroll_Report_${new Date().toISOString().split('T')[0]}.csv`, headers, rows);
     Utils.showToast('Export Generated', 'Payroll CSV ledger downloaded.', 'success');
   },
 
@@ -692,7 +687,7 @@ const Admin = {
       }
       Utils.showToast('Voucher Updated', `Expense ${entry.voucherNo} updated.`, 'success');
     } else {
-      const voucherNum = 'V-' + date.replace(/-/g, '').slice(0, 6) + '-' + (Math.floor(Math.random() * 900) + 100);
+      const voucherNum = 'WJ-V-' + date.replace(/-/g, '').slice(0, 6) + '-' + (Math.floor(Math.random() * 900) + 100);
       const newEntry = {
         id: 'led-' + Date.now().toString(36),
         voucherNo: voucherNum,
@@ -742,7 +737,7 @@ const Admin = {
       l.status
     ]);
 
-    Utils.exportToCsv(`Aurelia_Ledger_Notebook_${new Date().toISOString().split('T')[0]}.csv`, headers, rows);
+    Utils.exportToCsv(`WJ_Jewellers_Ledger_Notebook_${new Date().toISOString().split('T')[0]}.csv`, headers, rows);
     Utils.showToast('Ledger Exported', 'CSV notebook downloaded.', 'success');
   },
 
@@ -797,10 +792,10 @@ const Admin = {
       <tr class="hover:bg-[#1A1A1E]/80 transition-colors">
         <td>
           <div class="flex items-center gap-3">
-            <img src="${prod.image}" alt="${prod.name}" class="w-11 h-11 object-cover rounded-lg border border-[#D4AF37]/30" />
+            <img src="${prod.image}" alt="${prod.name}" class="w-11 h-11 object-cover rounded-lg border border-[#D4AF37]/30" onerror="this.src='assets/indian_bridal_hero.jpg'" />
             <div>
               <span class="font-medium text-white text-sm block leading-snug">${prod.name}</span>
-              <span class="text-[11px] text-gray-500 font-mono">${prod.sku}</span>
+              <span class="text-[11px] text-gray-500 font-mono">${prod.sku} · ${prod.indianType || ''}</span>
             </div>
           </div>
         </td>
@@ -878,6 +873,7 @@ const Admin = {
     this.renderStockTable();
     this.renderDashboardOverview();
     Showcase.renderCollections();
+    Showcase.renderIndianBridalCarousel();
   },
 
   openAddProductModal() {
@@ -885,7 +881,7 @@ const Admin = {
     const form = document.getElementById('product-form');
     if (form) form.reset();
     const title = document.getElementById('product-modal-title');
-    if (title) title.textContent = 'Catalog New Fine Jewelry Creation';
+    if (title) title.textContent = 'Catalog New Indian Fine Jewelry Piece';
     Utils.openModal('product-modal');
   },
 
@@ -927,7 +923,7 @@ const Admin = {
     const netGoldWeight = form.prodNetGold.value.trim();
     const gemstones = form.prodGemstones.value.trim();
     const certification = form.prodCert.value.trim();
-    const image = form.prodImage.value.trim() || 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=900&q=80';
+    const image = form.prodImage.value.trim() || 'assets/indian_bridal_hero.jpg';
     const description = form.prodDesc.value.trim();
 
     if (!name || isNaN(price) || price <= 0 || isNaN(stockQty) || !metalPurity) {
@@ -938,8 +934,8 @@ const Admin = {
     const categoryNames = {
       bridal: 'Bridal Sets',
       diamonds: 'Diamond Rings',
-      polki: 'Polki Necklaces',
-      bangles: 'Gold Bangles'
+      polki: 'Polki & Kundan',
+      bangles: 'Gold Bangles & Kadas'
     };
 
     let products = DataStore.getProducts();
@@ -949,7 +945,7 @@ const Admin = {
       if (prod) {
         prod.name = name;
         prod.category = category;
-        prod.categoryName = categoryNames[category] || 'Fine Jewelry';
+        prod.categoryName = categoryNames[category] || 'Indian Fine Jewelry';
         prod.price = price;
         prod.stockQty = stockQty;
         prod.status = stockQty > 1 ? 'In Stock' : stockQty === 1 ? 'Low Stock' : 'Sold Out';
@@ -963,18 +959,18 @@ const Admin = {
       }
       Utils.showToast('Item Updated', `${name} updated in showcase.`, 'success');
     } else {
-      const skuPrefix = category === 'bridal' ? 'BRD' : category === 'diamonds' ? 'RNG' : category === 'polki' ? 'PLK' : 'BNG';
-      const newSku = `AUR-${skuPrefix}-${Math.floor(Math.random() * 900) + 100}`;
+      const skuPrefix = category === 'bridal' ? 'BRD' : category === 'diamonds' ? 'RNG' : category === 'polki' ? 'PLK' : 'TMP';
+      const newSku = `WJ-${skuPrefix}-${Math.floor(Math.random() * 900) + 100}`;
       const newProduct = {
-        id: 'prod-' + Date.now().toString(36),
+        id: 'wj-prod-' + Date.now().toString(36),
         sku: newSku,
         name,
         category,
-        categoryName: categoryNames[category] || 'Fine Jewelry',
+        categoryName: categoryNames[category] || 'Indian Fine Jewelry',
         price,
         metalPurity,
-        grossWeight: grossWeight || '25.00 g',
-        netGoldWeight: netGoldWeight || '22.00 g',
+        grossWeight: grossWeight || '35.00 g',
+        netGoldWeight: netGoldWeight || '30.00 g',
         gemstones: gemstones || 'Natural Gemstones',
         diamondGrade: 'VVS1, E-F Color',
         certification: certification || 'BIS Hallmarked Laser Seal',
@@ -983,7 +979,8 @@ const Admin = {
         stockQty,
         status: stockQty > 0 ? 'In Stock' : 'Sold Out',
         image,
-        featured: false
+        featured: false,
+        indianType: category === 'polki' ? 'Polki Choker' : category === 'bangles' ? 'Temple Kada' : 'Indian Fine Jewelry'
       };
       products.unshift(newProduct);
       Utils.showToast('Masterpiece Cataloged', `${name} is now live in public showcase.`, 'success');
@@ -994,6 +991,7 @@ const Admin = {
     this.renderStockTable();
     this.renderDashboardOverview();
     Showcase.renderCollections();
+    Showcase.renderIndianBridalCarousel();
   },
 
   deleteProduct(productId) {
@@ -1008,6 +1006,7 @@ const Admin = {
       this.renderStockTable();
       this.renderDashboardOverview();
       Showcase.renderCollections();
+      Showcase.renderIndianBridalCarousel();
     }
   },
 
@@ -1073,7 +1072,7 @@ const Admin = {
           </select>
 
           <a 
-            href="mailto:${inq.email}?subject=Aurelia Fine Jewels - VIP Salon Appointment Confirmation"
+            href="mailto:${inq.email}?subject=WJ Jewellers - VIP Salon Appointment Confirmation"
             class="px-3 py-1.5 rounded-lg text-xs font-medium text-center border border-[#D4AF37]/40 text-[#F3E5AB] hover:bg-[#D4AF37]/15 transition-all"
           >
             <i class="fa-solid fa-reply mr-1"></i> Email Client
@@ -1112,11 +1111,12 @@ const Admin = {
   },
 
   /* ==========================================================================
-     6. PRECIOUS METALS RATES CONFIGURATOR
+     6. PRECIOUS METALS RATES & LIVE API CONFIGURATOR
      ========================================================================== */
   renderRatesEditor() {
     const rates = DataStore.getRates();
     const form = document.getElementById('rates-form');
+    const apiStatusEl = document.getElementById('admin-api-sync-status');
     if (!form) return;
 
     form.rateGold24k.value = rates.gold24k.priceUsdPerGram;
@@ -1124,6 +1124,19 @@ const Admin = {
     form.rateGold18k.value = rates.gold18k.priceUsdPerGram;
     form.ratePlat.value = rates.platinum950.priceUsdPerGram;
     form.rateSilver.value = rates.silver999.priceUsdPerGram;
+
+    if (apiStatusEl) {
+      const syncDate = rates.lastUpdated ? new Date(rates.lastUpdated).toLocaleString() : 'N/A';
+      apiStatusEl.innerHTML = `
+        <div class="flex items-center justify-between text-xs text-gray-400 bg-black/30 p-3 rounded-xl border border-white/5 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-green"></span>
+            <span>Feed: <strong class="text-[#F3E5AB] font-mono">${rates.source || 'Automated Daily Bullion Feed'}</strong></span>
+          </div>
+          <span class="font-mono text-[11px] text-gray-400">Last Synced: ${syncDate}</span>
+        </div>
+      `;
+    }
   },
 
   handleRatesFormSubmit(event) {
@@ -1137,9 +1150,11 @@ const Admin = {
     rates.platinum950.priceUsdPerGram = parseFloat(form.ratePlat.value) || rates.platinum950.priceUsdPerGram;
     rates.silver999.priceUsdPerGram = parseFloat(form.rateSilver.value) || rates.silver999.priceUsdPerGram;
     rates.lastUpdated = new Date().toISOString();
+    rates.source = 'Admin Manual Adjustment';
 
     DataStore.saveRates(rates);
     Showcase.renderMetalRates();
+    this.renderRatesEditor();
     Utils.showToast('Bullion Rates Updated', 'Live prices synchronized across public showcase ticker.', 'success');
   },
 
@@ -1150,6 +1165,7 @@ const Admin = {
       Utils.showToast('Atelier Data Restored', 'All sample data has been reset to defaults.', 'gold');
       this.renderCurrentTab();
       Showcase.renderCollections();
+      Showcase.renderIndianBridalCarousel();
       Showcase.renderMetalRates();
     }
   }
@@ -1158,4 +1174,3 @@ const Admin = {
 if (typeof window !== 'undefined') {
   window.Admin = Admin;
 }
-

@@ -1,285 +1,300 @@
 /**
- * Aurelia Fine Jewels - Initial Data Store & LocalStorage Rehydration
- * Production catalog, staff payroll, daily ledger, inquiries & precious metal rates.
+ * WJ Jewellers - Data Store, Catalog, Indian Jewelry Curation & Live Bullion API Sync
+ * Heritage Gold, Diamonds & Polki · Established 1984
  */
 
 const STORAGE_KEYS = {
-  PRODUCTS: 'aurelia_products_v1',
-  STAFF: 'aurelia_staff_payroll_v1',
-  LEDGER: 'aurelia_shop_ledger_v1',
-  INQUIRIES: 'aurelia_inquiries_v1',
-  RATES: 'aurelia_metal_rates_v1',
-  WISHLIST: 'aurelia_wishlist_v1',
-  CURRENCY: 'aurelia_currency_v1',
-  SESSION: 'aurelia_admin_session_v1'
+  PRODUCTS: 'wj_products_v2',
+  STAFF: 'wj_staff_payroll_v2',
+  LEDGER: 'wj_shop_ledger_v2',
+  INQUIRIES: 'wj_inquiries_v2',
+  RATES: 'wj_metal_rates_v2',
+  WISHLIST: 'wj_wishlist_v2',
+  CURRENCY: 'wj_currency_v2',
+  SESSION: 'wj_admin_session_v2',
+  THEME: 'wj_theme_mode_v2'
 };
 
 const CURRENCIES = {
-  USD: { symbol: '$', rate: 1.0, label: 'USD ($)', code: 'USD' },
   INR: { symbol: '₹', rate: 83.50, label: 'INR (₹)', code: 'INR' },
+  USD: { symbol: '$', rate: 1.0, label: 'USD ($)', code: 'USD' },
   GBP: { symbol: '£', rate: 0.78, label: 'GBP (£)', code: 'GBP' },
   AED: { symbol: 'AED ', rate: 3.67, label: 'AED', code: 'AED' }
 };
 
 const DEFAULT_RATES = {
-  gold24k: { name: '24K Fine Gold (999)', priceUsdPerGram: 76.40, change: '+0.65%' },
-  gold22k: { name: '22K Standard Gold (916)', priceUsdPerGram: 70.20, change: '+0.65%' },
-  gold18k: { name: '18K Crown Gold (750)', priceUsdPerGram: 57.30, change: '+0.65%' },
-  platinum950: { name: 'Platinum (Pt 950)', priceUsdPerGram: 33.10, change: '-0.20%' },
+  gold24k: { name: '24K Pure Gold (999)', priceUsdPerGram: 76.50, change: '+0.85%' },
+  gold22k: { name: '22K Hallmark Gold (916)', priceUsdPerGram: 70.07, change: '+0.85%' },
+  gold18k: { name: '18K Jewelry Gold (750)', priceUsdPerGram: 57.38, change: '+0.85%' },
+  platinum950: { name: 'Platinum (Pt 950)', priceUsdPerGram: 33.20, change: '-0.15%' },
   silver999: { name: 'Fine Silver (Ag 999)', priceUsdPerGram: 0.95, change: '+1.10%' },
-  lastUpdated: new Date().toISOString()
+  lastUpdated: new Date().toISOString(),
+  source: 'Automated Daily Bullion Feed',
+  autoSync: true
 };
 
 const DEFAULT_PRODUCTS = [
   {
-    id: 'prod-01',
-    sku: 'AUR-BRD-001',
-    name: 'The Maharani Nizam Heirloom Polki Bridal Suite',
-    category: 'bridal',
-    categoryName: 'Bridal Sets',
-    price: 38500,
+    id: 'wj-prod-01',
+    sku: 'WJ-JAD-001',
+    name: 'The Royal Rajputana Nizam Jadau Polki Choker Suite',
+    category: 'polki',
+    categoryName: 'Polki & Kundan',
+    price: 36500,
     metalPurity: '22K Yellow Gold (916 BIS Laser Hallmarked)',
-    grossWeight: '148.50 g',
-    netGoldWeight: '112.40 g',
-    gemstones: 'Uncut Syndicate Polki Diamonds (18.60 ct), Natural Zambian Emerald Drops (28.40 ct), Graded Basra Seed Pearls',
-    diamondGrade: 'Natural Uncut Syndicate Polki (High Lustre)',
-    certification: 'GIA Sealed Dossier & BIS Hallmark Registry',
-    makingCharges: '18% Handcrafted Meenakari & Jadau included',
-    description: 'An imperial heirloom masterpiece crafted over 240 artisan hours. Features bezel-set uncut syndicate polki diamonds accented with deep verdant Zambian emerald droplets, framed by royal Basra pearls and finished with Persian-inspired miniature enamel (Meenakari) on the reverse.',
+    grossWeight: '152.40 g',
+    netGoldWeight: '118.20 g',
+    gemstones: 'Uncut Syndicate Polki Diamonds (19.40 ct), Natural Zambian Emerald Droplets (32.50 ct), Graded Basra Pearls',
+    diamondGrade: 'Natural Syndicate Polki (High Transparency & Fire)',
+    certification: 'BIS 916 Hallmark Registry & GTL Certified',
+    makingCharges: '18% Traditional Jadau Kundan Benchwork included',
+    description: 'An imperial heirloom masterpiece crafted over 240 artisan hours by WJ master craftsmen. Features open-setting syndicate polki stones embraced by deep verdant Zambian emerald droplets, bordered by royal Basra pearls and finished with miniature peacock Meenakari enameling on the reverse.',
     stockQty: 2,
     status: 'In Stock',
-    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=900&q=80',
-    featured: true
+    image: 'assets/indian_jadau_choker.jpg',
+    featured: true,
+    indianType: 'Polki Choker'
   },
   {
-    id: 'prod-02',
-    sku: 'AUR-BRD-002',
-    name: 'Celestial Luminescence Diamond Waterfall Suite',
-    category: 'bridal',
-    categoryName: 'Bridal Sets',
-    price: 46200,
-    metalPurity: '18K White Gold (750 Stamped)',
-    grossWeight: '96.20 g',
-    netGoldWeight: '82.50 g',
-    gemstones: 'Natural Diamonds (24.85 ct Total), Pear & Marquise Cut Cascades',
-    diamondGrade: 'VVS1 Clarity, E-F Color, Triple Excellent Cut',
-    certification: 'IGI Certified Diamond Passport',
-    makingCharges: '16% Micro-Pavé setting included',
-    description: 'A breathtaking cascade of natural diamonds featuring graduated pear and marquise cuts suspended in an articulated setting that fluidly contours the décolletage with celestial brilliance.',
-    stockQty: 1,
-    status: 'In Stock',
-    image: 'https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?auto=format&fit=crop&w=900&q=80',
-    featured: true
-  },
-  {
-    id: 'prod-03',
-    sku: 'AUR-RNG-001',
-    name: 'The Aurelia Sovereign 3.20ct Solitaire Ring',
-    category: 'diamonds',
-    categoryName: 'Diamond Rings',
-    price: 28400,
-    metalPurity: '950 Platinum with 18K Yellow Gold Inner Band',
-    grossWeight: '8.40 g',
-    netGoldWeight: '7.76 g',
-    gemstones: '3.20 ct Round Brilliant Solitaire + 0.45 ct Hidden Pavé Halo',
-    diamondGrade: 'VVS1 Clarity, D Flawless Color, Hearts & Arrows',
-    certification: 'GIA Laser-Inscribed Inscription 2185493012',
-    makingCharges: '12% Platinum benchwork included',
-    description: 'The pinnacle of solitary perfection. A certified 3.20-carat D-color flawless diamond held securely by six hand-drawn platinum prongs above a delicate hidden pavé diamond gallery.',
+    id: 'wj-prod-02',
+    sku: 'WJ-TMP-002',
+    name: 'Imperial 22K Temple Nakashi Peacock Kada Pair',
+    category: 'bangles',
+    categoryName: 'Gold Bangles & Kadas',
+    price: 16800,
+    metalPurity: '22K Solid Yellow Gold (916 BIS Hallmarked)',
+    grossWeight: '94.60 g',
+    netGoldWeight: '92.10 g',
+    gemstones: 'Natural Burmese Ruby Cabochons (4.80 ct) & Solid 22K Gold',
+    diamondGrade: 'N/A - Solid Investment Temple Gold',
+    certification: 'Government Recognized BIS Hallmark 916',
+    makingCharges: '12% Hand-Chased Nakashi Relief included',
+    description: 'A grand pair of heavy antique temple kadas featuring handcrafted high-relief peacock motifs and floral nakashi filigree, accented with natural ruby cabochons and secured with traditional antique screw clasps.',
     stockQty: 3,
     status: 'In Stock',
-    image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=80',
-    featured: true
+    image: 'assets/indian_temple_kadas.jpg',
+    featured: true,
+    indianType: 'Temple Kada'
   },
   {
-    id: 'prod-04',
-    sku: 'AUR-RNG-002',
-    name: 'Emerald-Cut Royal Azure Sapphire & Diamond Cocktail Ring',
+    id: 'wj-prod-03',
+    sku: 'WJ-BRD-003',
+    name: 'The Maharani Bikaner Emerald & Polki Grand Bridal Suite',
+    category: 'bridal',
+    categoryName: 'Bridal Sets',
+    price: 44200,
+    metalPurity: '22K Yellow Gold (916 Hallmarked)',
+    grossWeight: '186.20 g',
+    netGoldWeight: '142.50 g',
+    gemstones: 'Syndicate Polki (26.80 ct), Emerald Drop Melons (42.00 ct), Matching Jhumkas & Maang Tikka',
+    diamondGrade: 'Natural Uncut Heritage Polki',
+    certification: 'GIA Sealed Dossier & BIS Hallmark Seal',
+    makingCharges: '20% Complete Royal Suite Handcrafting included',
+    description: 'The ultimate royal bridal ensemble from WJ Jewellers. Includes a grand multi-tier Polki collar choker, matching articulated chandelier Jhumka earrings, and a crowned Maang Tikka. Finished with 24K gold foil setting and royal ruby accents.',
+    stockQty: 1,
+    status: 'In Stock',
+    image: 'assets/indian_bridal_hero.jpg',
+    featured: true,
+    indianType: 'Grand Bridal Suite'
+  },
+  {
+    id: 'wj-prod-04',
+    sku: 'WJ-RNG-004',
+    name: 'Royal Cushion Solitaire & Pavé Halo Diamond Cocktail Ring',
     category: 'diamonds',
     categoryName: 'Diamond Rings',
-    price: 19800,
-    metalPurity: '18K White Gold',
-    grossWeight: '11.20 g',
-    netGoldWeight: '9.10 g',
-    gemstones: 'Royal Blue Ceylon Sapphire (4.80 ct Unheated), Tapered Baguette Diamonds (1.80 ct)',
-    diamondGrade: 'VS1, F Color / Untreated Natural Sapphire',
-    certification: 'Gübelin & GIA Dual Certified',
-    makingCharges: '14% Custom Lapidary included',
-    description: 'An unheated Ceylon royal blue sapphire flanked by architectural step-cut tapered baguette diamonds in an art deco inspired architectural setting.',
+    price: 24800,
+    metalPurity: '18K Yellow Gold with Intricate Hand-Engraved Gallery',
+    grossWeight: '9.80 g',
+    netGoldWeight: '8.90 g',
+    gemstones: '3.10 ct Cushion Brilliant Cut Diamond + 0.65 ct Micro-Pavé Rose-Cut Halo',
+    diamondGrade: 'VVS1 Clarity, E Color, Triple Excellent Symmetry',
+    certification: 'GIA Laser Inscription 219482015',
+    makingCharges: '14% Royal Benchwork included',
+    description: 'A regal cocktail ring inspired by royal Indian treasuries. A magnificent 3.10-carat cushion-cut diamond framed by a double row of micro-pavé diamonds with hand-chased filigree shoulders in rich 18K yellow gold.',
     stockQty: 2,
     status: 'In Stock',
-    image: 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=900&q=80',
-    featured: true
+    image: 'assets/indian_diamond_ring.jpg',
+    featured: true,
+    indianType: 'Royal Solitaire'
   },
   {
-    id: 'prod-05',
-    sku: 'AUR-PLK-001',
-    name: 'Noor-e-Jahan Royal Jadau Polki Choker',
+    id: 'wj-prod-05',
+    sku: 'WJ-EAR-005',
+    name: 'Kundan & South Sea Pearl Chandbali Bridal Jhumkas',
+    category: 'bridal',
+    categoryName: 'Bridal Sets',
+    price: 9800,
+    metalPurity: '22K Yellow Gold (916 BIS)',
+    grossWeight: '42.60 g',
+    netGoldWeight: '36.20 g',
+    gemstones: 'Bikaner Kundan Polki (6.80 ct), Natural South Sea Pearls, Ruby Drops (3.20 ct)',
+    diamondGrade: 'Natural Heritage Kundan',
+    certification: 'BIS Hallmark 916 Stamped',
+    makingCharges: '15% Articulated Filigree included',
+    description: 'Traditional crescent moon Chandbali earrings paired with tiered bell jhumkas, embellished with clusters of Basra seed pearls and dancing ruby droplets.',
+    stockQty: 4,
+    status: 'In Stock',
+    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=80',
+    featured: true,
+    indianType: 'Chandbali Jhumkas'
+  },
+  {
+    id: 'wj-prod-06',
+    sku: 'WJ-PLK-006',
+    name: 'Mughal Navratna & Uncut Polki Heritage Haar',
     category: 'polki',
-    categoryName: 'Polki Necklaces',
-    price: 24500,
-    metalPurity: '22K Yellow Gold (916 BIS Hallmarked)',
-    grossWeight: '118.00 g',
-    netGoldWeight: '86.50 g',
-    gemstones: 'Open-Setting Bikaner Syndicate Polki (14.20 ct), South Sea Pearls, Ruby Cabochons (8.50 ct)',
-    diamondGrade: 'Natural Uncut Heritage Polki',
-    certification: 'BIS Hallmarked & Gemological Testing Lab',
-    makingCharges: '20% Royal Kundan Jadau included',
-    description: 'Inspired by Mughal court regalia, this choker showcases open-set syndicate polki stones embraced by hand-enameled Meenakari motifs on the reverse and suspended South Sea pearl drops.',
+    categoryName: 'Polki & Kundan',
+    price: 31500,
+    metalPurity: '22K Gold with Hand-Rubbed Antique Patina',
+    grossWeight: '128.50 g',
+    netGoldWeight: '96.20 g',
+    gemstones: 'Nine Planetary Auspicious Gems (Navratna 14.50 ct) & Syndicate Polki (15.20 ct)',
+    diamondGrade: 'Certified Natural Navratna Gemstones',
+    certification: 'BIS Hallmark & Gemological Laboratory Registry',
+    makingCharges: '19% Included',
+    description: 'An astrological and imperial triumph featuring the nine sacred gemstones arranged with syndicate polki diamonds in an articulated cascading necklace, held by silk dori cords with gold beads.',
     stockQty: 2,
     status: 'In Stock',
     image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=900&q=80',
-    featured: true
+    featured: false,
+    indianType: 'Navratna Haar'
   },
   {
-    id: 'prod-06',
-    sku: 'AUR-PLK-002',
-    name: 'Amber Dawn Cascading Polki Haar',
-    category: 'polki',
-    categoryName: 'Polki Necklaces',
-    price: 31200,
-    metalPurity: '22K Gold with Antique Hand-Rubbed Patina',
-    grossWeight: '135.80 g',
-    netGoldWeight: '98.20 g',
-    gemstones: 'Syndicate Polki (16.40 ct), Fluted Russian Emerald Melons (34.00 ct)',
-    diamondGrade: 'Natural Heritage Polki',
-    certification: 'BIS Hallmarked Laser Seal',
-    makingCharges: '19% Included',
-    description: 'A multi-strand imperial haar with fluted emerald melons and uncut diamond clusters, culminating in an intricate medallion showcasing traditional peacock meenakari.',
-    stockQty: 1,
-    status: 'In Stock',
-    image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=80',
-    featured: false
-  },
-  {
-    id: 'prod-07',
-    sku: 'AUR-BNG-001',
-    name: 'Imperial Temple Filigree Kada Pair (22K)',
+    id: 'wj-prod-07',
+    sku: 'WJ-BNG-007',
+    name: 'Antique 22K Gold Nakashi Floral Chudi Set (4 Pieces)',
     category: 'bangles',
-    categoryName: 'Gold Bangles',
-    price: 14800,
-    metalPurity: '22K Solid Yellow Gold (916 BIS Hallmark)',
-    grossWeight: '82.40 g',
-    netGoldWeight: '82.40 g',
-    gemstones: 'Pure Solid 22K Gold (Zero Stones)',
-    diamondGrade: 'N/A - Solid Investment Gold',
-    certification: 'Government Recognized BIS Hallmark 916',
-    makingCharges: '11% Hand-Carved Die-Cast included',
-    description: 'A pair of heavy hand-engraved temple kadas featuring raised relief motifs and antique nakashi wire filigree, fastened with hidden screw clasps.',
-    stockQty: 4,
-    status: 'In Stock',
-    image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=900&q=80',
-    featured: true
-  },
-  {
-    id: 'prod-08',
-    sku: 'AUR-BNG-002',
-    name: 'The Riviera Diamond Tennis Bracelet (10.50ct)',
-    category: 'bangles',
-    categoryName: 'Gold Bangles',
-    price: 18900,
-    metalPurity: '18K White Gold',
-    grossWeight: '22.60 g',
-    netGoldWeight: '20.50 g',
-    gemstones: '10.50 ct Round Brilliant Cut Natural Diamonds (52 matched stones)',
-    diamondGrade: 'VS1-VS2, F-G Color, Excellent Cut',
-    certification: 'IGI Certificate of Authenticity',
-    makingCharges: '15% Included',
-    description: 'Precision engineered with four-prong platinum baskets, fluid articulation, and double safety catch. Each stone is individually hand-matched for identical hue and fire.',
+    categoryName: 'Gold Bangles & Kadas',
+    price: 18400,
+    metalPurity: '22K Solid Yellow Gold (916 BIS)',
+    grossWeight: '108.00 g',
+    netGoldWeight: '108.00 g',
+    gemstones: 'Solid 22K Gold (Zero Stones)',
+    diamondGrade: 'N/A - Pure Gold Bullion Masterpiece',
+    certification: 'BIS Hallmark 916 Laser Marked',
+    makingCharges: '11% Included',
+    description: 'A set of four matching antique finished bangles featuring delicate floral wirework and hand-carved repoussé beads, designed to accompany royal wedding attire.',
     stockQty: 3,
     status: 'In Stock',
-    image: 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=900&q=80',
-    featured: true
+    image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=900&q=80',
+    featured: false,
+    indianType: 'Nakashi Chudi'
   },
   {
-    id: 'prod-09',
-    sku: 'AUR-RNG-003',
-    name: 'Seraphina Pear-Cut Solitaire with Pavé Shoulders',
+    id: 'wj-prod-08',
+    sku: 'WJ-RNG-008',
+    name: 'The Koh-i-Noor Inspired Solitaire Engagement Ring (3.50ct)',
     category: 'diamonds',
     categoryName: 'Diamond Rings',
-    price: 16500,
-    metalPurity: '18K Rose Gold & Platinum Prongs',
-    grossWeight: '5.80 g',
-    netGoldWeight: '5.30 g',
-    gemstones: '2.10 ct Pear Brilliant Cut + 0.35 ct Micro-Pavé Diamonds',
-    diamondGrade: 'VVS2, E Color, Excellent Symmetry',
-    certification: 'GIA Laser Registry',
-    makingCharges: '12% Included',
-    description: 'An elongated pear-cut diamond set in warm 18K rose gold with shimmering micro-pavé shoulders, celebrating refined modern opulence.',
+    price: 32000,
+    metalPurity: '18K White Gold & 950 Platinum Prongs',
+    grossWeight: '7.80 g',
+    netGoldWeight: '7.10 g',
+    gemstones: '3.50 ct Round Brilliant Cut Diamond + 0.40 ct Pavé Band',
+    diamondGrade: 'VVS1, D Color, Hearts & Arrows Cut',
+    certification: 'GIA Laser Inscription Dossier',
+    makingCharges: '12% Platinum Setting included',
+    description: 'Flawless brilliance in a regal crown setting. An exquisite D-color 3.50 ct natural diamond with fire and scintillation unmatched in fine jewelry.',
     stockQty: 2,
     status: 'In Stock',
-    image: 'https://images.unsplash.com/photo-1603561596112-0a132b757442?auto=format&fit=crop&w=900&q=80',
-    featured: false
+    image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=80',
+    featured: false,
+    indianType: 'Solitaire Ring'
   },
   {
-    id: 'prod-10',
-    sku: 'AUR-BRD-003',
-    name: 'Empress Emerald & Rose-Cut Diamond Chandelier Earrings',
-    category: 'bridal',
-    categoryName: 'Bridal Sets',
-    price: 12700,
-    metalPurity: '18K White Gold',
-    grossWeight: '26.40 g',
-    netGoldWeight: '21.10 g',
-    gemstones: 'Zambian Emerald Cabochons (12.40 ct), Rose Cut Diamonds (6.20 ct)',
-    diamondGrade: 'VS1, F Color',
-    certification: 'IGI Certified',
-    makingCharges: '16% Included',
-    description: 'Dramatic articulated chandelier earrings featuring vivid green Zambian emeralds accented by romantic antique rose-cut diamonds that flutter with every movement.',
-    stockQty: 2,
-    status: 'In Stock',
-    image: 'https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?auto=format&fit=crop&w=900&q=80',
-    featured: false
-  },
-  {
-    id: 'prod-11',
-    sku: 'AUR-BNG-003',
-    name: 'Florentine Hand-Chased 22K Gold Silk Cuff',
-    category: 'bangles',
-    categoryName: 'Gold Bangles',
-    price: 11400,
-    metalPurity: '22K Solid Yellow Gold',
-    grossWeight: '64.20 g',
-    netGoldWeight: '64.20 g',
-    gemstones: 'Solid 22K Gold with Satin & Diamond-Point Texture',
-    diamondGrade: 'N/A - Solid Gold Masterpiece',
-    certification: 'BIS Hallmark 916 Laser Marked',
-    makingCharges: '13% Included',
-    description: 'Meticulously hand-chased with Renaissance Florentine engraving techniques, resulting in a tactile silk-gold finish that catches light from all angles.',
+    id: 'wj-prod-09',
+    sku: 'WJ-RNG-009',
+    name: 'Vanki Peacock Diamond & Pigeon-Blood Ruby Ring',
+    category: 'diamonds',
+    categoryName: 'Diamond Rings',
+    price: 14200,
+    metalPurity: '18K Yellow Gold',
+    grossWeight: '8.40 g',
+    netGoldWeight: '7.20 g',
+    gemstones: 'Burmese Ruby Cabochon (3.20 ct), Tapered Baguette Diamonds (1.40 ct)',
+    diamondGrade: 'VS1, F Color / Unheated Natural Ruby',
+    certification: 'GIA & IGI Certified',
+    makingCharges: '14% Included',
+    description: 'An authentic South Indian Vanki V-shaped ring celebrating femininity and heritage with a fiery central ruby accented by winged diamond pavé.',
     stockQty: 3,
     status: 'In Stock',
     image: 'https://images.unsplash.com/photo-1615655406736-b37c4fabf923?auto=format&fit=crop&w=900&q=80',
-    featured: false
+    featured: false,
+    indianType: 'Vanki Ring'
   },
   {
-    id: 'prod-12',
-    sku: 'AUR-PLK-003',
-    name: 'The Royal Rajputana Pearl & Polki Collar',
-    category: 'polki',
-    categoryName: 'Polki Necklaces',
-    price: 27900,
-    metalPurity: '22K Yellow Gold',
-    grossWeight: '104.50 g',
-    netGoldWeight: '76.80 g',
-    gemstones: 'Syndicate Polki Diamonds (12.80 ct), Certified Basra Pearls, Burmese Ruby Accents',
-    diamondGrade: 'Fine Syndicate Polki',
-    certification: 'BIS & GTL Certified',
-    makingCharges: '18% Included',
-    description: 'A close-fitting choker collar with three tiers of lustrous natural seed pearls holding a grand central pendant set with antique polki and pigeon-blood ruby cabochons.',
+    id: 'wj-prod-10',
+    sku: 'WJ-BRD-010',
+    name: 'Celestial Diamond Waterfall Choker & Earring Suite',
+    category: 'bridal',
+    categoryName: 'Bridal Sets',
+    price: 48500,
+    metalPurity: '18K White Gold (750)',
+    grossWeight: '98.50 g',
+    netGoldWeight: '84.20 g',
+    gemstones: 'Natural Diamonds (26.40 ct Total), Graduated Pear & Marquise Cascades',
+    diamondGrade: 'VVS1 Clarity, E-F Color, Triple Excellent',
+    certification: 'IGI Certified Diamond Passport',
+    makingCharges: '16% Included',
+    description: 'An ethereal diamond waterfall choker contoured to gracefully sit upon the décolletage, paired with matching shoulder-duster earrings.',
     stockQty: 1,
-    status: 'Low Stock',
-    image: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=900&q=80',
-    featured: false
+    status: 'In Stock',
+    image: 'https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?auto=format&fit=crop&w=900&q=80',
+    featured: true,
+    indianType: 'Diamond Choker'
+  },
+  {
+    id: 'wj-prod-11',
+    sku: 'WJ-TMP-011',
+    name: 'Antique 22K Gold Kasu Mala Temple Coin Necklace',
+    category: 'polki',
+    categoryName: 'Polki & Kundan',
+    price: 19800,
+    metalPurity: '22K Solid Yellow Gold (916 BIS Hallmark)',
+    grossWeight: '88.40 g',
+    netGoldWeight: '88.40 g',
+    gemstones: 'Embossed Goddess Lakshmi Kasu Gold Coins (Zero Stones)',
+    diamondGrade: 'N/A - Solid Gold Temple Heirloom',
+    certification: 'BIS Hallmark 916 Stamped',
+    makingCharges: '12% Included',
+    description: 'A revered traditional South Indian heritage piece featuring overlapping repoussé Lakshmi gold coins suspended along an articulated snake chain.',
+    stockQty: 2,
+    status: 'In Stock',
+    image: 'https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&w=900&q=80',
+    featured: false,
+    indianType: 'Kasu Mala'
+  },
+  {
+    id: 'wj-prod-12',
+    sku: 'WJ-BRD-012',
+    name: 'Zambian Emerald & Rose-Cut Diamond Chandelier Set',
+    category: 'bridal',
+    categoryName: 'Bridal Sets',
+    price: 15600,
+    metalPurity: '18K White & Yellow Gold Duo-Tone',
+    grossWeight: '34.20 g',
+    netGoldWeight: '27.50 g',
+    gemstones: 'Zambian Emerald Drops (16.40 ct), Rose-Cut Diamonds (8.20 ct)',
+    diamondGrade: 'VS1, F Color',
+    certification: 'IGI Certified Gemological Dossier',
+    makingCharges: '16% Included',
+    description: 'Articulated statement earrings featuring intense green Zambian emeralds accented by vintage rose-cut diamonds that capture every beam of candlelight.',
+    stockQty: 2,
+    status: 'In Stock',
+    image: 'https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?auto=format&fit=crop&w=900&q=80',
+    featured: false,
+    indianType: 'Emerald Chandelier'
   }
 ];
 
 const DEFAULT_STAFF = [
   {
     id: 'emp-01',
-    empId: 'AUR-EMP-01',
-    name: 'Rajesh Verma',
+    empId: 'WJ-EMP-01',
+    name: 'Rajesh S. Verma',
     role: 'Chief Goldsmith & Head Craftsman',
-    department: 'Atelier & Production',
+    department: 'Atelier & Handcrafting',
     baseSalary: 4500,
     status: 'Paid',
     paymentDate: '2026-10-01',
@@ -289,10 +304,10 @@ const DEFAULT_STAFF = [
   },
   {
     id: 'emp-02',
-    empId: 'AUR-EMP-02',
+    empId: 'WJ-EMP-02',
     name: 'Meera Singhania',
     role: 'Senior GIA Gemologist & Appraiser',
-    department: 'Gemology & Grading',
+    department: 'Gemology & Purity Grading',
     baseSalary: 5200,
     status: 'Paid',
     paymentDate: '2026-10-01',
@@ -302,7 +317,7 @@ const DEFAULT_STAFF = [
   },
   {
     id: 'emp-03',
-    empId: 'AUR-EMP-03',
+    empId: 'WJ-EMP-03',
     name: 'Alistair Vance',
     role: 'Atelier Director & VIP Clienteling',
     department: 'Private Salon & Sales',
@@ -315,10 +330,10 @@ const DEFAULT_STAFF = [
   },
   {
     id: 'emp-04',
-    empId: 'AUR-EMP-04',
+    empId: 'WJ-EMP-04',
     name: 'Fatima Sheikh',
     role: 'Polki & Jadau Setting Specialist',
-    department: 'Atelier & Production',
+    department: 'Handcraft Atelier',
     baseSalary: 4200,
     status: 'Paid',
     paymentDate: '2026-10-01',
@@ -328,7 +343,7 @@ const DEFAULT_STAFF = [
   },
   {
     id: 'emp-05',
-    empId: 'AUR-EMP-05',
+    empId: 'WJ-EMP-05',
     name: 'Devendra Patel',
     role: 'Vault Custodian & Chief Security Lead',
     department: 'Security & Operations',
@@ -341,7 +356,7 @@ const DEFAULT_STAFF = [
   },
   {
     id: 'emp-06',
-    empId: 'AUR-EMP-06',
+    empId: 'WJ-EMP-06',
     name: 'Kavita Nair',
     role: 'Boutique Senior Concierge',
     department: 'Client Services',
@@ -357,21 +372,21 @@ const DEFAULT_STAFF = [
 const DEFAULT_LEDGER = [
   {
     id: 'led-01',
-    voucherNo: 'V-2026-1001',
+    voucherNo: 'WJ-V-2026-1001',
     date: '2026-10-01',
     category: 'Gold Refining & Casting',
     description: '24K 999.9 gold assaying, alloy casting fluxes, and ceramic crucibles',
     amount: 840,
     paymentMode: 'Wire Transfer',
-    incurredBy: 'Rajesh Verma',
+    incurredBy: 'Rajesh S. Verma',
     status: 'Completed'
   },
   {
     id: 'led-02',
-    voucherNo: 'V-2026-1002',
+    voucherNo: 'WJ-V-2026-1002',
     date: '2026-10-01',
     category: 'Luxury Packaging',
-    description: 'Custom dark emerald velvet presentation boxes & suede pouches with embossed gold leaf logo',
+    description: 'Custom maroon & emerald velvet presentation boxes & suede pouches with embossed gold WJ crest',
     amount: 1250,
     paymentMode: 'Corporate Card',
     incurredBy: 'Alistair Vance',
@@ -379,10 +394,10 @@ const DEFAULT_LEDGER = [
   },
   {
     id: 'led-03',
-    voucherNo: 'V-2026-0938',
+    voucherNo: 'WJ-V-2026-0938',
     date: '2026-09-30',
     category: 'Security & Insurance',
-    description: "Monthly Lloyd's High-Value Vault & Armored Transit premium coverage",
+    description: "Monthly High-Value Vault & Armored Transit premium coverage",
     amount: 2800,
     paymentMode: 'Bank Transfer',
     incurredBy: 'Devendra Patel',
@@ -390,10 +405,10 @@ const DEFAULT_LEDGER = [
   },
   {
     id: 'led-04',
-    voucherNo: 'V-2026-0939',
+    voucherNo: 'WJ-V-2026-0939',
     date: '2026-09-30',
     category: 'VIP Hospitality',
-    description: 'Private Salon catering: Dom Pérignon champagne, artisanal macarons & Darjeeling first-flush tea for bridal patrons',
+    description: 'Private Salon catering: Dom Pérignon champagne, artisanal dry fruits & Darjeeling tea for bridal patrons',
     amount: 680,
     paymentMode: 'Corporate Card',
     incurredBy: 'Kavita Nair',
@@ -401,10 +416,10 @@ const DEFAULT_LEDGER = [
   },
   {
     id: 'led-05',
-    voucherNo: 'V-2026-0925',
+    voucherNo: 'WJ-V-2026-0925',
     date: '2026-09-29',
     category: 'Certification & Hallmarking',
-    description: 'GIA laser inscription fees for 14 solitaire diamonds & BIS laser hallmarking lot',
+    description: 'GIA laser inscription fees for solitaire batch & BIS laser hallmarking lot',
     amount: 1920,
     paymentMode: 'Wire Transfer',
     incurredBy: 'Meera Singhania',
@@ -412,24 +427,13 @@ const DEFAULT_LEDGER = [
   },
   {
     id: 'led-06',
-    voucherNo: 'V-2026-0914',
+    voucherNo: 'WJ-V-2026-0914',
     date: '2026-09-28',
     category: 'Workshop Tools & Rouge',
     description: 'Swiss precision diamond tweezers, rotary burnishing bits, and ultrasonic cleaning solutions',
     amount: 460,
     paymentMode: 'Petty Cash',
-    incurredBy: 'Rajesh Verma',
-    status: 'Completed'
-  },
-  {
-    id: 'led-07',
-    voucherNo: 'V-2026-0908',
-    date: '2026-09-27',
-    category: 'Atelier Maintenance',
-    description: 'HEPA air filtration unit maintenance for cleanroom diamond setting suite',
-    amount: 350,
-    paymentMode: 'Company Card',
-    incurredBy: 'Devendra Patel',
+    incurredBy: 'Rajesh S. Verma',
     status: 'Completed'
   }
 ];
@@ -437,13 +441,13 @@ const DEFAULT_LEDGER = [
 const DEFAULT_INQUIRIES = [
   {
     id: 'inq-01',
-    clientName: 'Lady Charlotte Montagu',
-    email: 'charlotte.m@luxpatron.co.uk',
-    phone: '+44 7700 900481',
-    categoryOrItem: 'The Maharani Nizam Heirloom Polki Bridal Suite',
+    clientName: 'Maharani Gayatri Devi Foundation',
+    email: 'curator@heritagepatrons.in',
+    phone: '+91 98201 44556',
+    categoryOrItem: 'The Royal Rajputana Nizam Jadau Polki Choker Suite',
     preferredDate: '2026-10-08 at 3:00 PM',
-    budget: '$40,000 - $60,000',
-    notes: 'Requesting a private salon appointment with master gemologist for bridal suite custom styling.',
+    budget: '$35,000 - $50,000 (₹30L - ₹45L)',
+    notes: 'Requesting a private salon appointment with master gemologist for bridal suite custom styling and gemstone audit.',
     status: 'Confirmed',
     createdAt: '2026-10-01T11:30:00Z'
   },
@@ -452,16 +456,16 @@ const DEFAULT_INQUIRIES = [
     clientName: 'Vikramaditya Singhania',
     email: 'v.singhania@heritageholdings.in',
     phone: '+91 98201 54321',
-    categoryOrItem: 'The Aurelia Sovereign 3.20ct Solitaire Ring',
+    categoryOrItem: 'Imperial 22K Temple Nakashi Peacock Kada Pair',
     preferredDate: '2026-10-05 at 5:00 PM',
-    budget: '$25,000 - $35,000',
-    notes: 'Seeking custom platinum band sizing and laser inscription for anniversary surprise.',
+    budget: '$15,000 - $25,000 (₹12L - ₹20L)',
+    notes: 'Seeking custom wrist circumference sizing (2.6 size) and inscription for auspicious Diwali celebration.',
     status: 'New',
     createdAt: '2026-10-01T15:10:00Z'
   }
 ];
 
-// Helper to safely load or initialize storage
+// Helper to safely load, initialize, and sync storage
 const DataStore = {
   getProducts() {
     const data = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
@@ -563,11 +567,95 @@ const DataStore = {
   },
 
   getCurrency() {
-    return localStorage.getItem(STORAGE_KEYS.CURRENCY) || 'USD';
+    return localStorage.getItem(STORAGE_KEYS.CURRENCY) || 'INR'; // Default INR for Indian Jeweller
   },
 
   setCurrency(curr) {
     localStorage.setItem(STORAGE_KEYS.CURRENCY, curr);
+  },
+
+  getTheme() {
+    return localStorage.getItem(STORAGE_KEYS.THEME) || 'dark';
+  },
+
+  setTheme(theme) {
+    localStorage.setItem(STORAGE_KEYS.THEME, theme);
+  },
+
+  /**
+   * Automated Live Gold Price Fetcher
+   * Fetches spot gold price directly from public CoinGecko PAX-Gold Bullion API.
+   * 1 troy oz = 31.1034768 grams.
+   */
+  async fetchLiveGoldRates(force = false) {
+    const currentRates = this.getRates();
+    const lastUpdated = new Date(currentRates.lastUpdated || 0).getTime();
+    const now = Date.now();
+    const hoursSinceSync = (now - lastUpdated) / (1000 * 60 * 60);
+
+    // If synced within last 2 hours and not forced, return cached
+    if (!force && hoursSinceSync < 2) {
+      return { success: true, rates: currentRates, source: 'cached' };
+    }
+
+    try {
+      const endpoint = 'https://api.coingecko.com/api/v3/simple/price?ids=pax-gold&vs_currencies=usd,inr,gbp,aed&include_24hr_change=true';
+      const response = await fetch(endpoint);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+
+      const json = await response.json();
+      const pax = json['pax-gold'];
+
+      if (!pax || !pax.usd) {
+        throw new Error('Invalid rate payload');
+      }
+
+      const troyOzGrams = 31.1034768;
+      const usdPerGram24K = pax.usd / troyOzGrams;
+      const change24h = pax.usd_24h_change || 0;
+      const changeStr = (change24h >= 0 ? '+' : '') + change24h.toFixed(2) + '%';
+
+      // Update rates with calculated purity tiers
+      const updatedRates = {
+        gold24k: {
+          name: '24K Pure Gold (999)',
+          priceUsdPerGram: parseFloat(usdPerGram24K.toFixed(2)),
+          change: changeStr
+        },
+        gold22k: {
+          name: '22K Hallmark Gold (916)',
+          priceUsdPerGram: parseFloat((usdPerGram24K * 0.916).toFixed(2)),
+          change: changeStr
+        },
+        gold18k: {
+          name: '18K Jewelry Gold (750)',
+          priceUsdPerGram: parseFloat((usdPerGram24K * 0.750).toFixed(2)),
+          change: changeStr
+        },
+        platinum950: {
+          name: 'Platinum (Pt 950)',
+          priceUsdPerGram: parseFloat((usdPerGram24K * 0.434).toFixed(2)),
+          change: (change24h * -0.3).toFixed(2) + '%'
+        },
+        silver999: {
+          name: 'Fine Silver (Ag 999)',
+          priceUsdPerGram: parseFloat((usdPerGram24K * 0.0125).toFixed(2)),
+          change: '+0.95%'
+        },
+        lastUpdated: new Date().toISOString(),
+        source: 'Live Spot Bullion API (PAX-G)',
+        autoSync: true
+      };
+
+      this.saveRates(updatedRates);
+      return { success: true, rates: updatedRates, source: 'live' };
+    } catch (err) {
+      console.warn('Live gold API fetch fallback to local:', err);
+      return { success: false, rates: currentRates, error: err.message };
+    }
   },
 
   resetAllDemoData() {
@@ -586,4 +674,3 @@ if (typeof window !== 'undefined') {
   window.CURRENCIES = CURRENCIES;
   window.DEFAULT_RATES = DEFAULT_RATES;
 }
-

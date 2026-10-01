@@ -1,16 +1,55 @@
 /**
- * Aurelia Fine Jewels - Utilities & Helper Functions
- * Currency formatting, toast notifications, modals, session auth, CSV export.
+ * WJ Jewellers - Utilities & Helper Functions
+ * Day/Night Theme controller, currency formatting, toasts, modals, session auth, CSV export.
  */
 
 const Utils = {
+  // Theme Management (Night Mode & Day Mode)
+  initTheme() {
+    const savedTheme = DataStore.getTheme();
+    this.applyTheme(savedTheme);
+  },
+
+  toggleTheme() {
+    const currentTheme = DataStore.getTheme();
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    DataStore.setTheme(newTheme);
+    this.applyTheme(newTheme);
+    this.showToast(
+      newTheme === 'light' ? 'Day Mode Activated' : 'Night Mode Activated',
+      newTheme === 'light' ? 'Opulent Ivory & Gold daytime aesthetic enabled.' : 'Obsidian & Gold nighttime aesthetic enabled.',
+      'gold'
+    );
+  },
+
+  applyTheme(theme) {
+    const body = document.body;
+    const html = document.documentElement;
+    const themeIconButtons = document.querySelectorAll('.theme-toggle-icon');
+
+    if (theme === 'light') {
+      body.classList.add('light-theme');
+      body.classList.remove('dark');
+      html.classList.remove('dark');
+      themeIconButtons.forEach(btn => {
+        btn.className = 'theme-toggle-icon fa-solid fa-moon text-amber-600';
+      });
+    } else {
+      body.classList.remove('light-theme');
+      body.classList.add('dark');
+      html.classList.add('dark');
+      themeIconButtons.forEach(btn => {
+        btn.className = 'theme-toggle-icon fa-solid fa-sun text-[#F3E5AB]';
+      });
+    }
+  },
+
   // Format currency based on active selection
   formatPrice(amountUsd, forceCurrency = null) {
     const code = forceCurrency || DataStore.getCurrency();
-    const curr = CURRENCIES[code] || CURRENCIES.USD;
+    const curr = CURRENCIES[code] || CURRENCIES.INR;
     const converted = amountUsd * curr.rate;
     
-    // Format based on currency locale
     if (code === 'INR') {
       return curr.symbol + Math.round(converted).toLocaleString('en-IN');
     } else if (code === 'AED') {
@@ -20,15 +59,17 @@ const Utils = {
     }
   },
 
-  // Format gram weight price
+  // Format gram weight price (and Indian Tola / 10g rate in INR)
   formatGramRate(usdRate) {
     const code = DataStore.getCurrency();
-    const curr = CURRENCIES[code] || CURRENCIES.USD;
-    const converted = usdRate * curr.rate;
+    const curr = CURRENCIES[code] || CURRENCIES.INR;
+    const convertedPerGram = usdRate * curr.rate;
+    
     if (code === 'INR') {
-      return curr.symbol + converted.toFixed(1).toLocaleString('en-IN') + '/g';
+      const per10g = Math.round(convertedPerGram * 10);
+      return `${curr.symbol}${convertedPerGram.toFixed(0)}/g (${curr.symbol}${per10g.toLocaleString('en-IN')}/10g)`;
     }
-    return curr.symbol + converted.toFixed(2) + '/g';
+    return `${curr.symbol}${convertedPerGram.toFixed(2)}/g`;
   },
 
   // Format readable dates
@@ -36,7 +77,7 @@ const Utils = {
     if (!dateStr) return '—';
     try {
       const d = new Date(dateStr);
-      return d.toLocaleDateString('en-US', {
+      return d.toLocaleDateString('en-IN', {
         year: 'numeric',
         month: 'short',
         day: 'numeric'
@@ -57,7 +98,7 @@ const Utils = {
         ? 'bg-[#180A0A] border-rose-500/50 text-rose-100 shadow-[0_4px_25px_rgba(244,63,94,0.25)]'
         : type === 'success'
         ? 'bg-[#0A180E] border-emerald-500/50 text-emerald-100 shadow-[0_4px_25px_rgba(16,185,129,0.25)]'
-        : 'bg-[#141416] border-[#D4AF37]/50 text-[#F5F5F7] shadow-[0_6px_30px_rgba(212,175,55,0.2)]'
+        : 'bg-[#141416] border-[#D4AF37]/50 text-[#F5F5F7] shadow-[0_6px_30px_rgba(212,175,55,0.25)]'
     }`;
 
     let icon = 'fa-gem';
@@ -106,7 +147,6 @@ const Utils = {
     if (!modal) return;
     modal.classList.add('hidden');
     modal.classList.remove('flex');
-    // Only restore scroll if no other modals are open
     const openModals = document.querySelectorAll('.fixed.flex:not(.hidden)');
     if (openModals.length === 0) {
       document.body.style.overflow = '';
@@ -165,4 +205,3 @@ const Utils = {
 if (typeof window !== 'undefined') {
   window.Utils = Utils;
 }
-
