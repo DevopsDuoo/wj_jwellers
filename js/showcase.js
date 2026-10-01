@@ -165,7 +165,7 @@ const Showcase = {
       return `
         <div class="horizontal-scroll-item luxury-card rounded-2xl overflow-hidden flex flex-col group relative">
           <!-- Image -->
-          <div class="lux-img-container aspect-[4/3] bg-black/60 relative lux-img-vignette cursor-pointer" onclick="Showcase.openQuickView('${piece.id}')">
+          <div class="lux-card-img-wrapper cursor-pointer" onclick="Showcase.openQuickView('${piece.id}')">
             <img 
               src="${piece.image}" 
               alt="${piece.name}" 
@@ -193,39 +193,55 @@ const Showcase = {
           </div>
 
           <!-- Body -->
-          <div class="p-5 flex-1 flex flex-col justify-between">
+          <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
             <div>
-              <span class="text-[10px] text-amber-400/90 font-cinzel block mb-1">
-                ${piece.metalPurity.split('(')[0]}
-              </span>
+              <div class="flex items-center justify-between text-xs mb-1">
+                <span class="text-[10px] font-cinzel text-amber-400 font-semibold tracking-wider">
+                  ${piece.metalPurity.split('(')[0].trim()}
+                </span>
+                <span class="text-[9px] font-mono text-gray-400">${piece.sku}</span>
+              </div>
               <h3 
                 onclick="Showcase.openQuickView('${piece.id}')" 
-                class="font-serif-lux text-lg font-medium text-white hover:text-[#F3E5AB] transition-colors cursor-pointer leading-snug line-clamp-1 mb-1.5"
+                class="font-serif-lux text-base sm:text-lg font-medium text-white hover:text-[#F3E5AB] transition-colors cursor-pointer leading-snug line-clamp-1 mb-1.5"
+                title="${piece.name}"
               >
                 ${piece.name}
               </h3>
-              <p class="text-xs text-gray-400 line-clamp-2 leading-relaxed mb-3">
+              <p class="text-xs text-gray-300 line-clamp-2 leading-relaxed mb-3">
                 ${piece.description}
               </p>
+
+              <!-- Quick Specs Pill to eliminate the empty gap -->
+              <div class="grid grid-cols-2 gap-2 text-[10px] bg-black/30 p-2 rounded-lg border border-[var(--border-subtle)] mb-3">
+                <div class="truncate">
+                  <span class="text-gray-400 uppercase font-cinzel block text-[9px]">Gross Wt:</span>
+                  <span class="text-gray-200 font-medium">${piece.grossWeight}</span>
+                </div>
+                <div class="truncate">
+                  <span class="text-gray-400 uppercase font-cinzel block text-[9px]">Hallmark:</span>
+                  <span class="text-amber-300 font-medium truncate block">${piece.certification ? piece.certification.split('&')[0].trim() : 'BIS 916'}</span>
+                </div>
+              </div>
             </div>
 
-            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
+            <div class="pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between gap-2 mt-auto">
               <div>
-                <span class="text-[9px] uppercase font-cinzel text-gray-500 block">Acquisition Value</span>
-                <span class="text-base font-cinzel font-bold gold-gradient-text">
+                <span class="text-[9px] uppercase font-cinzel text-gray-400 block">Acquisition Value</span>
+                <span class="text-base sm:text-lg font-cinzel font-bold gold-gradient-text">
                   ${Utils.formatPrice(piece.price)}
                 </span>
               </div>
               <div class="flex items-center gap-1.5">
                 <button 
                   onclick="Showcase.openQuickView('${piece.id}')"
-                  class="px-3 py-1.5 rounded-lg text-xs border border-[#D4AF37]/40 text-[#F3E5AB] hover:bg-[#D4AF37]/15 transition-all"
+                  class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs border border-[#D4AF37]/40 text-[#F3E5AB] hover:bg-[#D4AF37]/15 transition-all whitespace-nowrap"
                 >
                   Quick View
                 </button>
                 <button 
                   onclick="Showcase.inquireForProduct('${piece.id}')"
-                  class="px-3 py-1.5 rounded-lg text-xs font-semibold gold-btn-gradient"
+                  class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold gold-btn-gradient whitespace-nowrap"
                 >
                   Inquire
                 </button>
@@ -314,7 +330,7 @@ const Showcase = {
       return `
         <div class="luxury-card rounded-2xl overflow-hidden flex flex-col group relative">
           <!-- Image Container -->
-          <div class="lux-img-container aspect-[4/3] bg-black/60 relative lux-img-vignette cursor-pointer" onclick="Showcase.openQuickView('${prod.id}')">
+          <div class="lux-card-img-wrapper cursor-pointer" onclick="Showcase.openQuickView('${prod.id}')">
             <img 
               src="${prod.image}" 
               alt="${prod.name}" 
