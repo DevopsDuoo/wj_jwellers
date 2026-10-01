@@ -17,33 +17,12 @@ const STORAGE_KEYS = {
 };
 
 const PALETTES = {
-  emerald: {
-    id: 'emerald',
-    name: 'Royal Emerald & Gold',
-    desc: 'Jaipur Heritage Emerald & Champagne Gold',
-    colorHex: '#0C261B',
-    accentHex: '#E0C058'
-  },
   burgundy: {
     id: 'burgundy',
     name: 'Imperial Burgundy & Rose Gold',
     desc: 'Royal Wedding Wine Velvet & Warm Gold',
     colorHex: '#250A11',
     accentHex: '#E8B676'
-  },
-  sapphire: {
-    id: 'sapphire',
-    name: 'Midnight Sapphire & Gold',
-    desc: 'Regal Dark Navy & Celestial Gold',
-    colorHex: '#0D1C34',
-    accentHex: '#E5C358'
-  },
-  ivory: {
-    id: 'ivory',
-    name: 'Opulent Pearl Ivory & Bronze',
-    desc: 'Bright Alabaster Cream & Antique Bronze',
-    colorHex: '#FAF7F2',
-    accentHex: '#B38728'
   }
 };
 
@@ -622,13 +601,12 @@ const DataStore = {
   },
 
   getPalette() {
-    if (typeof localStorage === 'undefined') return 'burgundy';
-    return localStorage.getItem(STORAGE_KEYS.PALETTE) || 'burgundy';
+    return 'burgundy';
   },
 
   setPalette(paletteId) {
     if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(STORAGE_KEYS.PALETTE, paletteId);
+      localStorage.setItem(STORAGE_KEYS.PALETTE, 'burgundy');
     }
   },
 

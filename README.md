@@ -3,7 +3,7 @@
 > *Crafted for WJ Jewellers · Established 1984*
 
 [![Static Hosting Ready](https://img.shields.io/badge/Hosting-GitHub_Pages_%7C_Netlify-D4AF37?style=flat&logo=github)](https://pages.github.com/)
-[![Theme Support](https://img.shields.io/badge/Themes-Day_%26_Night_Modes-141416?style=flat&logo=palette)]()
+[![Imperial Burgundy Theme](https://img.shields.io/badge/Theme-Imperial_Burgundy_%26_Rose_Gold-8B1E3F?style=flat&logo=palette)]()
 [![Automated Gold API](https://img.shields.io/badge/Live_API-Automated_Bullion_Feed-emerald?style=flat&logo=goldenline)]()
 [![Client-Side Routing](https://img.shields.io/badge/Routing-Hash--Based_SPA-D4AF37?style=flat)](https://developer.mozilla.org/)
 
@@ -19,11 +19,10 @@ The application requires **zero build steps or backend servers**, deploying seam
 
 ## ✨ New Enhancements & Custom Features
 
-### 1. 🌙 Night & ☀️ Day Mode (Design Parity Across Boutique & Admin)
-- **Night Mode:** Deep obsidian / matte black (`#0A0A0A`, `#141416`) with imperial warm gold metallic gradients and glowing candlelight aura.
-- **Day Mode:** Opulent ivory, warm cream pearl, and champagne white (`#FBF9F5`, `#FFFFFF`, `#F4EFE6`) with brushed antique gold borders, deep charcoal typography, and subtle metallic sheen.
-- **Synchronized Design:** The Day/Night mode toggle seamlessly transforms **both the Public Showcase and the Protected Admin Panel** for complete visual harmony.
-- **Persistence:** Theme selection is saved to `localStorage` and automatically restored.
+### 1. 🍷 Imperial Burgundy & Antique Rose Gold Theme
+- **Signature Haute Joaillerie Palette:** Deep royal wine velvet backgrounds (`#150409`, `#1E070D`, `#2A0A13`) paired with luminescent antique rose gold accents (`#E8B676`, `#FBE0B8`), warm amber glow, and crisp off-white typography (`#FCF7F6`).
+- **Unified Visual Identity:** Uniquely tailored for royal bridal and Indian heirloom jewelry across both the Public Showcase and the Atelier Operations Panel.
+- **Strict Single-Line Header:** Ultra-clean navigation header with no text wrapping, optimized spacing, and streamlined controls.
 
 ### 2. ⚡ Live Automated Bullion Price API Integration
 - **Automated Daily Price Updates:** Fetches real-time spot gold prices directly from public bullion market feeds without requiring complex backend servers.

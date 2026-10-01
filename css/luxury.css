@@ -1,68 +1,14 @@
 /* ==========================================================================
    WJ Jewellers - Haute Joaillerie Design System
-   All-in-One Multi-Theme System:
-   1. Royal Emerald & Champagne Gold (Jaipur Heritage) [DEFAULT]
-   2. Imperial Burgundy & Antique Rose Gold (Royal Bridal Velvet)
-   3. Midnight Sapphire Navy & Celestial Gold (High Dynasty)
-   4. Opulent Pearl Ivory & Antique Bronze (Warm Minimalist Royal)
+   Imperial Burgundy & Antique Rose Gold (Royal Bridal Velvet Theme)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-:root {
-  /* Default: Imperial Burgundy & Rose Gold (Royal Bridal Velvet) */
-  --bg-primary: #150409;
-  --bg-surface: #1E070D;
-  --bg-elevated: #2A0A13;
-  --bg-card: #22080F;
-  --bg-card-hover: #310D17;
-  --border-subtle: rgba(232, 182, 118, 0.16);
-  --border-gold: rgba(232, 182, 118, 0.38);
-  --border-gold-hover: rgba(232, 182, 118, 0.85);
-  --gold-primary: #E8B676;
-  --gold-light: #FBE0B8;
-  --gold-glow: #F2C78E;
-  --gold-antique: #BA8540;
-  --text-main: #FCF7F6;
-  --text-muted: #D1B5BA;
-  --text-subtle: #96757C;
-  --glow-color: rgba(232, 182, 118, 0.22);
-  --btn-grad-start: #E8B676;
-  --btn-grad-mid: #FBE0B8;
-  --btn-grad-end: #BA8540;
-  --table-hover: rgba(232, 182, 118, 0.06);
-}
-
-/* ==========================================================================
-   PALETTE 1: ROYAL EMERALD & CHAMPAGNE GOLD (Jaipur Heritage)
-   ========================================================================== */
-body.theme-emerald {
-  --bg-primary: #051610;
-  --bg-surface: #0A2218;
-  --bg-elevated: #102E21;
-  --bg-card: #0C261B;
-  --bg-card-hover: #123425;
-  --border-subtle: rgba(230, 202, 101, 0.15);
-  --border-gold: rgba(230, 202, 101, 0.35);
-  --border-gold-hover: rgba(230, 202, 101, 0.8);
-  --gold-primary: #E0C058;
-  --gold-light: #F8E69E;
-  --gold-glow: #F2D574;
-  --gold-antique: #B39230;
-  --text-main: #F5FAF6;
-  --text-muted: #9BB8A8;
-  --text-subtle: #617D6E;
-  --glow-color: rgba(16, 185, 129, 0.25);
-  --btn-grad-start: #E0C058;
-  --btn-grad-mid: #F8E69E;
-  --btn-grad-end: #B39230;
-  --table-hover: rgba(230, 202, 101, 0.05);
-}
-
-/* ==========================================================================
-   PALETTE 2: IMPERIAL BURGUNDY & ROSE GOLD (Royal Bridal Velvet)
-   ========================================================================== */
+:root,
+body,
 body.theme-burgundy {
+  /* Imperial Burgundy & Rose Gold Palette */
   --bg-primary: #150409;
   --bg-surface: #1E070D;
   --bg-elevated: #2A0A13;
@@ -83,58 +29,6 @@ body.theme-burgundy {
   --btn-grad-mid: #FBE0B8;
   --btn-grad-end: #BA8540;
   --table-hover: rgba(232, 182, 118, 0.06);
-}
-
-/* ==========================================================================
-   PALETTE 3: MIDNIGHT SAPPHIRE NAVY & CELESTIAL GOLD (High Dynasty)
-   ========================================================================== */
-body.theme-sapphire {
-  --bg-primary: #060E1A;
-  --bg-surface: #0B172B;
-  --bg-elevated: #11213D;
-  --bg-card: #0D1C34;
-  --bg-card-hover: #152A4E;
-  --border-subtle: rgba(225, 195, 90, 0.15);
-  --border-gold: rgba(225, 195, 90, 0.38);
-  --border-gold-hover: rgba(225, 195, 90, 0.85);
-  --gold-primary: #E5C358;
-  --gold-light: #F9E59C;
-  --gold-glow: #EED177;
-  --gold-antique: #AA892E;
-  --text-main: #F4F7FC;
-  --text-muted: #94A6C4;
-  --text-subtle: #5C6E8C;
-  --glow-color: rgba(59, 130, 246, 0.25);
-  --btn-grad-start: #E5C358;
-  --btn-grad-mid: #F9E59C;
-  --btn-grad-end: #AA892E;
-  --table-hover: rgba(225, 195, 90, 0.05);
-}
-
-/* ==========================================================================
-   PALETTE 4: OPULENT PEARL IVORY & ANTIQUE BRONZE (Warm Minimalist Royal)
-   ========================================================================== */
-body.theme-ivory {
-  --bg-primary: #F8F5F0;
-  --bg-surface: #FFFFFF;
-  --bg-elevated: #F2EDE4;
-  --bg-card: #FFFFFF;
-  --bg-card-hover: #FAF7F2;
-  --border-subtle: rgba(166, 124, 36, 0.15);
-  --border-gold: rgba(166, 124, 36, 0.38);
-  --border-gold-hover: rgba(166, 124, 36, 0.85);
-  --gold-primary: #B38728;
-  --gold-light: #CFA33D;
-  --gold-glow: #9E731C;
-  --gold-antique: #825A0F;
-  --text-main: #1D1C20;
-  --text-muted: #5A5862;
-  --text-subtle: #878491;
-  --glow-color: rgba(212, 175, 55, 0.18);
-  --btn-grad-start: #C59B27;
-  --btn-grad-mid: #E8C360;
-  --btn-grad-end: #8A6014;
-  --table-hover: rgba(166, 124, 36, 0.05);
 }
 
 /* Base Resets & Typography */
@@ -257,9 +151,6 @@ body {
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.45);
 }
 
-body.theme-ivory .glass-panel-elevated {
-  box-shadow: 0 15px 40px rgba(166, 124, 36, 0.12);
-}
 
 /* Interactive Luxury Card */
 .luxury-card {
@@ -275,13 +166,6 @@ body.theme-ivory .glass-panel-elevated {
   transform: translateY(-5px);
 }
 
-body.theme-ivory .luxury-card {
-  box-shadow: 0 6px 20px rgba(166, 124, 36, 0.08);
-}
-
-body.theme-ivory .luxury-card:hover {
-  box-shadow: 0 16px 35px -5px rgba(166, 124, 36, 0.25);
-}
 
 /* Dynamic Ambient Glow */
 .hero-radial-glow {
@@ -425,9 +309,6 @@ body.theme-ivory .luxury-card:hover {
   -webkit-backdrop-filter: blur(14px);
 }
 
-body.theme-ivory .modal-backdrop {
-  background: rgba(20, 20, 20, 0.75);
-}
 
 .modal-content-animation {
   animation: modalScaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -572,18 +453,6 @@ body.theme-ivory .modal-backdrop {
   transition: all 0.35s ease;
 }
 
-body.theme-emerald .main-luxury-nav {
-  background: linear-gradient(180deg, var(--bg-surface) 0%, rgba(5, 22, 16, 0.90) 100%) !important;
-}
-
-body.theme-sapphire .main-luxury-nav {
-  background: linear-gradient(180deg, var(--bg-surface) 0%, rgba(6, 14, 26, 0.90) 100%) !important;
-}
-
-body.theme-ivory .main-luxury-nav {
-  background: linear-gradient(180deg, #FFFFFF 0%, rgba(248, 245, 240, 0.94) 100%) !important;
-  box-shadow: 0 4px 20px rgba(166, 124, 36, 0.08) !important;
-}
 
 /* Nav links with animated gold underline indicator */
 .nav-link-item {
@@ -679,29 +548,11 @@ body.theme-ivory .main-luxury-nav {
   box-shadow: 0 4px 18px var(--glow-color);
 }
 
-/* Special Light Ivory Theme text/contrast adjustments */
-body.theme-ivory .text-white {
-  color: var(--text-main) !important;
-}
-
-body.theme-ivory .text-gray-300,
-body.theme-ivory .text-gray-400 {
-  color: var(--text-muted) !important;
-}
-
-body.theme-ivory .bg-black\/75,
-body.theme-ivory .bg-black\/80,
-body.theme-ivory .bg-black\/90,
-body.theme-ivory .bg-black\/60 {
-  background-color: rgba(255, 255, 255, 0.94) !important;
-}
-
-body.theme-ivory .bg-black\/40,
-body.theme-ivory .bg-black\/30 {
-  background-color: var(--bg-elevated) !important;
-}
-
-/* Dark Theme Overrides for Translucent Elements */
+/* Burgundy Dark Elements Styling */
+.bg-black\/75,
+.bg-black\/80,
+.bg-black\/90,
+.bg-black\/60,
 body.theme-burgundy .bg-black\/75,
 body.theme-burgundy .bg-black\/80,
 body.theme-burgundy .bg-black\/90,
@@ -709,54 +560,20 @@ body.theme-burgundy .bg-black\/60 {
   background-color: rgba(30, 7, 13, 0.90) !important;
 }
 
+.bg-black\/40,
+.bg-black\/30,
 body.theme-burgundy .bg-black\/40,
 body.theme-burgundy .bg-black\/30 {
   background-color: var(--bg-elevated) !important;
 }
 
-body.theme-emerald .bg-black\/75,
-body.theme-emerald .bg-black\/80,
-body.theme-emerald .bg-black\/90,
-body.theme-emerald .bg-black\/60 {
-  background-color: rgba(10, 34, 24, 0.90) !important;
-}
-
-body.theme-emerald .bg-black\/40,
-body.theme-emerald .bg-black\/30 {
-  background-color: var(--bg-elevated) !important;
-}
-
-body.theme-sapphire .bg-black\/75,
-body.theme-sapphire .bg-black\/80,
-body.theme-sapphire .bg-black\/90,
-body.theme-sapphire .bg-black\/60 {
-  background-color: rgba(11, 23, 43, 0.90) !important;
-}
-
-body.theme-sapphire .bg-black\/40,
-body.theme-sapphire .bg-black\/30 {
-  background-color: var(--bg-elevated) !important;
-}
-
-/* Enhanced Contrast for Muted Text Across Rich Dark Themes */
+/* Enhanced Contrast for Muted Text Across Burgundy Theme */
+.text-gray-400,
 body.theme-burgundy .text-gray-400 {
   color: var(--text-muted) !important;
 }
+.text-gray-500,
 body.theme-burgundy .text-gray-500 {
-  color: var(--text-subtle) !important;
-}
-
-body.theme-emerald .text-gray-400 {
-  color: var(--text-muted) !important;
-}
-body.theme-emerald .text-gray-500 {
-  color: var(--text-subtle) !important;
-}
-
-body.theme-sapphire .text-gray-400 {
-  color: var(--text-muted) !important;
-}
-body.theme-sapphire .text-gray-500 {
   color: var(--text-subtle) !important;
 }
 

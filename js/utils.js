@@ -4,111 +4,44 @@
  */
 
 const Utils = {
-  // Multi-Palette Theme Management
+  // Imperial Burgundy Luxury Theme Management
   initPalette() {
-    const savedPalette = (typeof DataStore !== 'undefined' && DataStore.getPalette)
-      ? DataStore.getPalette()
-      : 'burgundy';
-    this.applyPalette(savedPalette, false);
-    this.bindPaletteEvents();
+    this.applyPalette('burgundy', false);
   },
 
-  applyPalette(paletteId, notify = false) {
-    const validPalettes = ['emerald', 'burgundy', 'sapphire', 'ivory'];
-    const activePalette = validPalettes.includes(paletteId) ? paletteId : 'burgundy';
+  applyPalette(paletteId = 'burgundy', notify = false) {
     const body = document.body;
     const html = document.documentElement;
 
     if (body) {
-      validPalettes.forEach(p => body.classList.remove(`theme-${p}`));
-      body.classList.add(`theme-${activePalette}`);
+      body.classList.remove('theme-emerald', 'theme-sapphire', 'theme-ivory', 'light-theme');
+      body.classList.add('theme-burgundy', 'dark');
     }
-
-    // Synchronize dark/light mode classes
-    const themeIconButtons = document.querySelectorAll ? document.querySelectorAll('.theme-toggle-icon') : [];
-    if (activePalette === 'ivory') {
-      if (body) {
-        body.classList.add('light-theme');
-        body.classList.remove('dark');
-      }
-      if (html) html.classList.remove('dark');
-      themeIconButtons.forEach(btn => {
-        btn.className = 'theme-toggle-icon fa-solid fa-moon text-amber-700';
-      });
-    } else {
-      if (body) {
-        body.classList.remove('light-theme');
-        body.classList.add('dark');
-      }
-      if (html) html.classList.add('dark');
-      themeIconButtons.forEach(btn => {
-        btn.className = 'theme-toggle-icon fa-solid fa-sun text-[#F3E5AB]';
-      });
-    }
-
-    // Synchronize select elements
-    if (typeof document !== 'undefined' && document.querySelectorAll) {
-      document.querySelectorAll('.palette-selector-select').forEach(select => {
-        select.value = activePalette;
-      });
-
-      // Synchronize swatch buttons
-      document.querySelectorAll('.palette-swatch-btn').forEach(btn => {
-        if (btn.dataset.palette === activePalette) {
-          btn.classList.add('ring-2', 'ring-white', 'scale-110');
-        } else {
-          btn.classList.remove('ring-2', 'ring-white', 'scale-110');
-        }
-      });
+    if (html) {
+      html.classList.remove('light');
+      html.classList.add('dark');
     }
 
     if (typeof DataStore !== 'undefined' && DataStore.setPalette) {
-      DataStore.setPalette(activePalette);
-    }
-
-    if (notify && typeof PALETTES !== 'undefined' && PALETTES[activePalette]) {
-      const p = PALETTES[activePalette];
-      this.showToast(
-        p.name,
-        `${p.desc} activated across the boutique & atelier.`,
-        'gold'
-      );
+      DataStore.setPalette('burgundy');
     }
   },
 
   setPalette(paletteId) {
-    this.applyPalette(paletteId, true);
+    this.applyPalette('burgundy', false);
   },
 
   initTheme() {
-    this.initPalette();
+    this.applyPalette('burgundy', false);
   },
 
   toggleTheme() {
-    const current = (typeof DataStore !== 'undefined' && DataStore.getPalette)
-      ? DataStore.getPalette()
-      : 'emerald';
-    if (current === 'ivory') {
-      this.setPalette('emerald');
-    } else {
-      this.setPalette('ivory');
-    }
+    // Exclusively locked to Imperial Burgundy & Rose Gold
+    this.applyPalette('burgundy', false);
   },
 
   bindPaletteEvents() {
-    if (typeof document === 'undefined' || !document.querySelectorAll) return;
-    document.querySelectorAll('.palette-selector-select').forEach(select => {
-      select.addEventListener('change', (e) => {
-        this.setPalette(e.target.value);
-      });
-    });
-
-    document.querySelectorAll('.palette-swatch-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const pal = btn.dataset.palette;
-        if (pal) this.setPalette(pal);
-      });
-    });
+    // No-op: Sole Burgundy theme is active
   },
 
   // Format currency based on active selection
