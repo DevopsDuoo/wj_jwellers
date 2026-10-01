@@ -34,14 +34,19 @@ const Admin = {
     const loginView = document.getElementById('admin-login-view');
     const showcaseView = document.getElementById('public-showcase-view');
 
-    if (showcaseView) showcaseView.classList.add('hidden');
+    if (showcaseView) {
+      showcaseView.classList.add('hidden');
+      showcaseView.style.display = 'none';
+    }
     if (adminApp) {
       adminApp.classList.add('hidden');
       adminApp.classList.remove('flex');
+      adminApp.style.display = 'none';
     }
     if (loginView) {
       loginView.classList.remove('hidden');
       loginView.classList.add('flex');
+      loginView.style.display = 'flex';
     }
 
     if (document.body) document.body.style.overflow = '';
@@ -54,14 +59,19 @@ const Admin = {
     const loginView = document.getElementById('admin-login-view');
     const showcaseView = document.getElementById('public-showcase-view');
 
-    if (showcaseView) showcaseView.classList.add('hidden');
+    if (showcaseView) {
+      showcaseView.classList.add('hidden');
+      showcaseView.style.display = 'none';
+    }
     if (loginView) {
       loginView.classList.add('hidden');
       loginView.classList.remove('flex');
+      loginView.style.display = 'none';
     }
     if (adminApp) {
       adminApp.classList.remove('hidden');
       adminApp.classList.add('flex');
+      adminApp.style.display = 'flex';
     }
 
     if (document.body) document.body.style.overflow = '';
@@ -119,12 +129,17 @@ const Admin = {
     if (adminApp) {
       adminApp.classList.add('hidden');
       adminApp.classList.remove('flex');
+      adminApp.style.display = 'none';
     }
     if (loginView) {
       loginView.classList.add('hidden');
       loginView.classList.remove('flex');
+      loginView.style.display = 'none';
     }
-    if (showcaseView) showcaseView.classList.remove('hidden');
+    if (showcaseView) {
+      showcaseView.classList.remove('hidden');
+      showcaseView.style.display = '';
+    }
 
     if (document.body) document.body.style.overflow = '';
     window.scrollTo({ top: 0, behavior: 'instant' });

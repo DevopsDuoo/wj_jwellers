@@ -98,9 +98,20 @@ const App = {
         Admin.switchTab('dashboard');
       }
     } else {
-      if (adminApp) adminApp.classList.add('hidden');
-      if (loginView) loginView.classList.add('hidden');
-      if (showcaseView) showcaseView.classList.remove('hidden');
+      if (adminApp) {
+        adminApp.classList.add('hidden');
+        adminApp.classList.remove('flex');
+        adminApp.style.display = 'none';
+      }
+      if (loginView) {
+        loginView.classList.add('hidden');
+        loginView.classList.remove('flex');
+        loginView.style.display = 'none';
+      }
+      if (showcaseView) {
+        showcaseView.classList.remove('hidden');
+        showcaseView.style.display = '';
+      }
 
       if (hash === '#/collections') {
         setTimeout(() => {
