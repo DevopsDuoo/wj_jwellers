@@ -167,7 +167,7 @@ const Admin = {
 
   renderCurrentTab() {
     // Hide all panels
-    const tabs = ['dashboard', 'payroll', 'ledger', 'stock', 'inquiries', 'rates'];
+    const tabs = ['dashboard', 'payroll', 'ledger', 'stock', 'inquiries', 'rates', 'tags'];
     tabs.forEach(t => {
       const panel = document.getElementById(`admin-panel-${t}`);
       if (panel) panel.classList.add('hidden');
@@ -190,6 +190,10 @@ const Admin = {
       this.renderInquiriesTable();
     } else if (this.currentTab === 'rates') {
       this.renderRatesEditor();
+    } else if (this.currentTab === 'tags') {
+      if (typeof BarcodeTags !== 'undefined') {
+        BarcodeTags.init();
+      }
     }
   },
 

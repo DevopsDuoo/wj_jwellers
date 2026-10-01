@@ -94,6 +94,8 @@ const App = {
         Admin.switchTab('inquiries');
       } else if (hash === '#/admin/rates') {
         Admin.switchTab('rates');
+      } else if (hash === '#/admin/tags') {
+        Admin.switchTab('tags');
       } else {
         Admin.switchTab('dashboard');
       }

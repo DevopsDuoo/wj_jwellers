@@ -670,28 +670,382 @@ body.theme-burgundy .text-gray-500 {
   color: var(--text-subtle) !important;
 }
 
-/* Print Styles */
+/* Print Styles & Thermal Barcode Tag Engine */
+/* ==========================================================================
+   JEWELLERY BARCODE & QR THERMAL TAG GENERATOR (86mm x 15mm)
+   ========================================================================== */
+
+/* Live Interactive Canvas / On-Screen Preview */
+:root {
+  --tag-scale: 1.5;
+}
+
+.thermal-rat-tail-preview {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: calc(86mm * var(--tag-scale, 1.5));
+  height: calc(15mm * var(--tag-scale, 1.5));
+  background: #ffffff;
+  color: #000000;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+  border: 1px solid #d4af37;
+  font-family: Arial, Helvetica, sans-serif;
+  user-select: text;
+  box-sizing: border-box;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.thermal-rat-tail-preview:hover {
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.25);
+}
+
+/* 56mm Printable Blade (Head) */
+.thermal-rat-tail-preview .printable-blade {
+  width: calc(56mm * var(--tag-scale, 1.5));
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  background: #ffffff;
+  color: #000000;
+  border-right: 1px dashed #d1d5db;
+  box-sizing: border-box;
+}
+
+/* Col 1 (21mm) */
+.thermal-rat-tail-preview .col-spec-1 {
+  width: calc(21mm * var(--tag-scale, 1.5));
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(0.5mm * var(--tag-scale, 1.5)) calc(0.8mm * var(--tag-scale, 1.5));
+  font-size: calc(6.2pt * var(--tag-scale, 1.5));
+  font-weight: 700;
+  line-height: 1.05;
+  box-sizing: border-box;
+  border-right: 0.5px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.thermal-rat-tail-preview .tag-item-name {
+  font-size: calc(6.2pt * var(--tag-scale, 1.5));
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  outline: none;
+}
+
+.thermal-rat-tail-preview .tag-text-row {
+  font-size: calc(5.8pt * var(--tag-scale, 1.5));
+  font-weight: 700;
+  line-height: 1.05;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.thermal-rat-tail-preview .editable-value {
+  outline: none;
+  cursor: text;
+  border-radius: 2px;
+  padding: 0 1px;
+  transition: background-color 0.15s ease;
+}
+
+.thermal-rat-tail-preview .editable-value:hover,
+.thermal-rat-tail-preview .editable-value:focus {
+  background-color: #fef08a;
+  color: #854d0e;
+}
+
+/* Col 2 (12mm) */
+.thermal-rat-tail-preview .col-spec-2 {
+  width: calc(12mm * var(--tag-scale, 1.5));
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(0.5mm * var(--tag-scale, 1.5)) calc(0.6mm * var(--tag-scale, 1.5));
+  font-size: calc(6pt * var(--tag-scale, 1.5));
+  font-weight: 700;
+  line-height: 1.05;
+  box-sizing: border-box;
+  border-right: 0.5px solid #e5e7eb;
+  overflow: hidden;
+}
+
+/* Col 3 (23mm) */
+.thermal-rat-tail-preview .col-spec-3 {
+  width: calc(23mm * var(--tag-scale, 1.5));
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: calc(0.4mm * var(--tag-scale, 1.5)) calc(0.5mm * var(--tag-scale, 1.5));
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+}
+
+.thermal-rat-tail-preview .tag-store-header {
+  font-size: calc(5.2pt * var(--tag-scale, 1.5));
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.thermal-rat-tail-preview .qr-canvas-wrapper {
+  width: calc(6.8mm * var(--tag-scale, 1.5));
+  height: calc(6.8mm * var(--tag-scale, 1.5));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.thermal-rat-tail-preview .qr-code-box,
+.thermal-rat-tail-preview .qr-code-box canvas,
+.thermal-rat-tail-preview .qr-code-box img,
+.thermal-rat-tail-preview .qr-code-box svg {
+  width: calc(6.8mm * var(--tag-scale, 1.5)) !important;
+  height: calc(6.8mm * var(--tag-scale, 1.5)) !important;
+  display: block;
+  image-rendering: pixelated;
+}
+
+.thermal-rat-tail-preview .tag-sku-code {
+  font-size: calc(6.2pt * var(--tag-scale, 1.5));
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  outline: none;
+}
+
+/* 30mm Looping Tail (Visual On-Screen Guide) */
+.thermal-rat-tail-preview .looping-tail {
+  width: calc(30mm * var(--tag-scale, 1.5));
+  height: 100%;
+  background: repeating-linear-gradient(45deg, #f8fafc, #f8fafc 4px, #f1f5f9 4px, #f1f5f9 8px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.thermal-rat-tail-preview .loop-tail-label {
+  font-size: calc(4.6pt * var(--tag-scale, 1.5));
+  font-family: monospace;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.thermal-rat-tail-preview .loop-hole-indicator {
+  position: absolute;
+  right: calc(3mm * var(--tag-scale, 1.5));
+  width: calc(2.5mm * var(--tag-scale, 1.5));
+  height: calc(2.5mm * var(--tag-scale, 1.5));
+  border-radius: 50%;
+  border: 1px dashed #cbd5e1;
+  background: #ffffff;
+}
+
+/* ==========================================================================
+   THERMAL PRINT ENGINE CALIBRATION (@media print)
+   Strictly for 86mm x 15mm Thermal Barcode Roll Labels
+   Page break after each tag, suppression of browser UI and looping tail ink
+   ========================================================================== */
 @media print {
-  body {
-    background: #FFFFFF !important;
-    color: #000000 !important;
+  @page {
+    size: 86mm 15mm;
+    margin: 0;
   }
-  .no-print, header, footer, #admin-sidebar, .toast-container, button, .palette-switcher-wrapper {
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    width: 86mm !important;
+    height: 15mm !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Completely hide all site shell elements */
+  body > *:not(#thermal-print-stage) {
     display: none !important;
   }
-  .print-area {
+
+  #thermal-print-stage {
     display: block !important;
-    width: 100% !important;
-    background: #FFFFFF !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 86mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .thermal-tag-sheet {
+    width: 86mm !important;
+    height: 15mm !important;
+    max-height: 15mm !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: row !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+
+  .thermal-print-blade {
+    width: 56mm !important;
+    height: 15mm !important;
+    display: flex !important;
+    flex-direction: row !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    background: #ffffff !important;
     color: #000000 !important;
   }
-  .lux-table th {
-    background: #EAEAEA !important;
+
+  .print-col-1 {
+    width: 21mm !important;
+    height: 15mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+    padding: 0.4mm 0.8mm !important;
+    font-size: 6.2pt !important;
+    font-weight: 700 !important;
+    line-height: 1.05 !important;
+    text-align: left !important;
+    overflow: hidden !important;
     color: #000000 !important;
-    border-bottom: 2px solid #000000 !important;
   }
-  .lux-table td {
+
+  .print-item-name {
+    font-size: 6.2pt !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    line-height: 1 !important;
+  }
+
+  .print-row {
+    font-size: 5.8pt !important;
+    font-weight: 700 !important;
+    line-height: 1.05 !important;
+    white-space: nowrap !important;
+  }
+
+  .print-net {
+    font-weight: 900 !important;
+  }
+
+  .print-col-2 {
+    width: 12mm !important;
+    height: 15mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+    padding: 0.4mm 0.4mm !important;
+    font-size: 6pt !important;
+    font-weight: 700 !important;
+    line-height: 1.05 !important;
+    text-align: left !important;
+    overflow: hidden !important;
     color: #000000 !important;
-    border-bottom: 1px solid #CCCCCC !important;
+  }
+
+  .print-purity {
+    font-weight: 800 !important;
+  }
+
+  .print-huid {
+    font-size: 5.2pt !important;
+    font-weight: 700 !important;
+  }
+
+  .print-col-3 {
+    width: 23mm !important;
+    height: 15mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+    padding: 0.4mm 0.5mm !important;
+    text-align: center !important;
+    overflow: hidden !important;
+    color: #000000 !important;
+  }
+
+  .print-store-name {
+    font-size: 5.2pt !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+    letter-spacing: 0.2px !important;
+    text-transform: uppercase !important;
+  }
+
+  .print-qr-box {
+    width: 6.8mm !important;
+    height: 6.8mm !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    margin: 0 auto !important;
+  }
+
+  .print-qr-box canvas,
+  .print-qr-box img,
+  .print-qr-box svg {
+    width: 6.8mm !important;
+    height: 6.8mm !important;
+    image-rendering: pixelated !important;
+  }
+
+  .print-sku {
+    font-size: 6.2pt !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  /* 30mm Tail is strictly INK-FREE to prevent thermal resin ribbon waste */
+  .thermal-print-tail,
+  .thermal-tag-sheet .loop-tail {
+    width: 30mm !important;
+    height: 15mm !important;
+    visibility: hidden !important;
+    border: none !important;
+    background: transparent !important;
+    color: transparent !important;
+    opacity: 0 !important;
   }
 }
