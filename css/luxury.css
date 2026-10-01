@@ -68,8 +68,25 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-.hidden {
-  display: none !important;
+/* Navigation Bar Responsive Rules */
+@media (min-width: 1024px) {
+  #nav-desktop-menu,
+  .nav-desktop-menu {
+    display: flex !important;
+  }
+  #mobile-menu-btn {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  #nav-desktop-menu,
+  .nav-desktop-menu {
+    display: none !important;
+  }
+  #mobile-menu-btn {
+    display: flex !important;
+  }
 }
 
 ::selection {
