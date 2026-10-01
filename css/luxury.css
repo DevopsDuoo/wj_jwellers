@@ -51,6 +51,23 @@ body {
   transition: background-color 0.45s cubic-bezier(0.16, 1, 0.3, 1), color 0.45s ease;
 }
 
+#admin-app-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  position: relative;
+  overflow-y: visible !important;
+}
+
+#admin-login-view {
+  min-height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .hidden {
   display: none !important;
 }
@@ -352,10 +369,23 @@ body {
 }
 
 /* Tables in Admin */
+.lux-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: auto;
+  scrollbar-width: thin;
+}
+
 .lux-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
+}
+
+.modal-content-animation {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .lux-table th {

@@ -12,6 +12,8 @@ const Admin = {
   ledgerSearch: '',
   stockFilter: 'all',
   stockSearch: '',
+  inquiryFilter: 'all',
+  inquirySearch: '',
   editingStaffId: null,
   editingLedgerId: null,
   editingProductId: null,
@@ -33,10 +35,17 @@ const Admin = {
     const showcaseView = document.getElementById('public-showcase-view');
 
     if (showcaseView) showcaseView.classList.add('hidden');
-    if (adminApp) adminApp.classList.add('hidden');
-    if (loginView) loginView.classList.remove('hidden');
+    if (adminApp) {
+      adminApp.classList.add('hidden');
+      adminApp.classList.remove('flex');
+    }
+    if (loginView) {
+      loginView.classList.remove('hidden');
+      loginView.classList.add('flex');
+    }
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (document.body) document.body.style.overflow = '';
+    window.scrollTo({ top: 0, behavior: 'instant' });
   },
 
   // Show authenticated admin dashboard
@@ -46,11 +55,18 @@ const Admin = {
     const showcaseView = document.getElementById('public-showcase-view');
 
     if (showcaseView) showcaseView.classList.add('hidden');
-    if (loginView) loginView.classList.add('hidden');
-    if (adminApp) adminApp.classList.remove('hidden');
+    if (loginView) {
+      loginView.classList.add('hidden');
+      loginView.classList.remove('flex');
+    }
+    if (adminApp) {
+      adminApp.classList.remove('hidden');
+      adminApp.classList.add('flex');
+    }
 
+    if (document.body) document.body.style.overflow = '';
     this.renderCurrentTab();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
   },
 
   // Handle Login Authentication
@@ -100,11 +116,18 @@ const Admin = {
     const adminApp = document.getElementById('admin-app-container');
     const loginView = document.getElementById('admin-login-view');
 
-    if (adminApp) adminApp.classList.add('hidden');
-    if (loginView) loginView.classList.add('hidden');
+    if (adminApp) {
+      adminApp.classList.add('hidden');
+      adminApp.classList.remove('flex');
+    }
+    if (loginView) {
+      loginView.classList.add('hidden');
+      loginView.classList.remove('flex');
+    }
     if (showcaseView) showcaseView.classList.remove('hidden');
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (document.body) document.body.style.overflow = '';
+    window.scrollTo({ top: 0, behavior: 'instant' });
   },
 
   // Switch Admin Tabs
@@ -124,6 +147,7 @@ const Admin = {
     });
 
     this.renderCurrentTab();
+    window.scrollTo({ top: 0, behavior: 'instant' });
   },
 
   renderCurrentTab() {
@@ -1017,13 +1041,48 @@ const Admin = {
     const container = document.getElementById('inquiries-list-container');
     if (!container) return;
 
-    const inquiries = DataStore.getInquiries();
+    let inquiries = DataStore.getInquiries();
+    const allInquiries = DataStore.getInquiries();
+
+    // Compute metrics
+    const totalCount = allInquiries.length;
+    const newCount = allInquiries.filter(i => i.status === 'New').length;
+    const confirmedCount = allInquiries.filter(i => i.status === 'Confirmed').length;
+    const completedCount = allInquiries.filter(i => i.status === 'Completed').length;
+
+    const totalEl = document.getElementById('inquiry-metric-total');
+    const newEl = document.getElementById('inquiry-metric-new');
+    const confirmedEl = document.getElementById('inquiry-metric-confirmed');
+    const completedEl = document.getElementById('inquiry-metric-completed');
+
+    if (totalEl) totalEl.textContent = totalCount;
+    if (newEl) newEl.textContent = newCount;
+    if (confirmedEl) confirmedEl.textContent = confirmedCount;
+    if (completedEl) completedEl.textContent = completedCount;
+
+    // Filter by status
+    if (this.inquiryFilter !== 'all') {
+      inquiries = inquiries.filter(i => i.status === this.inquiryFilter);
+    }
+
+    // Search query
+    if (this.inquirySearch) {
+      const q = this.inquirySearch;
+      inquiries = inquiries.filter(i =>
+        (i.clientName && i.clientName.toLowerCase().includes(q)) ||
+        (i.email && i.email.toLowerCase().includes(q)) ||
+        (i.phone && i.phone.toLowerCase().includes(q)) ||
+        (i.categoryOrItem && i.categoryOrItem.toLowerCase().includes(q)) ||
+        (i.notes && i.notes.toLowerCase().includes(q))
+      );
+    }
 
     if (inquiries.length === 0) {
       container.innerHTML = `
-        <div class="p-12 text-center text-gray-500">
-          <i class="fa-regular fa-envelope-open text-4xl text-gray-600 mb-3"></i>
-          <p class="font-cinzel text-sm text-gray-400">No VIP inquiries received yet.</p>
+        <div class="p-12 text-center text-gray-500 bg-[#141416] rounded-2xl border border-white/5">
+          <i class="fa-regular fa-envelope-open text-4xl text-gray-600 mb-3 block"></i>
+          <p class="font-cinzel text-sm text-gray-400">No VIP dossiers match the selected filter.</p>
+          <span class="text-xs text-gray-600 mt-1 block">Adjust search keywords or status filter above.</span>
         </div>
       `;
       return;
@@ -1089,6 +1148,24 @@ const Admin = {
     `).join('');
   },
 
+  exportInquiriesCsv() {
+    const inquiries = DataStore.getInquiries();
+    const headers = ['Client Name', 'Status', 'Jewelry Interest', 'Preferred Date', 'Budget', 'Email', 'Phone', 'Notes', 'Created At'];
+    const rows = inquiries.map(i => [
+      i.clientName,
+      i.status,
+      i.categoryOrItem,
+      i.preferredDate,
+      i.budget,
+      i.email,
+      i.phone,
+      i.notes || '',
+      i.createdAt || ''
+    ]);
+    Utils.exportToCsv(`WJ_Jewellers_VIP_Inquiries_${new Date().toISOString().split('T')[0]}.csv`, headers, rows);
+    Utils.showToast('Inquiries Exported', 'VIP appointments CSV dossier downloaded.', 'success');
+  },
+
   updateInquiryStatus(id, newStatus) {
     const inquiries = DataStore.getInquiries();
     const inq = inquiries.find(i => i.id === id);
@@ -1125,18 +1202,37 @@ const Admin = {
     form.ratePlat.value = rates.platinum950.priceUsdPerGram;
     form.rateSilver.value = rates.silver999.priceUsdPerGram;
 
+    // Update Live Spot Highlights Grid (5 cards)
+    const g24El = document.getElementById('rate-metric-gold24k');
+    const g22El = document.getElementById('rate-metric-gold22k');
+    const g18El = document.getElementById('rate-metric-gold18k');
+    const platEl = document.getElementById('rate-metric-plat');
+    const silvEl = document.getElementById('rate-metric-silver');
+
+    if (g24El) g24El.textContent = `${Utils.formatPrice(rates.gold24k.priceUsdPerGram)}/g`;
+    if (g22El) g22El.textContent = `${Utils.formatPrice(rates.gold22k.priceUsdPerGram)}/g`;
+    if (g18El) g18El.textContent = `${Utils.formatPrice(rates.gold18k.priceUsdPerGram)}/g`;
+    if (platEl) platEl.textContent = `${Utils.formatPrice(rates.platinum950.priceUsdPerGram)}/g`;
+    if (silvEl) silvEl.textContent = `${Utils.formatPrice(rates.silver999.priceUsdPerGram)}/g`;
+
     if (apiStatusEl) {
       const syncDate = rates.lastUpdated ? new Date(rates.lastUpdated).toLocaleString() : 'N/A';
       apiStatusEl.innerHTML = `
-        <div class="flex items-center justify-between text-xs text-gray-400 bg-black/30 p-3 rounded-xl border border-white/5 mb-4">
-          <div class="flex items-center gap-2">
+        <div class="flex items-center justify-between text-xs text-gray-400 bg-black/30 p-3.5 rounded-xl border border-white/5 mb-4">
+          <div class="flex items-center gap-2.5">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-green"></span>
-            <span>Feed: <strong class="text-[#F3E5AB] font-mono">${rates.source || 'Automated Daily Bullion Feed'}</strong></span>
+            <span>Active Spot Feed: <strong class="text-[#F3E5AB] font-mono">${rates.source || 'Automated Daily Bullion Feed'}</strong></span>
           </div>
           <span class="font-mono text-[11px] text-gray-400">Last Synced: ${syncDate}</span>
         </div>
       `;
     }
+  },
+
+  resetRatesToFeed() {
+    Showcase.syncLiveGoldRates();
+    this.renderRatesEditor();
+    Utils.showToast('Spot Rates Reset', 'Synchronizing with live international bullion feed.', 'gold');
   },
 
   handleRatesFormSubmit(event) {

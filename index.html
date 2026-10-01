@@ -1040,7 +1040,7 @@
   <!-- =========================================================================
        PROTECTED ADMIN: LOGIN SCREEN VIEW (#/admin without session)
        ========================================================================= -->
-  <div id="admin-login-view" class="hidden min-h-screen items-center justify-center p-4 hero-radial-glow">
+  <div id="admin-login-view" class="hidden min-h-screen w-full flex-col items-center justify-center p-4 hero-radial-glow">
     <div id="login-card-container" class="glass-panel-elevated rounded-3xl p-8 sm:p-10 max-w-md w-full border border-[#D4AF37]/40 shadow-[0_15px_50px_rgba(0,0,0,0.9)] relative">
       
       <!-- Back to Public Boutique Link -->
@@ -1129,7 +1129,7 @@
   <!-- =========================================================================
        PROTECTED ADMIN: OPERATIONS DASHBOARD VIEW (#/admin with active session)
        ========================================================================= -->
-  <div id="admin-app-container" class="hidden flex-1 flex-col bg-[#0A0A0C]">
+  <div id="admin-app-container" class="hidden min-h-screen w-full flex-col bg-[#0A0A0C]">
     
     <!-- Admin Topbar -->
     <header class="main-luxury-nav px-4 sm:px-8 py-3.5 flex items-center justify-between sticky top-0 z-30 shadow-xl">
@@ -1241,7 +1241,7 @@
     </div>
 
     <!-- Admin Content Area -->
-    <main class="flex-1 p-4 sm:p-8 max-w-7xl mx-auto w-full">
+    <main class="flex-1 p-4 sm:p-8 pb-28 sm:pb-36 max-w-7xl mx-auto w-full">
 
       <!-- ===================================================================
            TAB 1: EXECUTIVE DASHBOARD OVERVIEW
@@ -1455,8 +1455,8 @@
           </div>
         </div>
 
-        <div class="bg-[#141416] rounded-2xl border border-[#D4AF37]/20 overflow-x-auto shadow-2xl print-area">
-          <table class="lux-table">
+        <div class="lux-table-wrapper bg-[#141416] rounded-2xl border border-[#D4AF37]/20 shadow-2xl print-area">
+          <table class="lux-table min-w-[950px]">
             <thead>
               <tr>
                 <th>Personnel</th>
@@ -1548,8 +1548,8 @@
           </div>
         </div>
 
-        <div class="bg-[#141416] rounded-2xl border border-[#D4AF37]/20 overflow-x-auto shadow-2xl print-area">
-          <table class="lux-table">
+        <div class="lux-table-wrapper bg-[#141416] rounded-2xl border border-[#D4AF37]/20 shadow-2xl print-area">
+          <table class="lux-table min-w-[950px]">
             <thead>
               <tr>
                 <th>Voucher # / Date</th>
@@ -1623,8 +1623,8 @@
           </div>
         </div>
 
-        <div class="bg-[#141416] rounded-2xl border border-[#D4AF37]/20 overflow-x-auto shadow-2xl">
-          <table class="lux-table">
+        <div class="lux-table-wrapper bg-[#141416] rounded-2xl border border-[#D4AF37]/20 shadow-2xl">
+          <table class="lux-table min-w-[950px]">
             <thead>
               <tr>
                 <th>Jewelry Creation</th>
@@ -1649,10 +1649,73 @@
            =================================================================== -->
       <section id="admin-panel-inquiries" class="hidden space-y-6">
         
-        <div class="flex items-center justify-between pb-4 border-b border-white/5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/5">
           <div>
             <h2 class="font-cinzel text-lg text-white font-semibold">VIP Salon Consultation Dossiers</h2>
             <p class="text-xs text-gray-400 mt-0.5">Appointments submitted through the public website appointment scheduler.</p>
+          </div>
+          <div class="text-xs font-cinzel text-[#D4AF37]">
+            Active Salon Sessions · Confidential
+          </div>
+        </div>
+
+        <!-- 4 KPI Cards for Inquiries -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-4 rounded-xl bg-[#141416] border border-white/5">
+            <span class="text-[10px] font-cinzel uppercase text-gray-400 block">Total VIP Dossiers</span>
+            <span id="inquiry-metric-total" class="font-cinzel text-xl text-white font-bold block mt-1">0</span>
+          </div>
+          <div class="p-4 rounded-xl bg-[#141416] border border-white/5">
+            <span class="text-[10px] font-cinzel uppercase text-amber-400 block">New Requests</span>
+            <span id="inquiry-metric-new" class="font-cinzel text-xl text-amber-400 font-bold block mt-1">0</span>
+          </div>
+          <div class="p-4 rounded-xl bg-[#141416] border border-white/5">
+            <span class="text-[10px] font-cinzel uppercase text-emerald-400 block">Confirmed Viewings</span>
+            <span id="inquiry-metric-confirmed" class="font-cinzel text-xl text-emerald-400 font-bold block mt-1">0</span>
+          </div>
+          <div class="p-4 rounded-xl bg-[#141416] border border-white/5">
+            <span class="text-[10px] font-cinzel uppercase text-gray-400 block">Completed Consultations</span>
+            <span id="inquiry-metric-completed" class="font-cinzel text-xl text-gray-300 font-bold block mt-1">0</span>
+          </div>
+        </div>
+
+        <!-- Search, Filter & Actions Bar -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 bg-[#141416] p-4 rounded-2xl border border-white/5">
+          <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            <div class="relative w-full sm:w-64">
+              <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"></i>
+              <input 
+                id="inquiries-search-input" 
+                type="text" 
+                placeholder="Search client, email, interest..." 
+                class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl pl-8 pr-3 py-2 text-xs text-white focus:outline-none focus:border-[#D4AF37]"
+              />
+            </div>
+
+            <select 
+              id="inquiries-status-filter" 
+              class="bg-[#1A1A1E] border border-gray-700 text-gray-200 text-xs rounded-xl px-3 py-2 focus:outline-none focus:border-[#D4AF37]"
+            >
+              <option value="all">Status: All Dossiers</option>
+              <option value="New">Status: New</option>
+              <option value="Confirmed">Status: Confirmed</option>
+              <option value="Completed">Status: Completed</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+            <button 
+              onclick="Admin.exportInquiriesCsv()" 
+              class="px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-700 text-gray-300 hover:text-white hover:border-gray-500 flex items-center gap-1.5 transition-all"
+            >
+              <i class="fa-solid fa-file-csv"></i> Export CSV
+            </button>
+            <button 
+              onclick="window.print()" 
+              class="px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-700 text-gray-300 hover:text-white hover:border-gray-500 flex items-center gap-1.5 transition-all"
+            >
+              <i class="fa-solid fa-print"></i> Print
+            </button>
           </div>
         </div>
 
@@ -1667,18 +1730,14 @@
            =================================================================== -->
       <section id="admin-panel-rates" class="hidden space-y-6">
         
-        <div class="max-w-2xl">
-          <div class="pb-4 border-b border-white/5 mb-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/5">
+          <div>
             <h2 class="font-cinzel text-lg text-white font-semibold">Precious Metals Spot Feed & API Sync</h2>
             <p class="text-xs text-gray-400 mt-0.5">
               Automated daily price updates directly from the Live Bullion API, or manually adjust baseline rates.
             </p>
           </div>
-
-          <!-- API Live Sync Status Widget -->
-          <div id="admin-api-sync-status"></div>
-
-          <div class="flex items-center gap-3 mb-6">
+          <div class="flex items-center gap-3">
             <button 
               type="button" 
               onclick="Showcase.syncLiveGoldRates()"
@@ -1686,86 +1745,178 @@
             >
               <i class="api-sync-icon fa-solid fa-arrows-rotate text-xs"></i> Sync Live Bullion API Now
             </button>
-            <span class="text-xs text-gray-400">
-              Auto-syncs daily on page load
-            </span>
+          </div>
+        </div>
+
+        <!-- Live Spot Highlights Grid (5 cards) -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div class="p-4 rounded-xl bg-[#141416] border border-[#D4AF37]/25">
+            <span class="text-[10px] font-cinzel uppercase text-gray-400 block">24K Pure Gold (999)</span>
+            <span id="rate-metric-gold24k" class="font-cinzel text-lg font-bold text-[#F3E5AB] block mt-1">₹0/g</span>
+            <span class="text-[10px] text-gray-500 block mt-0.5">Benchmark Bullion</span>
+          </div>
+          <div class="p-4 rounded-xl bg-[#141416] border border-[#D4AF37]/25">
+            <span class="text-[10px] font-cinzel uppercase text-gray-400 block">22K Hallmark (916)</span>
+            <span id="rate-metric-gold22k" class="font-cinzel text-lg font-bold text-amber-300 block mt-1">₹0/g</span>
+            <span class="text-[10px] text-gray-500 block mt-0.5">Royal Jewelry Standard</span>
+          </div>
+          <div class="p-4 rounded-xl bg-[#141416] border border-[#D4AF37]/25">
+            <span class="text-[10px] font-cinzel uppercase text-gray-400 block">18K Jewelry (750)</span>
+            <span id="rate-metric-gold18k" class="font-cinzel text-lg font-bold text-white block mt-1">₹0/g</span>
+            <span class="text-[10px] text-gray-500 block mt-0.5">Diamond Setting Alloy</span>
+          </div>
+          <div class="p-4 rounded-xl bg-[#141416] border border-[#D4AF37]/25">
+            <span class="text-[10px] font-cinzel uppercase text-gray-400 block">Platinum (Pt 950)</span>
+            <span id="rate-metric-plat" class="font-cinzel text-lg font-bold text-sky-200 block mt-1">₹0/g</span>
+            <span class="text-[10px] text-gray-500 block mt-0.5">Fine Crown Settings</span>
+          </div>
+          <div class="p-4 rounded-xl bg-[#141416] border border-[#D4AF37]/25">
+            <span class="text-[10px] font-cinzel uppercase text-gray-400 block">Fine Silver (Ag 999)</span>
+            <span id="rate-metric-silver" class="font-cinzel text-lg font-bold text-gray-200 block mt-1">₹0/g</span>
+            <span class="text-[10px] text-gray-500 block mt-0.5">Assayed Sterling Bullion</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-8 space-y-6">
+            <!-- API Live Sync Status Widget -->
+            <div id="admin-api-sync-status"></div>
+
+            <form id="rates-form" onsubmit="Admin.handleRatesFormSubmit(event)" class="space-y-5 bg-[#141416] p-6 rounded-2xl border border-white/5">
+              <div class="border-b border-white/10 pb-3">
+                <h3 class="font-cinzel text-sm text-white font-semibold">Custom Baseline Adjustments (USD / Gram)</h3>
+                <p class="text-xs text-gray-400 mt-0.5">Overrides apply immediately across public marquee ticker and collection appraisal cards.</p>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1">
+                    24K Pure Gold (999) USD / Gram
+                  </label>
+                  <input 
+                    type="number" 
+                    step="0.01" 
+                    name="rateGold24k" 
+                    class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#D4AF37]"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1">
+                    22K Hallmark Gold (916) USD / Gram
+                  </label>
+                  <input 
+                    type="number" 
+                    step="0.01" 
+                    name="rateGold22k" 
+                    class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#D4AF37]"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1">
+                    18K Jewelry Gold (750) USD / Gram
+                  </label>
+                  <input 
+                    type="number" 
+                    step="0.01" 
+                    name="rateGold18k" 
+                    class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#D4AF37]"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1">
+                    Platinum (Pt 950) USD / Gram
+                  </label>
+                  <input 
+                    type="number" 
+                    step="0.01" 
+                    name="ratePlat" 
+                    class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#D4AF37]"
+                  />
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1">
+                    Fine Silver (Ag 999) USD / Gram
+                  </label>
+                  <input 
+                    type="number" 
+                    step="0.01" 
+                    name="rateSilver" 
+                    class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#D4AF37]"
+                  />
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3 pt-2">
+                <button 
+                  type="submit" 
+                  class="px-6 py-3 rounded-xl font-cinzel text-xs font-semibold gold-btn-gradient uppercase tracking-wider"
+                >
+                  Save Custom Spot Overrides
+                </button>
+                <button 
+                  type="button" 
+                  onclick="Admin.resetRatesToFeed()" 
+                  class="px-4 py-3 rounded-xl font-cinzel text-xs text-gray-400 hover:text-white border border-gray-700 hover:border-gray-500 transition-all"
+                >
+                  Reset to Live Feed
+                </button>
+              </div>
+            </form>
           </div>
 
-          <form id="rates-form" onsubmit="Admin.handleRatesFormSubmit(event)" class="space-y-5 bg-[#141416] p-6 rounded-2xl border border-white/5">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div>
-                <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1">
-                  24K Pure Gold (999) USD / Gram
-                </label>
-                <input 
-                  type="number" 
-                  step="0.01" 
-                  name="rateGold24k" 
-                  class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#D4AF37]"
-                />
-              </div>
-
-              <div>
-                <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1">
-                  22K Hallmark Gold (916) USD / Gram
-                </label>
-                <input 
-                  type="number" 
-                  step="0.01" 
-                  name="rateGold22k" 
-                  class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#D4AF37]"
-                />
-              </div>
-
-              <div>
-                <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1">
-                  18K Jewelry Gold (750) USD / Gram
-                </label>
-                <input 
-                  type="number" 
-                  step="0.01" 
-                  name="rateGold18k" 
-                  class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#D4AF37]"
-                />
-              </div>
-
-              <div>
-                <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1">
-                  Platinum (Pt 950) USD / Gram
-                </label>
-                <input 
-                  type="number" 
-                  step="0.01" 
-                  name="ratePlat" 
-                  class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#D4AF37]"
-                />
-              </div>
-
-              <div class="sm:col-span-2">
-                <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1">
-                  Fine Silver (Ag 999) USD / Gram
-                </label>
-                <input 
-                  type="number" 
-                  step="0.01" 
-                  name="rateSilver" 
-                  class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#D4AF37]"
-                />
+          <div class="lg:col-span-4 space-y-4">
+            <div class="p-6 rounded-2xl bg-[#141416] border border-white/5 space-y-3">
+              <h4 class="font-cinzel text-xs font-bold text-white uppercase tracking-wider">
+                <i class="fa-solid fa-scale-balanced text-[#D4AF37] mr-1.5"></i> Bullion Pricing Engine
+              </h4>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                Rates represent spot market prices per gram. The public showcase automatically calculates 22K from 24K pure baseline using the standard 91.6% purity ratio.
+              </p>
+              <div class="space-y-2 pt-2 border-t border-white/5 text-[11px] text-gray-400">
+                <div class="flex items-center justify-between">
+                  <span>1 Tola Equivalent:</span>
+                  <span class="font-mono text-white">11.66 Grams</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>1 Troy Ounce:</span>
+                  <span class="font-mono text-white">31.1035 Grams</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Assay Purity Standard:</span>
+                  <span class="font-mono text-emerald-400">BIS 916 Hallmark</span>
+                </div>
               </div>
             </div>
-
-            <button 
-              type="submit" 
-              class="px-6 py-3 rounded-xl font-cinzel text-xs font-semibold gold-btn-gradient uppercase tracking-wider"
-            >
-              Save Custom Spot Overrides
-            </button>
-          </form>
+          </div>
         </div>
 
       </section>
 
     </main>
+
+    <!-- Atelier Operations Protected Admin Footer -->
+    <footer class="mt-auto border-t border-white/5 bg-[#0D0D0F] py-6 px-4 sm:px-8">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 font-cinzel">
+        <div class="flex items-center gap-3">
+          <img src="assets/wj_sun_logo.svg" alt="WJ Sun Emblem" class="wj-sun-logo w-6 h-6 shrink-0 opacity-80" />
+          <div>
+            <span class="text-white font-bold tracking-widest block leading-tight">WJ JEWELLERS · ATELIER OPERATIONS</span>
+            <span class="text-[10px] text-[#E8B676] block">Strict Client-Side Session State Protected · SHA-256</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 text-[11px] text-gray-400">
+          <span class="flex items-center gap-1.5 text-emerald-400">
+            <i class="fa-solid fa-circle-check text-[9px]"></i> Daily Ledger Reconciled
+          </span>
+          <span class="text-white/20">|</span>
+          <span class="text-gray-400">Bullion Spot Feed Active</span>
+        </div>
+      </div>
+    </footer>
 
   </div>
 

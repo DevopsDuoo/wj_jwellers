@@ -245,6 +245,23 @@ const App = {
       });
     }
 
+    // Inquiries filter & search
+    const inquiriesFilterSelect = document.getElementById('inquiries-status-filter');
+    if (inquiriesFilterSelect) {
+      inquiriesFilterSelect.addEventListener('change', (e) => {
+        Admin.inquiryFilter = e.target.value;
+        Admin.renderInquiriesTable();
+      });
+    }
+
+    const inquiriesSearchInput = document.getElementById('inquiries-search-input');
+    if (inquiriesSearchInput) {
+      inquiriesSearchInput.addEventListener('input', (e) => {
+        Admin.inquirySearch = e.target.value.toLowerCase().trim();
+        Admin.renderInquiriesTable();
+      });
+    }
+
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
       const nav = document.getElementById('main-navbar');
