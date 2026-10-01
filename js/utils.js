@@ -33,6 +33,9 @@ const Utils = {
 
   initTheme() {
     this.applyPalette('burgundy', false);
+    if (typeof document !== 'undefined' && document.body) {
+      document.body.style.overflow = '';
+    }
   },
 
   toggleTheme() {
@@ -140,7 +143,9 @@ const Utils = {
     if (!modal) return;
     modal.classList.remove('hidden');
     modal.classList.add('flex');
-    document.body.style.overflow = 'hidden';
+    if (document.body) {
+      document.body.style.overflow = 'hidden';
+    }
   },
 
   closeModal(modalId) {
@@ -148,8 +153,8 @@ const Utils = {
     if (!modal) return;
     modal.classList.add('hidden');
     modal.classList.remove('flex');
-    const openModals = document.querySelectorAll('.fixed.flex:not(.hidden)');
-    if (openModals.length === 0) {
+    const openModals = document.querySelectorAll('.modal-backdrop:not(.hidden)');
+    if (openModals.length === 0 && document.body) {
       document.body.style.overflow = '';
     }
   },

@@ -12,6 +12,11 @@ const App = {
     this.setupRouter();
     this.setupGlobalEvents();
 
+    // Reset any locked body overflow
+    if (typeof document !== 'undefined' && document.body) {
+      document.body.style.overflow = '';
+    }
+
     // Initialize public showcase
     Showcase.init();
 
@@ -62,6 +67,10 @@ const App = {
   handleRoute() {
     const rawHash = window.location.hash || '#/';
     const hash = rawHash.toLowerCase().split('?')[0];
+
+    if (typeof document !== 'undefined' && document.body) {
+      document.body.style.overflow = '';
+    }
 
     const showcaseView = document.getElementById('public-showcase-view');
     const adminApp = document.getElementById('admin-app-container');
@@ -147,12 +156,14 @@ const App = {
 
     const openMobile = () => {
       if (mobileOverlay) mobileOverlay.classList.remove('hidden');
-      if (mobileDrawer) mobileDrawer.classList.remove('translate-x-full');
+      if (mobileDrawer) mobileDrawer.classList.remove('translate-x-full', 'pointer-events-none');
+      if (document.body) document.body.style.overflow = 'hidden';
     };
 
     const closeMobile = () => {
-      if (mobileDrawer) mobileDrawer.classList.add('translate-x-full');
+      if (mobileDrawer) mobileDrawer.classList.add('translate-x-full', 'pointer-events-none');
       if (mobileOverlay) setTimeout(() => mobileOverlay.classList.add('hidden'), 250);
+      if (document.body) document.body.style.overflow = '';
     };
 
     if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobile);
@@ -166,7 +177,7 @@ const App = {
     // Close modals on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        document.querySelectorAll('.fixed.flex:not(.hidden)').forEach(modal => {
+        document.querySelectorAll('.modal-backdrop:not(.hidden)').forEach(modal => {
           Utils.closeModal(modal.id);
         });
         Showcase.closeWishlistDrawer();

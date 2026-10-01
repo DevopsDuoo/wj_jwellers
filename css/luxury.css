@@ -34,6 +34,9 @@ body.theme-burgundy {
 /* Base Resets & Typography */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-x: clip;
+  height: auto;
 }
 
 body {
@@ -41,7 +44,15 @@ body {
   color: var(--text-main);
   font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
+  overflow-x: clip;
+  overflow-y: visible !important;
+  min-height: 100vh;
+  position: relative;
   transition: background-color 0.45s cubic-bezier(0.16, 1, 0.3, 1), color 0.45s ease;
+}
+
+.hidden {
+  display: none !important;
 }
 
 ::selection {

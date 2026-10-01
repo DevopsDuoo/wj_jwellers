@@ -648,7 +648,8 @@ const Showcase = {
     if (!drawer || !overlay) return;
 
     overlay.classList.remove('hidden');
-    drawer.classList.remove('translate-x-full');
+    drawer.classList.remove('translate-x-full', 'pointer-events-none');
+    if (document.body) document.body.style.overflow = 'hidden';
   },
 
   closeWishlistDrawer() {
@@ -656,8 +657,12 @@ const Showcase = {
     const overlay = document.getElementById('wishlist-overlay');
     if (!drawer || !overlay) return;
 
-    drawer.classList.add('translate-x-full');
+    drawer.classList.add('translate-x-full', 'pointer-events-none');
     setTimeout(() => overlay.classList.add('hidden'), 300);
+    const openModals = document.querySelectorAll('.modal-backdrop:not(.hidden)');
+    if (openModals.length === 0 && document.body) {
+      document.body.style.overflow = '';
+    }
   },
 
   // Pre-fill inquiry form for a specific product and scroll to contact section
