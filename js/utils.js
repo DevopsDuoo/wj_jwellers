@@ -4,44 +4,111 @@
  */
 
 const Utils = {
-  // Theme Management (Night Mode & Day Mode)
-  initTheme() {
-    const savedTheme = DataStore.getTheme();
-    this.applyTheme(savedTheme);
+  // Multi-Palette Theme Management
+  initPalette() {
+    const savedPalette = (typeof DataStore !== 'undefined' && DataStore.getPalette)
+      ? DataStore.getPalette()
+      : 'emerald';
+    this.applyPalette(savedPalette, false);
+    this.bindPaletteEvents();
   },
 
-  toggleTheme() {
-    const currentTheme = DataStore.getTheme();
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    DataStore.setTheme(newTheme);
-    this.applyTheme(newTheme);
-    this.showToast(
-      newTheme === 'light' ? 'Day Mode Activated' : 'Night Mode Activated',
-      newTheme === 'light' ? 'Opulent Ivory & Gold daytime aesthetic enabled.' : 'Obsidian & Gold nighttime aesthetic enabled.',
-      'gold'
-    );
-  },
-
-  applyTheme(theme) {
+  applyPalette(paletteId, notify = false) {
+    const validPalettes = ['emerald', 'burgundy', 'sapphire', 'ivory'];
+    const activePalette = validPalettes.includes(paletteId) ? paletteId : 'emerald';
     const body = document.body;
     const html = document.documentElement;
-    const themeIconButtons = document.querySelectorAll('.theme-toggle-icon');
 
-    if (theme === 'light') {
-      body.classList.add('light-theme');
-      body.classList.remove('dark');
-      html.classList.remove('dark');
+    if (body) {
+      validPalettes.forEach(p => body.classList.remove(`theme-${p}`));
+      body.classList.add(`theme-${activePalette}`);
+    }
+
+    // Synchronize dark/light mode classes
+    const themeIconButtons = document.querySelectorAll ? document.querySelectorAll('.theme-toggle-icon') : [];
+    if (activePalette === 'ivory') {
+      if (body) {
+        body.classList.add('light-theme');
+        body.classList.remove('dark');
+      }
+      if (html) html.classList.remove('dark');
       themeIconButtons.forEach(btn => {
-        btn.className = 'theme-toggle-icon fa-solid fa-moon text-amber-600';
+        btn.className = 'theme-toggle-icon fa-solid fa-moon text-amber-700';
       });
     } else {
-      body.classList.remove('light-theme');
-      body.classList.add('dark');
-      html.classList.add('dark');
+      if (body) {
+        body.classList.remove('light-theme');
+        body.classList.add('dark');
+      }
+      if (html) html.classList.add('dark');
       themeIconButtons.forEach(btn => {
         btn.className = 'theme-toggle-icon fa-solid fa-sun text-[#F3E5AB]';
       });
     }
+
+    // Synchronize select elements
+    if (typeof document !== 'undefined' && document.querySelectorAll) {
+      document.querySelectorAll('.palette-selector-select').forEach(select => {
+        select.value = activePalette;
+      });
+
+      // Synchronize swatch buttons
+      document.querySelectorAll('.palette-swatch-btn').forEach(btn => {
+        if (btn.dataset.palette === activePalette) {
+          btn.classList.add('ring-2', 'ring-white', 'scale-110');
+        } else {
+          btn.classList.remove('ring-2', 'ring-white', 'scale-110');
+        }
+      });
+    }
+
+    if (typeof DataStore !== 'undefined' && DataStore.setPalette) {
+      DataStore.setPalette(activePalette);
+    }
+
+    if (notify && typeof PALETTES !== 'undefined' && PALETTES[activePalette]) {
+      const p = PALETTES[activePalette];
+      this.showToast(
+        p.name,
+        `${p.desc} activated across the boutique & atelier.`,
+        'gold'
+      );
+    }
+  },
+
+  setPalette(paletteId) {
+    this.applyPalette(paletteId, true);
+  },
+
+  initTheme() {
+    this.initPalette();
+  },
+
+  toggleTheme() {
+    const current = (typeof DataStore !== 'undefined' && DataStore.getPalette)
+      ? DataStore.getPalette()
+      : 'emerald';
+    if (current === 'ivory') {
+      this.setPalette('emerald');
+    } else {
+      this.setPalette('ivory');
+    }
+  },
+
+  bindPaletteEvents() {
+    if (typeof document === 'undefined' || !document.querySelectorAll) return;
+    document.querySelectorAll('.palette-selector-select').forEach(select => {
+      select.addEventListener('change', (e) => {
+        this.setPalette(e.target.value);
+      });
+    });
+
+    document.querySelectorAll('.palette-swatch-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const pal = btn.dataset.palette;
+        if (pal) this.setPalette(pal);
+      });
+    });
   },
 
   // Format currency based on active selection
@@ -89,6 +156,7 @@ const Utils = {
 
   // Toast Notification System
   showToast(title, message = '', type = 'gold') {
+    if (typeof document === 'undefined' || !document.getElementById) return;
     const container = document.getElementById('toast-container');
     if (!container) return;
 
@@ -204,4 +272,8 @@ const Utils = {
 
 if (typeof window !== 'undefined') {
   window.Utils = Utils;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { Utils };
 }

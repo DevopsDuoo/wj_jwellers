@@ -120,6 +120,9 @@ const App = {
   },
 
   setupGlobalEvents() {
+    // Theme & Palette controls
+    Utils.bindPaletteEvents();
+
     // Theme toggle buttons (Day / Night mode)
     document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
       btn.addEventListener('click', () => Utils.toggleTheme());

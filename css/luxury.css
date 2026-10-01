@@ -1,68 +1,153 @@
 /* ==========================================================================
-   WJ Jewellers - Luxury Haute Joaillerie Design System
-   Dual Theme: Night Mode (Obsidian & Gold) & Day Mode (Opulent Ivory & Gold)
-   Rich Animations & Micro-Interactions
+   WJ Jewellers - Haute Joaillerie Design System
+   All-in-One Multi-Theme System:
+   1. Royal Emerald & Champagne Gold (Jaipur Heritage) [DEFAULT]
+   2. Imperial Burgundy & Antique Rose Gold (Royal Bridal Velvet)
+   3. Midnight Sapphire Navy & Celestial Gold (High Dynasty)
+   4. Opulent Pearl Ivory & Antique Bronze (Warm Minimalist Royal)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Dark / Night Mode Palette */
-  --bg-obsidian: #0A0A0A;
-  --bg-surface: #121214;
-  --bg-elevated: #18181A;
-  --bg-card: #141416;
-  --bg-card-hover: #1A1A1E;
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-gold: rgba(212, 175, 55, 0.25);
-  --border-gold-hover: rgba(212, 175, 55, 0.65);
-  
-  --gold-primary: #D4AF37;
-  --gold-light: #F3E5AB;
-  --gold-glow: #E5C558;
-  --gold-antique: #AA771C;
-  --gold-dark: #78530B;
-  
-  --text-main: #F5F5F7;
-  --text-muted: #A0A0A8;
-  --text-subtle: #686873;
-  --table-hover: rgba(212, 175, 55, 0.04);
+  /* Default: Royal Emerald & Champagne Gold */
+  --bg-primary: #051610;
+  --bg-surface: #0A2218;
+  --bg-elevated: #102E21;
+  --bg-card: #0C261B;
+  --bg-card-hover: #123425;
+  --border-subtle: rgba(230, 202, 101, 0.15);
+  --border-gold: rgba(230, 202, 101, 0.35);
+  --border-gold-hover: rgba(230, 202, 101, 0.8);
+  --gold-primary: #E0C058;
+  --gold-light: #F8E69E;
+  --gold-glow: #F2D574;
+  --gold-antique: #B39230;
+  --text-main: #F5FAF6;
+  --text-muted: #9BB8A8;
+  --text-subtle: #617D6E;
+  --glow-color: rgba(16, 185, 129, 0.25);
+  --btn-grad-start: #E0C058;
+  --btn-grad-mid: #F8E69E;
+  --btn-grad-end: #B39230;
+  --table-hover: rgba(230, 202, 101, 0.05);
 }
 
-/* Day / Light Mode Overrides */
-body.light-theme {
-  --bg-obsidian: #FBF9F5;
+/* ==========================================================================
+   PALETTE 1: ROYAL EMERALD & CHAMPAGNE GOLD (Jaipur Heritage)
+   ========================================================================== */
+body.theme-emerald {
+  --bg-primary: #051610;
+  --bg-surface: #0A2218;
+  --bg-elevated: #102E21;
+  --bg-card: #0C261B;
+  --bg-card-hover: #123425;
+  --border-subtle: rgba(230, 202, 101, 0.15);
+  --border-gold: rgba(230, 202, 101, 0.35);
+  --border-gold-hover: rgba(230, 202, 101, 0.8);
+  --gold-primary: #E0C058;
+  --gold-light: #F8E69E;
+  --gold-glow: #F2D574;
+  --gold-antique: #B39230;
+  --text-main: #F5FAF6;
+  --text-muted: #9BB8A8;
+  --text-subtle: #617D6E;
+  --glow-color: rgba(16, 185, 129, 0.25);
+  --btn-grad-start: #E0C058;
+  --btn-grad-mid: #F8E69E;
+  --btn-grad-end: #B39230;
+  --table-hover: rgba(230, 202, 101, 0.05);
+}
+
+/* ==========================================================================
+   PALETTE 2: IMPERIAL BURGUNDY & ROSE GOLD (Royal Bridal Velvet)
+   ========================================================================== */
+body.theme-burgundy {
+  --bg-primary: #17050A;
+  --bg-surface: #22080F;
+  --bg-elevated: #2D0C15;
+  --bg-card: #250A11;
+  --bg-card-hover: #330F18;
+  --border-subtle: rgba(235, 185, 130, 0.15);
+  --border-gold: rgba(235, 185, 130, 0.38);
+  --border-gold-hover: rgba(235, 185, 130, 0.85);
+  --gold-primary: #E8B676;
+  --gold-light: #FBE0B8;
+  --gold-glow: #F2C78E;
+  --gold-antique: #BA8540;
+  --text-main: #FCF7F6;
+  --text-muted: #B89BA0;
+  --text-subtle: #7D6167;
+  --glow-color: rgba(225, 29, 72, 0.25);
+  --btn-grad-start: #E8B676;
+  --btn-grad-mid: #FBE0B8;
+  --btn-grad-end: #BA8540;
+  --table-hover: rgba(235, 185, 130, 0.05);
+}
+
+/* ==========================================================================
+   PALETTE 3: MIDNIGHT SAPPHIRE NAVY & CELESTIAL GOLD (High Dynasty)
+   ========================================================================== */
+body.theme-sapphire {
+  --bg-primary: #060E1A;
+  --bg-surface: #0B172B;
+  --bg-elevated: #11213D;
+  --bg-card: #0D1C34;
+  --bg-card-hover: #152A4E;
+  --border-subtle: rgba(225, 195, 90, 0.15);
+  --border-gold: rgba(225, 195, 90, 0.38);
+  --border-gold-hover: rgba(225, 195, 90, 0.85);
+  --gold-primary: #E5C358;
+  --gold-light: #F9E59C;
+  --gold-glow: #EED177;
+  --gold-antique: #AA892E;
+  --text-main: #F4F7FC;
+  --text-muted: #94A6C4;
+  --text-subtle: #5C6E8C;
+  --glow-color: rgba(59, 130, 246, 0.25);
+  --btn-grad-start: #E5C358;
+  --btn-grad-mid: #F9E59C;
+  --btn-grad-end: #AA892E;
+  --table-hover: rgba(225, 195, 90, 0.05);
+}
+
+/* ==========================================================================
+   PALETTE 4: OPULENT PEARL IVORY & ANTIQUE BRONZE (Warm Minimalist Royal)
+   ========================================================================== */
+body.theme-ivory {
+  --bg-primary: #F8F5F0;
   --bg-surface: #FFFFFF;
-  --bg-elevated: #F4EFE6;
+  --bg-elevated: #F2EDE4;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #FAF6ED;
-  --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-gold: rgba(180, 135, 30, 0.35);
-  --border-gold-hover: rgba(180, 135, 30, 0.75);
-  
+  --bg-card-hover: #FAF7F2;
+  --border-subtle: rgba(166, 124, 36, 0.15);
+  --border-gold: rgba(166, 124, 36, 0.38);
+  --border-gold-hover: rgba(166, 124, 36, 0.85);
   --gold-primary: #B38728;
-  --gold-light: #D4AF37;
-  --gold-glow: #996515;
-  --gold-antique: #8A5F0F;
-  --gold-dark: #5C3E08;
-  
-  --text-main: #18181C;
-  --text-muted: #555562;
-  --text-subtle: #848492;
-  --table-hover: rgba(180, 135, 30, 0.05);
+  --gold-light: #CFA33D;
+  --gold-glow: #9E731C;
+  --gold-antique: #825A0F;
+  --text-main: #1D1C20;
+  --text-muted: #5A5862;
+  --text-subtle: #878491;
+  --glow-color: rgba(212, 175, 55, 0.18);
+  --btn-grad-start: #C59B27;
+  --btn-grad-mid: #E8C360;
+  --btn-grad-end: #8A6014;
+  --table-hover: rgba(166, 124, 36, 0.05);
 }
 
-/* Base resets & typography */
+/* Base Resets & Typography */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--bg-obsidian);
+  background-color: var(--bg-primary);
   color: var(--text-main);
   font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  transition: background-color 0.45s cubic-bezier(0.16, 1, 0.3, 1), color 0.45s ease;
 }
 
 ::selection {
@@ -76,7 +161,7 @@ body {
   height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-obsidian);
+  background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--gold-antique);
@@ -87,7 +172,7 @@ body {
   background: var(--gold-primary);
 }
 
-/* Luxury Font Utilities */
+/* Typography Helpers */
 .font-serif-lux {
   font-family: 'Cormorant Garamond', Georgia, serif;
 }
@@ -97,38 +182,32 @@ body {
   letter-spacing: 0.15em;
 }
 
-/* Metallic Gold Gradients */
+/* Dynamic Metallic Gold Gradients */
 .gold-gradient-text {
-  background: linear-gradient(135deg, #CF9C38 0%, #FFF3B3 30%, #D4AF37 55%, #FDF4C8 75%, #A1741B 100%);
+  background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-light) 40%, var(--gold-glow) 70%, var(--gold-antique) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }
 
-body.light-theme .gold-gradient-text {
-  background: linear-gradient(135deg, #8A5F0F 0%, #C59B27 35%, #8B6508 70%, #684605 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 .gold-gradient-bg {
-  background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+  background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-light) 40%, var(--gold-antique) 100%);
 }
 
 .gold-btn-gradient {
-  background: linear-gradient(135deg, #D4AF37 0%, #F5DF88 50%, #AA771C 100%);
+  background: linear-gradient(135deg, var(--btn-grad-start) 0%, var(--btn-grad-mid) 50%, var(--btn-grad-end) 100%);
   color: #0A0A0A;
   font-weight: 600;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 4px 18px var(--glow-color);
   position: relative;
   overflow: hidden;
 }
 
 .gold-btn-gradient:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.45);
-  background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #C59B27 100%);
+  box-shadow: 0 8px 25px var(--glow-color);
+  filter: brightness(1.06);
 }
 
 .gold-btn-gradient::after {
@@ -156,17 +235,13 @@ body.light-theme .gold-gradient-text {
 
 .gold-outline-btn:hover {
   background: rgba(212, 175, 55, 0.15);
-  color: #FFF8D6;
-  border-color: #F3E5AB;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+  color: var(--gold-light);
+  border-color: var(--gold-light);
+  box-shadow: 0 0 16px var(--glow-color);
   transform: translateY(-1px);
 }
 
-body.light-theme .gold-outline-btn:hover {
-  color: #5C3E08;
-}
-
-/* Glassmorphism & Panels */
+/* Glassmorphism & Panels mapped to Active Palette */
 .glass-panel {
   background: var(--bg-card);
   backdrop-filter: blur(16px);
@@ -179,14 +254,14 @@ body.light-theme .gold-outline-btn:hover {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-gold);
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.45);
 }
 
-body.light-theme .glass-panel-elevated {
-  box-shadow: 0 15px 40px rgba(180, 135, 30, 0.12);
+body.theme-ivory .glass-panel-elevated {
+  box-shadow: 0 15px 40px rgba(166, 124, 36, 0.12);
 }
 
-/* Luxury Interactive Card */
+/* Interactive Luxury Card */
 .luxury-card {
   background: var(--bg-card);
   border: 1px solid var(--border-gold);
@@ -196,52 +271,21 @@ body.light-theme .glass-panel-elevated {
 
 .luxury-card:hover {
   border-color: var(--border-gold-hover);
-  box-shadow: 0 16px 40px -5px rgba(212, 175, 55, 0.22), 0 0 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 16px 40px -5px var(--glow-color), 0 0 20px rgba(0, 0, 0, 0.4);
   transform: translateY(-5px);
 }
 
-body.light-theme .luxury-card {
-  box-shadow: 0 6px 20px rgba(180, 135, 30, 0.08);
+body.theme-ivory .luxury-card {
+  box-shadow: 0 6px 20px rgba(166, 124, 36, 0.08);
 }
 
-body.light-theme .luxury-card:hover {
-  box-shadow: 0 16px 35px -5px rgba(180, 135, 30, 0.25);
+body.theme-ivory .luxury-card:hover {
+  box-shadow: 0 16px 35px -5px rgba(166, 124, 36, 0.25);
 }
 
-/* Animated Floating Elements */
-@keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-12px) rotate(0.6deg);
-  }
-}
-
-.animate-float-slow {
-  animation: floatSlow 6s ease-in-out infinite;
-}
-
-@keyframes floatGentle {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-.animate-float-gentle {
-  animation: floatGentle 4s ease-in-out infinite;
-}
-
-/* Ambient Radial Glow */
+/* Dynamic Ambient Glow */
 .hero-radial-glow {
-  background: radial-gradient(circle at 50% 18%, rgba(212, 175, 55, 0.18) 0%, rgba(10, 10, 10, 0) 70%);
-}
-
-body.light-theme .hero-radial-glow {
-  background: radial-gradient(circle at 50% 18%, rgba(212, 175, 55, 0.15) 0%, rgba(251, 249, 245, 0) 70%);
+  background: radial-gradient(circle at 50% 18%, var(--glow-color) 0%, transparent 70%);
 }
 
 .ambient-gold-sphere {
@@ -249,28 +293,47 @@ body.light-theme .hero-radial-glow {
   border-radius: 50%;
   filter: blur(90px);
   pointer-events: none;
-  background: rgba(212, 175, 55, 0.1);
-  animation: pulseGoldGlow 8s infinite alternate ease-in-out;
+  background: var(--glow-color);
+  animation: pulseGlow 8s infinite alternate ease-in-out;
 }
 
-@keyframes pulseGoldGlow {
-  0% { opacity: 0.6; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1.15); }
+@keyframes pulseGlow {
+  0% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 0.9; transform: scale(1.18); }
 }
 
-/* Shimmer Animation */
+/* Floating Animations */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(0.6deg); }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+/* Shimmer Effect */
 @keyframes goldShimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
 
 .shimmer-badge {
-  background: linear-gradient(90deg, rgba(212,175,55,0.12) 0%, rgba(243,229,171,0.35) 50%, rgba(212,175,55,0.12) 100%);
+  background: linear-gradient(90deg, rgba(255,255,255,0.06) 0%, var(--glow-color) 50%, rgba(255,255,255,0.06) 100%);
   background-size: 200% 100%;
   animation: goldShimmer 3.5s infinite linear;
 }
 
-/* Live Bullion Marquee Ticker */
+/* Live Marquee Ticker */
 @keyframes marqueeScroll {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
@@ -296,33 +359,7 @@ body.light-theme .hero-radial-glow {
   50% { opacity: .4; transform: scale(1.25); }
 }
 
-/* Image Zoom & Vignette in Showcase */
-.lux-img-container {
-  overflow: hidden;
-  position: relative;
-}
-
-.lux-img-container img {
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
-}
-
-.lux-img-container:hover img {
-  transform: scale(1.08);
-}
-
-.lux-img-vignette::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.2) 50%, transparent 100%);
-  pointer-events: none;
-}
-
-body.light-theme .lux-img-vignette::after {
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
-}
-
-/* Horizontal Scrollable Carousel Styling */
+/* Horizontal Scrollable Carousel */
 .horizontal-scroll-container {
   display: flex;
   overflow-x: auto;
@@ -338,7 +375,7 @@ body.light-theme .lux-img-vignette::after {
 }
 
 .horizontal-scroll-container::-webkit-scrollbar-track {
-  background: rgba(212, 175, 55, 0.08);
+  background: var(--border-subtle);
   border-radius: 999px;
 }
 
@@ -367,7 +404,7 @@ body.light-theme .lux-img-vignette::after {
   -webkit-backdrop-filter: blur(14px);
 }
 
-body.light-theme .modal-backdrop {
+body.theme-ivory .modal-backdrop {
   background: rgba(20, 20, 20, 0.75);
 }
 
@@ -380,7 +417,7 @@ body.light-theme .modal-backdrop {
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* Toast Notification Animation */
+/* Toast Notifications */
 .toast-slide-in {
   animation: toastSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -390,7 +427,7 @@ body.light-theme .modal-backdrop {
   to { transform: translateX(0); opacity: 1; }
 }
 
-/* Shake Animation for Auth Errors */
+/* Shake Animation */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   20%, 60% { transform: translateX(-8px); }
@@ -401,7 +438,7 @@ body.light-theme .modal-backdrop {
   animation: shake 0.45s ease-in-out;
 }
 
-/* Custom Table Styles for Admin */
+/* Tables in Admin */
 .lux-table {
   width: 100%;
   border-collapse: separate;
@@ -431,53 +468,7 @@ body.light-theme .modal-backdrop {
   background: var(--table-hover);
 }
 
-/* Day/Night Theme Light Adjustments */
-body.light-theme .bg-black\/75,
-body.light-theme .bg-black\/80,
-body.light-theme .bg-black\/90,
-body.light-theme .bg-black\/60 {
-  background-color: rgba(255, 255, 255, 0.92) !important;
-}
-
-body.light-theme .bg-\[\#0A0A0A\],
-body.light-theme .bg-\[\#0A0A0C\],
-body.light-theme .bg-\[\#070708\] {
-  background-color: #FAF8F5 !important;
-}
-
-body.light-theme .bg-\[\#141416\],
-body.light-theme .bg-\[\#121214\],
-body.light-theme .bg-\[\#151518\],
-body.light-theme .bg-\[\#0E0E10\] {
-  background-color: #FFFFFF !important;
-  color: #1A1A1E !important;
-}
-
-body.light-theme .bg-\[\#1A1A1E\],
-body.light-theme .bg-\[\#18181A\],
-body.light-theme .bg-\[\#1C1C22\] {
-  background-color: #F4EFE6 !important;
-}
-
-body.light-theme .text-white {
-  color: #1A1A1E !important;
-}
-
-body.light-theme .text-gray-300,
-body.light-theme .text-gray-400 {
-  color: #555562 !important;
-}
-
-body.light-theme .text-gray-500 {
-  color: #7B7B89 !important;
-}
-
-body.light-theme .border-white\/5,
-body.light-theme .border-white\/10 {
-  border-color: rgba(0, 0, 0, 0.08) !important;
-}
-
-/* Rotate Animation for API Sync */
+/* Rotating Spinner for API Sync */
 @keyframes spinClockwise {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -487,13 +478,85 @@ body.light-theme .border-white\/10 {
   animation: spinClockwise 1s linear infinite;
 }
 
+/* ==========================================================================
+   DYNAMIC COLOR OVERRIDES FOR HTML ELEMENTS (THEME HARMONY)
+   ========================================================================== */
+.bg-\[\#0A0A0A\],
+.bg-\[\#0A0A0C\],
+.bg-\[\#070708\] {
+  background-color: var(--bg-primary) !important;
+}
+
+.bg-\[\#0D0D0F\],
+.bg-\[\#121214\],
+.bg-\[\#151518\],
+.bg-\[\#0E0E10\] {
+  background-color: var(--bg-surface) !important;
+}
+
+.bg-\[\#141416\],
+.bg-\[\#0F0F12\] {
+  background-color: var(--bg-card) !important;
+}
+
+.bg-\[\#1A1A1E\],
+.bg-\[\#18181A\],
+.bg-\[\#1C1C22\] {
+  background-color: var(--bg-elevated) !important;
+}
+
+.border-\[\#D4AF37\]\/20,
+.border-\[\#D4AF37\]\/25,
+.border-\[\#D4AF37\]\/30,
+.border-\[\#D4AF37\]\/40,
+.border-\[\#D4AF37\]\/50 {
+  border-color: var(--border-gold) !important;
+}
+
+.border-white\/5,
+.border-white\/10 {
+  border-color: var(--border-subtle) !important;
+}
+
+.text-\[\#D4AF37\],
+.text-\[\#E5C558\] {
+  color: var(--gold-primary) !important;
+}
+
+.text-\[\#F3E5AB\],
+.text-\[\#FFF8D6\] {
+  color: var(--gold-light) !important;
+}
+
+/* Special Light Ivory Theme text/contrast adjustments */
+body.theme-ivory .text-white {
+  color: var(--text-main) !important;
+}
+
+body.theme-ivory .text-gray-300,
+body.theme-ivory .text-gray-400 {
+  color: var(--text-muted) !important;
+}
+
+body.theme-ivory .bg-black\/75,
+body.theme-ivory .bg-black\/80,
+body.theme-ivory .bg-black\/90,
+body.theme-ivory .bg-black\/60 {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+}
+
+body.theme-ivory .bg-black\/40,
+body.theme-ivory .bg-black\/30 {
+  background-color: var(--bg-elevated) !important;
+}
+
 /* Print Styles */
 @media print {
   body {
     background: #FFFFFF !important;
     color: #000000 !important;
   }
-  .no-print, header, footer, #admin-sidebar, .toast-container, button, .theme-toggle-btn {
+  .no-print, header, footer, #admin-sidebar, .toast-container, button, .palette-switcher-wrapper {
     display: none !important;
   }
   .print-area {

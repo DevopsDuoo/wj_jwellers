@@ -63,7 +63,7 @@
   <!-- Custom Luxury Styling & Animations -->
   <link rel="stylesheet" href="css/luxury.css" />
 </head>
-<body class="bg-[#0A0A0A] text-[#F5F5F7] min-h-screen flex flex-col font-sans selection:bg-[#D4AF37] selection:text-black">
+<body class="bg-[#0A0A0A] text-[#F5F5F7] min-h-screen flex flex-col font-sans selection:bg-[#D4AF37] selection:text-black theme-emerald">
 
   <!-- Toast Notification Floating Container -->
   <div id="toast-container" class="fixed top-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none max-w-sm w-full"></div>
@@ -152,6 +152,22 @@
         <!-- Right Utilities & Actions -->
         <div class="flex items-center gap-3">
           
+          <!-- All-in-One Luxury Palette Switcher -->
+          <div class="relative flex items-center">
+            <div class="flex items-center bg-[#141416] border border-[#D4AF37]/35 rounded-xl px-2.5 py-1.5 gap-2 hover:border-[#D4AF37] transition-all shadow-sm">
+              <i class="fa-solid fa-palette text-xs text-[#E5C558]"></i>
+              <select 
+                class="palette-selector-select bg-transparent text-[#F3E5AB] text-xs font-cinzel font-medium focus:outline-none cursor-pointer pr-1"
+                title="Switch Theme Palette"
+              >
+                <option value="emerald" class="bg-[#0C261B] text-[#F5FAF6]">🟢 Royal Emerald</option>
+                <option value="burgundy" class="bg-[#250A11] text-[#FCF7F6]">🍷 Imperial Burgundy</option>
+                <option value="sapphire" class="bg-[#0D1C34] text-[#F4F7FC]">💎 Sapphire Navy</option>
+                <option value="ivory" class="bg-[#FAF7F2] text-[#1D1C20]">🏛️ Pearl Ivory</option>
+              </select>
+            </div>
+          </div>
+
           <!-- Day / Night Mode Toggle Button -->
           <button 
             class="theme-toggle-btn p-2 rounded-xl border border-[#D4AF37]/30 hover:border-[#D4AF37] text-gray-300 hover:text-[#F3E5AB] transition-all flex items-center justify-center w-9 h-9"
@@ -243,9 +259,22 @@
       </div>
 
       <div class="pt-6 border-t border-white/10 space-y-4">
-        <!-- Theme & Currency in mobile menu -->
+        <!-- Theme Palette in mobile menu -->
         <div class="flex items-center justify-between">
-          <span class="text-xs text-gray-400 font-cinzel">Theme Mode:</span>
+          <span class="text-xs text-gray-400 font-cinzel">Theme Palette:</span>
+          <select 
+            class="palette-selector-select bg-[#18181A] text-[#F3E5AB] text-xs font-cinzel rounded px-2.5 py-1 border border-gray-700 focus:outline-none"
+            title="Switch Theme Palette"
+          >
+            <option value="emerald">🟢 Royal Emerald</option>
+            <option value="burgundy">🍷 Imperial Burgundy</option>
+            <option value="sapphire">💎 Sapphire Navy</option>
+            <option value="ivory">🏛️ Pearl Ivory</option>
+          </select>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <span class="text-xs text-gray-400 font-cinzel">Mode:</span>
           <button class="theme-toggle-btn text-xs px-3 py-1 rounded bg-[#18181A] border border-gray-700 text-[#F3E5AB]">
             Toggle Day/Night
           </button>
@@ -1140,6 +1169,20 @@
 
       <div class="flex items-center gap-4">
         
+        <!-- Admin Palette Selector -->
+        <div class="flex items-center bg-[#141416] border border-[#D4AF37]/35 rounded-xl px-2 py-1 gap-1.5 hover:border-[#D4AF37] transition-all">
+          <i class="fa-solid fa-palette text-xs text-[#E5C558]"></i>
+          <select 
+            class="palette-selector-select bg-transparent text-[#F3E5AB] text-xs font-cinzel font-medium focus:outline-none cursor-pointer pr-1"
+            title="Switch Theme Palette"
+          >
+            <option value="emerald" class="bg-[#0C261B] text-[#F5FAF6]">🟢 Royal Emerald</option>
+            <option value="burgundy" class="bg-[#250A11] text-[#FCF7F6]">🍷 Imperial Burgundy</option>
+            <option value="sapphire" class="bg-[#0D1C34] text-[#F4F7FC]">💎 Sapphire Navy</option>
+            <option value="ivory" class="bg-[#FAF7F2] text-[#1D1C20]">🏛️ Pearl Ivory</option>
+          </select>
+        </div>
+
         <!-- Day / Night Mode Toggle inside Admin -->
         <button 
           class="theme-toggle-btn p-2 rounded-xl border border-[#D4AF37]/30 hover:border-[#D4AF37] text-gray-300 hover:text-[#F3E5AB] transition-all flex items-center justify-center w-8 h-8"

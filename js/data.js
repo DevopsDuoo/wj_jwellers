@@ -12,10 +12,43 @@ const STORAGE_KEYS = {
   WISHLIST: 'wj_wishlist_v2',
   CURRENCY: 'wj_currency_v2',
   SESSION: 'wj_admin_session_v2',
-  THEME: 'wj_theme_mode_v2'
+  THEME: 'wj_theme_mode_v2',
+  PALETTE: 'wj_palette_theme_v2'
+};
+
+const PALETTES = {
+  emerald: {
+    id: 'emerald',
+    name: 'Royal Emerald & Gold',
+    desc: 'Jaipur Heritage Emerald & Champagne Gold',
+    colorHex: '#0C261B',
+    accentHex: '#E0C058'
+  },
+  burgundy: {
+    id: 'burgundy',
+    name: 'Imperial Burgundy & Rose Gold',
+    desc: 'Royal Wedding Wine Velvet & Warm Gold',
+    colorHex: '#250A11',
+    accentHex: '#E8B676'
+  },
+  sapphire: {
+    id: 'sapphire',
+    name: 'Midnight Sapphire & Gold',
+    desc: 'Regal Dark Navy & Celestial Gold',
+    colorHex: '#0D1C34',
+    accentHex: '#E5C358'
+  },
+  ivory: {
+    id: 'ivory',
+    name: 'Opulent Pearl Ivory & Bronze',
+    desc: 'Bright Alabaster Cream & Antique Bronze',
+    colorHex: '#FAF7F2',
+    accentHex: '#B38728'
+  }
 };
 
 const CURRENCIES = {
+
   INR: { symbol: '₹', rate: 83.50, label: 'INR (₹)', code: 'INR' },
   USD: { symbol: '$', rate: 1.0, label: 'USD ($)', code: 'USD' },
   GBP: { symbol: '£', rate: 0.78, label: 'GBP (£)', code: 'GBP' },
@@ -567,19 +600,36 @@ const DataStore = {
   },
 
   getCurrency() {
+    if (typeof localStorage === 'undefined') return 'INR';
     return localStorage.getItem(STORAGE_KEYS.CURRENCY) || 'INR'; // Default INR for Indian Jeweller
   },
 
   setCurrency(curr) {
-    localStorage.setItem(STORAGE_KEYS.CURRENCY, curr);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(STORAGE_KEYS.CURRENCY, curr);
+    }
   },
 
   getTheme() {
+    if (typeof localStorage === 'undefined') return 'dark';
     return localStorage.getItem(STORAGE_KEYS.THEME) || 'dark';
   },
 
   setTheme(theme) {
-    localStorage.setItem(STORAGE_KEYS.THEME, theme);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(STORAGE_KEYS.THEME, theme);
+    }
+  },
+
+  getPalette() {
+    if (typeof localStorage === 'undefined') return 'emerald';
+    return localStorage.getItem(STORAGE_KEYS.PALETTE) || 'emerald';
+  },
+
+  setPalette(paletteId) {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(STORAGE_KEYS.PALETTE, paletteId);
+    }
   },
 
   /**
@@ -671,6 +721,11 @@ const DataStore = {
 if (typeof window !== 'undefined') {
   window.DataStore = DataStore;
   window.STORAGE_KEYS = STORAGE_KEYS;
+  window.PALETTES = PALETTES;
   window.CURRENCIES = CURRENCIES;
   window.DEFAULT_RATES = DEFAULT_RATES;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { DataStore, STORAGE_KEYS, PALETTES, CURRENCIES, DEFAULT_RATES, DEFAULT_PRODUCTS };
 }
