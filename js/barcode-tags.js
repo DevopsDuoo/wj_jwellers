@@ -463,10 +463,14 @@ const BarcodeTags = {
   },
 
   generateTagCardHTML(tag) {
+    const esc = (s) => (typeof Utils !== 'undefined' && Utils.escapeHtml) ? Utils.escapeHtml(s) : String(s || '');
     const isChecked = tag.selected ? 'checked' : '';
     const netFormatted = typeof tag.netWt === 'number' ? tag.netWt.toFixed(3) : parseFloat(tag.netWt || 0).toFixed(3);
     const grossFormatted = typeof tag.grossWt === 'number' ? tag.grossWt.toFixed(3) : parseFloat(tag.grossWt || 0).toFixed(3);
     const lessFormatted = typeof tag.lessWt === 'number' ? tag.lessWt.toFixed(3) : parseFloat(tag.lessWt || 0).toFixed(3);
+    const safeItemName = esc(tag.itemName);
+    const safeTagNum = esc(tag.tagNum);
+    const safeHuid = esc(tag.huid);
 
     return `
       <div 
@@ -483,10 +487,10 @@ const BarcodeTags = {
                 onchange="BarcodeTags.toggleTagSelect('${tag.id}', this.checked)"
                 class="w-4 h-4 rounded text-[#D4AF37] focus:ring-0 bg-[#1e1e24] border-gray-600 cursor-pointer"
               />
-              <span class="font-mono text-gray-200 font-semibold text-xs tracking-wider">${tag.tagNum}</span>
+              <span class="font-mono text-gray-200 font-semibold text-xs tracking-wider">${safeTagNum}</span>
             </label>
             <span class="px-2 py-0.5 rounded-full text-[10px] font-cinzel font-semibold bg-[#D4AF37]/15 text-[#F3E5AB] border border-[#D4AF37]/30">
-              ${tag.purity}
+              ${esc(tag.purity)}
             </span>
           </div>
 

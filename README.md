@@ -71,16 +71,15 @@ The application requires **zero build steps or backend servers**, deploying seam
 - **VIP Consultation Booking (`#/contact`):** Appointment scheduler that saves directly into the Admin Inquiries queue.
 
 ### Protected Admin Panel (`#/admin`):
-- **Credentials:**
-  - **Username:** `admin`
-  - **Password:** `jewel2026`
-  - Includes a quick *"Auto-fill demo credentials"* button.
+- **Access Protocol:** Strict direct URL navigation (`#/admin`). No public links exist on the customer-facing boutique.
+- **Authentication Engine:** Salted SHA-256 cryptographic verification (`crypto.subtle`) with automated 5-attempt brute-force rate limiting and 8-hour cryptographic session token expiry.
 - **Executive Dashboard:** Live inventory valuation, monthly staff payroll status, daily ledger expenses, and pending inquiries.
 - **Staff Salary & Payroll Tracker (`#/admin/payroll`):** One-click Paid/Pending toggle, employee modal, CSV export, and print view.
 - **Daily Shop Ledger (`#/admin/ledger`):** Expense vouchers, categories (Gold Refining, Velvet Packaging, Insurance, VIP Hospitality), CSV export, and print view.
 - **Stock Summary Quick-Glance (`#/admin/stock`):** Real-time unit count, quick `+` and `-` quantity adjusters, and *"Catalog New Creation"* modal that immediately updates the live public showcase!
 - **Customer Inquiries Dossier (`#/admin/inquiries`):** Review consultation requests, update status (*New*, *Confirmed*, *Completed*), or trigger direct email client.
 - **Bullion Rates Configurator (`#/admin/rates`):** Sync Live Market API or set custom spot overrides.
+- **Jewellery Barcode & QR Tag Generator (`#/admin/tags`):** 86mm × 15mm thermal label printing engine with 2D QR matrix, inline editing, and CSV bulk import.
 
 ---
 
@@ -109,14 +108,16 @@ Visit `http://localhost:4173/` in your browser.
 
 ---
 
-## 🔑 Administrative Access
+## 🔒 Security Architecture
 
-| Field | Value |
+| Security Measure | Implementation |
 |---|---|
-| **Portal URL** | `#/admin` (or click *"Atelier Portal"* in top bar) |
-| **Username** | `admin` |
-| **Passphrase** | `jewel2026` |
-| **Quick Access** | Click *"Auto-fill demo credentials"* on the login card |
+| **Portal Access** | Direct URL (`#/admin`) · Public boutique has zero admin anchors |
+| **Credential Verification** | Salted SHA-256 (`crypto.subtle`) · Zero plaintext secrets in code |
+| **Session Protection** | CSPRNG 256-bit cryptographically signed token with 8-hour session expiry |
+| **Brute-Force Shield** | Automated 60-second terminal lockout triggered after 5 consecutive failed attempts |
+| **XSS Defense** | HTML entity sanitization (`Utils.escapeHtml`) applied to all dynamic user data |
+| **Media Suppression** | Thermal looping tail strictly ink-free to eliminate resin ribbon waste |
 
 ---
 

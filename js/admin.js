@@ -79,41 +79,89 @@ const Admin = {
     window.scrollTo({ top: 0, behavior: 'instant' });
   },
 
+  // Cryptographic Authentication Config (Zero Plaintext Secrets)
+  AUTH_SALT: 'WJ_ATELIER_SECURE_SALT_2026',
+  AUTH_HASH: '6d289487db40845dcaa322b0b6e16e99ddcd2a9e438700c4347a9f5613fcad26',
+  failedAttempts: 0,
+  lockoutUntil: 0,
+
+  async computeCredentialHash(username, password) {
+    const raw = `${username}:${password}:${this.AUTH_SALT}`;
+    const encoder = new TextEncoder();
+    const data = encoder.encode(raw);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+  },
+
   // Handle Login Authentication
-  handleLogin(event) {
+  async handleLogin(event) {
     event.preventDefault();
+
+    const now = Date.now();
+    const errorMsg = document.getElementById('login-error-msg');
+    const formContainer = document.getElementById('login-card-container');
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+
+    // Check brute-force lockout
+    if (this.lockoutUntil > now) {
+      const remainingSec = Math.ceil((this.lockoutUntil - now) / 1000);
+      if (errorMsg) {
+        errorMsg.classList.remove('hidden');
+        errorMsg.textContent = `Security Lockout Active: Too many failed attempts. Try again in ${remainingSec}s.`;
+      }
+      Utils.showToast('Terminal Locked', `Security rate limit active. Please wait ${remainingSec} seconds.`, 'error');
+      return;
+    }
+
     const form = event.target;
     const username = form.username.value.trim();
     const password = form.password.value;
-    const errorMsg = document.getElementById('login-error-msg');
-    const formContainer = document.getElementById('login-card-container');
 
-    // Required credentials: admin / jewel2026
-    if (username === 'admin' && password === 'jewel2026') {
-      Utils.setAdminSession(username);
-      if (errorMsg) errorMsg.classList.add('hidden');
-      Utils.showToast('Authentication Successful', 'Welcome to WJ Jewellers Atelier Operations Center.', 'success');
-      this.showDashboardView();
-    } else {
+    if (!username || !password) {
       if (errorMsg) {
         errorMsg.classList.remove('hidden');
-        errorMsg.textContent = 'Invalid credentials. Expected: admin / jewel2026';
+        errorMsg.textContent = 'Please enter both username and passphrase.';
       }
-      if (formContainer) {
-        formContainer.classList.add('auth-shake');
-        setTimeout(() => formContainer.classList.remove('auth-shake'), 500);
-      }
-      Utils.showToast('Access Denied', 'Please verify your administrative credentials.', 'error');
+      return;
     }
-  },
 
-  // Auto-fill demo credentials for tester convenience
-  autofillDemoCredentials() {
-    const form = document.getElementById('admin-login-form');
-    if (form) {
-      form.username.value = 'admin';
-      form.password.value = 'jewel2026';
-      Utils.showToast('Credentials Injected', 'Username: admin | Password: jewel2026', 'gold');
+    try {
+      if (submitBtn) submitBtn.disabled = true;
+      const computedHash = await this.computeCredentialHash(username, password);
+
+      if (computedHash === this.AUTH_HASH) {
+        this.failedAttempts = 0;
+        this.lockoutUntil = 0;
+        Utils.setAdminSession(username);
+        if (errorMsg) errorMsg.classList.add('hidden');
+        form.reset();
+        Utils.showToast('Authentication Successful', 'Welcome to WJ Jewellers Atelier Operations Center.', 'success');
+        this.showDashboardView();
+      } else {
+        this.failedAttempts++;
+        if (this.failedAttempts >= 5) {
+          this.lockoutUntil = Date.now() + 60000; // 60-second lockout
+          if (errorMsg) {
+            errorMsg.classList.remove('hidden');
+            errorMsg.textContent = 'Security Lockout: 5 failed attempts reached. Terminal locked for 60 seconds.';
+          }
+          Utils.showToast('Terminal Locked', 'Excessive failed attempts. Terminal locked for 60 seconds.', 'error');
+        } else {
+          const attemptsLeft = 5 - this.failedAttempts;
+          if (errorMsg) {
+            errorMsg.classList.remove('hidden');
+            errorMsg.textContent = `Access Denied: Invalid administrator credentials (${attemptsLeft} attempt${attemptsLeft === 1 ? '' : 's'} remaining).`;
+          }
+          Utils.showToast('Access Denied', 'Invalid credentials provided.', 'error');
+        }
+
+        if (formContainer) {
+          formContainer.classList.add('auth-shake');
+          setTimeout(() => formContainer.classList.remove('auth-shake'), 500);
+        }
+      }
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
     }
   },
 

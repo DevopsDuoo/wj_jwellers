@@ -159,24 +159,54 @@ const Utils = {
     }
   },
 
-  // Admin Session Management
+  // HTML Sanitization & XSS Prevention
+  escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  },
+
+  sanitize(str) {
+    return this.escapeHtml(str);
+  },
+
+  // Admin Session Management (Cryptographic Token & Expiry Hardened)
   isAdminAuthenticated() {
     const session = sessionStorage.getItem(STORAGE_KEYS.SESSION);
     if (!session) return false;
     try {
       const data = JSON.parse(session);
-      return data && data.user === 'admin' && data.authenticated === true;
+      if (!data || data.user !== 'admin') return false;
+      if (!data.token || typeof data.token !== 'string' || data.token.length !== 64) return false;
+
+      // Check session expiry: 8-hour shift maximum
+      if (!data.expiresAt || Date.now() > data.expiresAt) {
+        sessionStorage.removeItem(STORAGE_KEYS.SESSION);
+        return false;
+      }
+      return true;
     } catch (e) {
       return false;
     }
   },
 
   setAdminSession(user = 'admin') {
+    // Generate 256-bit cryptographically secure session token
+    const randomBytes = new Uint8Array(32);
+    crypto.getRandomValues(randomBytes);
+    const token = Array.from(randomBytes).map(b => b.toString(16).padStart(2, '0')).join('');
+    const now = Date.now();
+
     const sessionData = {
       user: user,
       role: 'Master Administrator',
-      authenticated: true,
-      timestamp: new Date().toISOString()
+      token: token,
+      issuedAt: now,
+      expiresAt: now + (8 * 60 * 60 * 1000) // 8-hour shift expiry
     };
     sessionStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify(sessionData));
   },

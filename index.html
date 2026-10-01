@@ -10,6 +10,10 @@
   <meta name="keywords" content="WJ Jewellers, Indian bridal jewelry, 22k gold necklace, jadau polki choker, temple kadas, uncut diamonds, BIS 916 gold rate today" />
   <meta name="author" content="WJ Jewellers" />
   
+  <!-- Security & Privacy Meta Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
   <!-- Favicon with Royal Indian Surya Gold Monogram -->
   <link rel="icon" type="image/svg+xml" href="assets/wj_sun_logo.svg" />
 
@@ -1077,7 +1081,8 @@
               type="text" 
               name="username" 
               required 
-              placeholder="e.g. admin"
+              autocomplete="username"
+              placeholder="Username"
               class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl pl-9 pr-4 py-3 text-xs text-white focus:outline-none focus:border-[#D4AF37] transition-all"
             />
           </div>
@@ -1093,22 +1098,21 @@
               type="password" 
               name="password" 
               required 
+              autocomplete="current-password"
               placeholder="••••••••"
               class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl pl-9 pr-4 py-3 text-xs text-white focus:outline-none focus:border-[#D4AF37] transition-all"
             />
           </div>
         </div>
 
-        <!-- Quick Demo Credential Autofill Helper for Testing -->
-        <div class="pt-1 flex items-center justify-between">
-          <button 
-            type="button" 
-            onclick="Admin.autofillDemoCredentials()"
-            class="text-[11px] text-[#E5C558] hover:text-[#FFF8D6] underline decoration-[#D4AF37]/50 font-cinzel cursor-pointer"
-          >
-            <i class="fa-solid fa-wand-magic-sparkles mr-1 text-[10px]"></i> Auto-fill demo credentials
-          </button>
-          <span class="text-[10px] text-gray-500 font-mono">admin / jewel2026</span>
+        <!-- Security Badge Advisory -->
+        <div class="pt-2 flex items-center justify-between text-[11px] text-gray-400 font-cinzel">
+          <span class="flex items-center gap-1.5">
+            <i class="fa-solid fa-shield-halved text-[#D4AF37]"></i> Authorized Personnel Only
+          </span>
+          <span class="text-[10px] text-emerald-400 font-mono flex items-center gap-1">
+            <i class="fa-solid fa-lock text-[8px]"></i> SHA-256
+          </span>
         </div>
 
         <button 
