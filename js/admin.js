@@ -193,55 +193,23 @@ const Admin = {
     window.scrollTo({ top: 0, behavior: 'instant' });
   },
 
-  // Switch Admin Tabs
-  switchTab(tabName) {
-    this.currentTab = tabName;
-
-    // Update navigation styles
-    document.querySelectorAll('[data-admin-tab]').forEach(btn => {
-      const target = btn.getAttribute('data-admin-tab');
-      if (target === tabName) {
-        btn.classList.add('bg-[#D4AF37]/15', 'text-[#F3E5AB]', 'border-[#D4AF37]/50');
-        btn.classList.remove('text-gray-400', 'border-transparent');
-      } else {
-        btn.classList.remove('bg-[#D4AF37]/15', 'text-[#F3E5AB]', 'border-[#D4AF37]/50');
-        btn.classList.add('text-gray-400', 'border-transparent');
-      }
-    });
-
+  // Switch Admin Tabs (Solely tags generator)
+  switchTab(tabName = 'tags') {
+    this.currentTab = 'tags';
     this.renderCurrentTab();
     window.scrollTo({ top: 0, behavior: 'instant' });
   },
 
   renderCurrentTab() {
-    // Hide all panels
-    const tabs = ['dashboard', 'payroll', 'ledger', 'stock', 'inquiries', 'rates', 'tags'];
-    tabs.forEach(t => {
-      const panel = document.getElementById(`admin-panel-${t}`);
-      if (panel) panel.classList.add('hidden');
-    });
+    this.currentTab = 'tags';
+    const activePanel = document.getElementById('admin-panel-tags');
+    if (activePanel) {
+      activePanel.classList.remove('hidden');
+      activePanel.style.display = 'block';
+    }
 
-    // Show active panel
-    const activePanel = document.getElementById(`admin-panel-${this.currentTab}`);
-    if (activePanel) activePanel.classList.remove('hidden');
-
-    // Trigger tab specific renderers
-    if (this.currentTab === 'dashboard') {
-      this.renderDashboardOverview();
-    } else if (this.currentTab === 'payroll') {
-      this.renderPayrollTable();
-    } else if (this.currentTab === 'ledger') {
-      this.renderLedgerTable();
-    } else if (this.currentTab === 'stock') {
-      this.renderStockTable();
-    } else if (this.currentTab === 'inquiries') {
-      this.renderInquiriesTable();
-    } else if (this.currentTab === 'rates') {
-      this.renderRatesEditor();
-    } else if (this.currentTab === 'tags') {
-      if (typeof BarcodeTags !== 'undefined') {
-        BarcodeTags.init();
-      }
+    if (typeof BarcodeTags !== 'undefined') {
+      BarcodeTags.init();
     }
   },
 

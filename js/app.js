@@ -76,7 +76,9 @@ const App = {
     const adminApp = document.getElementById('admin-app-container');
     const loginView = document.getElementById('admin-login-view');
 
-    if (hash.startsWith('#/admin')) {
+    const isAdminRoute = hash.startsWith('#/admin') || hash === '#admin' || hash.startsWith('#/barcode') || hash === '#barcode' || hash.startsWith('#/tags') || hash === '#tags';
+
+    if (isAdminRoute) {
       if (!Utils.isAdminAuthenticated()) {
         Admin.showLoginView();
         return;

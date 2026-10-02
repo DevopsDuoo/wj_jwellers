@@ -9,17 +9,17 @@
  */
 
 const BarcodeTags = {
-  // Local storage key
-  STORAGE_KEY: 'wj_jewellery_barcode_tags_v2',
+  // Local storage key (v3 ensures clean migration to center-folded tags)
+  STORAGE_KEY: 'wj_jewellery_barcode_tags_v3',
 
   // Current working state
   tags: [],
   previewScale: 1.5, // 1.0 (100% 1:1 scale), 1.5 (150%), 2.0 (200%)
   showLoopTailBorder: true,
   autoIncrementSku: true,
-  activeFormTab: 'folded', // 'folded' | 'retail'
+  activeFormTab: 'folded',
 
-  // Default sample tags for staff preview (Starts with user's exact sketch tag)
+  // Default sample tags for staff preview (All 56mm center-folded tags matching user sketch)
   defaultTags: [
     {
       id: 'tag_rushikesh_1',
@@ -70,18 +70,19 @@ const BarcodeTags = {
       selected: true
     },
     {
-      id: 'tag_retail_4',
-      tagType: 'retail',
-      tagNum: 'WJ-GL-8401',
-      itemName: 'GENTS CHAIN',
-      grossWt: 14.850,
-      lessWt: 0.000,
-      netWt: 14.850,
-      makingPct: 12.0,
+      id: 'tag_suresh_4',
+      tagType: 'folded',
+      firstName: 'SURESH',
+      middleName: 'KESHAV',
+      lastName: 'SONAWANE',
+      city: 'KANNAD',
+      loanNo: '1045',
+      date: '02/10/2026',
+      metal: 'G',
+      itemName: 'KADA',
       pieces: 1,
-      purity: '91.6%',
-      huid: '6A7K29',
-      showHuid: true,
+      weightText: '25.400G',
+      amount: '120000/-',
       selected: true
     }
   ],
@@ -108,7 +109,33 @@ const BarcodeTags = {
     try {
       const saved = localStorage.getItem(this.STORAGE_KEY);
       if (saved) {
-        this.tags = JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          this.tags = parsed.map(t => {
+            if (t.tagType === 'retail' || !t.city) {
+              return {
+                id: t.id || ('tag_' + Date.now()),
+                tagType: 'folded',
+                firstName: 'CLIENT',
+                middleName: '',
+                lastName: t.itemName || 'ORNAMENT',
+                city: 'KANNAD',
+                loanNo: String(t.tagNum || '1050').replace(/^[A-Z\-]+/i, '') || '1050',
+                date: '02/10/2026',
+                metal: 'G',
+                itemName: (t.itemName || 'JEWELLERY').replace(/^(GOLD|GENTS|LADIES)\s*/i, '') || 'JEWELLERY',
+                pieces: t.pieces || 1,
+                weightText: (t.netWt ? t.netWt.toFixed(3) + 'G' : '10.000G'),
+                amount: '45000/-',
+                selected: true
+              };
+            }
+            return t;
+          });
+        } else {
+          this.tags = JSON.parse(JSON.stringify(this.defaultTags));
+          this.saveTags();
+        }
       } else {
         this.tags = JSON.parse(JSON.stringify(this.defaultTags));
         this.saveTags();
