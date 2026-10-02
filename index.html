@@ -1243,7 +1243,7 @@
 <!-- ===================================================================
            TAB 7: JEWELLERY BARCODE & QR TAG GENERATOR (86mm x 15mm Thermal)
            =================================================================== -->
-      <section id="admin-panel-tags" class="space-y-6">
+      <section id="admin-panel-tags" class="space-y-6" style="display: block !important;">
 
         <!-- Top Header & Action Strip -->
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-white/5">
@@ -1782,13 +1782,59 @@
   <!-- Thermal Barcode & QR Print Stage (Populated strictly on window.print) -->
   <div id="thermal-print-stage" class="hidden"></div>
 
-  <!-- Scripts -->
-  <script src="js/data.js"></script>
-  <script src="js/utils.js"></script>
-  <script src="js/qrcode.min.js"></script>
-  <script src="js/barcode-tags.js"></script>
-  <script src="js/showcase.js"></script>
-  <script src="js/admin.js"></script>
-  <script src="js/app.js"></script>
+  <!-- Scripts (Versioned with cache-busting timestamp to prevent stale browser disk caching) -->
+  <script src="js/data.js?v=20261002_02"></script>
+  <script src="js/utils.js?v=20261002_02"></script>
+  <script src="js/qrcode.min.js?v=20261002_02"></script>
+  <script src="js/barcode-tags.js?v=20261002_02"></script>
+  <script src="js/showcase.js?v=20261002_02"></script>
+  <script src="js/admin.js?v=20261002_02"></script>
+  <script src="js/app.js?v=20261002_02"></script>
+
+  <!-- Instant Fail-Safe Direct Activation Script -->
+  <script>
+    (function() {
+      function forceActivateBarcodeTags() {
+        var hash = (window.location.hash || '').toLowerCase();
+        var search = (window.location.search || '').toLowerCase();
+        var isBarcodeOrAdmin = hash.includes('admin') || hash.includes('barcode') || hash.includes('tag') || search.includes('barcode') || search.includes('admin');
+        
+        if (isBarcodeOrAdmin) {
+          var showcase = document.getElementById('public-showcase-view');
+          var loginView = document.getElementById('admin-login-view');
+          var adminApp = document.getElementById('admin-app-container');
+          var tagsPanel = document.getElementById('admin-panel-tags');
+
+          if (showcase) {
+            showcase.classList.add('hidden');
+            showcase.style.display = 'none';
+          }
+          if (loginView) {
+            loginView.classList.add('hidden');
+            loginView.style.setProperty('display', 'none', 'important');
+          }
+          if (adminApp) {
+            adminApp.classList.remove('hidden');
+            adminApp.style.setProperty('display', 'flex', 'important');
+          }
+          if (tagsPanel) {
+            tagsPanel.classList.remove('hidden');
+            tagsPanel.style.setProperty('display', 'block', 'important');
+          }
+          if (typeof BarcodeTags !== 'undefined' && typeof BarcodeTags.init === 'function') {
+            BarcodeTags.init();
+          }
+        }
+      }
+
+      window.addEventListener('DOMContentLoaded', forceActivateBarcodeTags);
+      window.addEventListener('hashchange', forceActivateBarcodeTags);
+      window.addEventListener('load', forceActivateBarcodeTags);
+      forceActivateBarcodeTags();
+      setTimeout(forceActivateBarcodeTags, 50);
+      setTimeout(forceActivateBarcodeTags, 200);
+      setTimeout(forceActivateBarcodeTags, 500);
+    })();
+  </script>
 </body>
 </html>

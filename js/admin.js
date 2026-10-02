@@ -172,6 +172,11 @@ const Admin = {
   // Switch Admin Tabs (Solely tags generator)
   switchTab(tabName = 'tags') {
     this.currentTab = 'tags';
+    const activePanel = document.getElementById('admin-panel-tags');
+    if (activePanel) {
+      activePanel.classList.remove('hidden');
+      activePanel.style.setProperty('display', 'block', 'important');
+    }
     this.renderCurrentTab();
     window.scrollTo({ top: 0, behavior: 'instant' });
   },
@@ -181,10 +186,10 @@ const Admin = {
     const activePanel = document.getElementById('admin-panel-tags');
     if (activePanel) {
       activePanel.classList.remove('hidden');
-      activePanel.style.display = 'block';
+      activePanel.style.setProperty('display', 'block', 'important');
     }
 
-    if (typeof BarcodeTags !== 'undefined') {
+    if (typeof BarcodeTags !== 'undefined' && typeof BarcodeTags.init === 'function') {
       BarcodeTags.init();
     }
   },
