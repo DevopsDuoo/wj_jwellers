@@ -815,12 +815,12 @@ const BarcodeTags = {
 
                   <div class="folded-item-row">
                     <span>
-                      <strong 
+                      <span 
                         class="editable-value folded-metal-badge"
                         contenteditable="true"
                         onblur="BarcodeTags.updateTagField('${tag.id}', 'metal', this.innerText)"
                         title="Metal (G=Gold, S=Silver)"
-                      >${tag.metal || 'G'}</strong>-<span 
+                      >${tag.metal || 'G'}</span>-<span 
                         class="editable-value"
                         contenteditable="true"
                         onblur="BarcodeTags.updateTagField('${tag.id}', 'itemName', this.innerText)"
@@ -876,7 +876,7 @@ const BarcodeTags = {
                     <div class="font-black text-xs uppercase tracking-tight leading-tight">${firstName}</div>
                     <div class="font-black text-xs uppercase tracking-tight leading-tight">${middleName}</div>
                     <div class="font-black text-xs uppercase tracking-tight leading-tight">${lastName}</div>
-                    <div class="flex items-center justify-between text-[11px] font-bold text-gray-800 leading-tight">
+                    <div class="flex items-center justify-between text-[11px] font-normal text-gray-800 leading-tight">
                       <span>${city}</span>
                       <span class="font-mono">${loanNo ? 'L:' + loanNo : ''}</span>
                     </div>
@@ -895,10 +895,10 @@ const BarcodeTags = {
                 <div class="border-2 border-amber-500/40 rounded-lg p-2 bg-white text-black shadow-lg" style="width: calc(28mm * 2.2); height: calc(15mm * 2.2);">
                   <div class="h-full flex flex-col justify-between text-left font-sans">
                     <div class="font-black text-xs tracking-tight leading-tight">${date}</div>
-                    <div class="text-[11px] font-extrabold text-black leading-tight">
+                    <div class="text-[11px] font-normal text-black leading-tight">
                       <span>${metal}-${itemName}</span>
                     </div>
-                    <div class="text-[11px] font-extrabold text-gray-900 leading-tight">W ${weightText}</div>
+                    <div class="text-[11px] font-normal text-gray-900 leading-tight">W ${weightText}</div>
                     <div class="font-black text-sm text-black tracking-tight leading-tight">${safeAmount}</div>
                   </div>
                 </div>

@@ -962,7 +962,7 @@ body.theme-burgundy .text-gray-500 {
 
 .thermal-rat-tail-preview .folded-loan-text {
   font-size: calc(5.8pt * var(--tag-scale, 1.5));
-  font-weight: 800;
+  font-weight: 500;
   color: #0f172a;
   white-space: nowrap;
   flex: 0 0 auto;
@@ -983,16 +983,21 @@ body.theme-burgundy .text-gray-500 {
   align-items: center;
   justify-content: flex-start;
   font-size: calc(6.8pt * var(--tag-scale, 1.5));
-  font-weight: 800;
+  font-weight: 500;
   color: #000000;
   text-transform: uppercase;
   white-space: nowrap;
   line-height: 1.05;
 }
 
+.thermal-rat-tail-preview .folded-item-row strong,
+.thermal-rat-tail-preview .folded-item-row .folded-metal-badge {
+  font-weight: 500;
+}
+
 .thermal-rat-tail-preview .folded-weight-row {
   font-size: calc(6.4pt * var(--tag-scale, 1.5));
-  font-weight: 800;
+  font-weight: 500;
   color: #0f172a;
   text-transform: uppercase;
   white-space: nowrap;
@@ -1274,7 +1279,7 @@ body.theme-burgundy .text-gray-500 {
 
   .print-loan-text {
     font-size: 5.8pt !important;
-    font-weight: 800 !important;
+    font-weight: 500 !important;
     white-space: nowrap !important;
     flex: 0 0 auto !important;
     margin-left: 0.8mm !important;
@@ -1313,7 +1318,7 @@ body.theme-burgundy .text-gray-500 {
 
   .print-folded-item {
     font-size: 6.8pt !important;
-    font-weight: 800 !important;
+    font-weight: 500 !important;
     display: flex !important;
     justify-content: flex-start !important;
     white-space: nowrap !important;
@@ -1322,7 +1327,7 @@ body.theme-burgundy .text-gray-500 {
 
   .print-folded-weight {
     font-size: 6.8pt !important;
-    font-weight: 800 !important;
+    font-weight: 500 !important;
     white-space: nowrap !important;
     line-height: 1.1 !important;
   }
