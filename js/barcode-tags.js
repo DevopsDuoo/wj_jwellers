@@ -1141,8 +1141,22 @@ const BarcodeTags = {
       return;
     }
 
-    stage.innerHTML = '';
+    // Programmatically isolate print output: hide every other top-level element so zero site chrome leaks
+    const hiddenElements = [];
+    document.querySelectorAll('body > *:not(#thermal-print-stage)').forEach(el => {
+      hiddenElements.push({
+        el: el,
+        display: el.style.display,
+        priority: el.style.getPropertyPriority('display')
+      });
+      el.style.setProperty('display', 'none', 'important');
+    });
+
+    document.body.classList.add('is-printing-tags');
+    stage.classList.remove('hidden');
+    stage.style.setProperty('display', 'block', 'important');
     stage.style.setProperty('--print-top-offset', `${this.topOffsetMm}mm`);
+    stage.innerHTML = '';
 
     tagsToPrint.forEach(tag => {
       const isFolded = tag.tagType !== 'retail';
@@ -1237,9 +1251,30 @@ const BarcodeTags = {
       }
     });
 
+    const cleanup = () => {
+      document.body.classList.remove('is-printing-tags');
+      hiddenElements.forEach(item => {
+        if (item.priority === 'important') {
+          item.el.style.setProperty('display', item.display, 'important');
+        } else if (item.display) {
+          item.el.style.display = item.display;
+        } else {
+          item.el.style.removeProperty('display');
+        }
+      });
+      stage.classList.add('hidden');
+      stage.style.removeProperty('display');
+      stage.innerHTML = '';
+      window.removeEventListener('afterprint', cleanup);
+    };
+
+    window.addEventListener('afterprint', cleanup, { once: true });
+
     // Short timeout to guarantee layout has painted before browser print dialog triggers
     setTimeout(() => {
       window.print();
+      // Safety fallback in case afterprint does not fire in some Chromium builds
+      setTimeout(cleanup, 2500);
     }, 150);
   },
 

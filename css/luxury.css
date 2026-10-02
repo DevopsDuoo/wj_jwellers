@@ -1000,21 +1000,41 @@ body.theme-burgundy .text-gray-500 {
     background: #ffffff !important;
     color: #000000 !important;
     width: 86mm !important;
-    height: 15mm !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  /* Completely hide all site shell elements */
-  body > *:not(#thermal-print-stage) {
+  /* Completely suppress all web application chrome, headers, footers, containers, and preview cards */
+  body > *:not(#thermal-print-stage),
+  #app,
+  #admin-app-container,
+  #public-showcase-view,
+  #admin-login-view,
+  #toast-container,
+  #printer-guide-modal,
+  #quick-view-modal,
+  #wishlist-drawer,
+  #mobile-drawer,
+  #tags-preview-container,
+  header,
+  footer,
+  nav,
+  .main-luxury-nav,
+  .horizontal-scroll-container,
+  .glass-panel-elevated {
     display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 
   #thermal-print-stage {
     display: block !important;
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
+    visibility: visible !important;
+    position: static !important;
     width: 86mm !important;
     margin: 0 !important;
     padding: 0 !important;

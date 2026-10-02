@@ -65,7 +65,7 @@
   </script>
 
   <!-- Custom Luxury Styling & Animations -->
-  <link rel="stylesheet" href="css/luxury.css" />
+  <link rel="stylesheet" href="css/luxury.css?v=20261002_04" />
 </head>
 <body class="bg-[#150409] text-[#FCF7F6] min-h-screen flex flex-col font-sans selection:bg-[#E8B676] selection:text-black theme-burgundy">
 
@@ -1794,46 +1794,21 @@
   <!-- Instant Fail-Safe Direct Activation Script -->
   <script>
     (function() {
-      function forceActivateBarcodeTags() {
+      function checkBarcodeRedirect() {
         var hash = (window.location.hash || '').toLowerCase();
         var search = (window.location.search || '').toLowerCase();
         var isBarcodeOrAdmin = hash.includes('admin') || hash.includes('barcode') || hash.includes('tag') || search.includes('barcode') || search.includes('admin');
         
         if (isBarcodeOrAdmin) {
-          var showcase = document.getElementById('public-showcase-view');
-          var loginView = document.getElementById('admin-login-view');
-          var adminApp = document.getElementById('admin-app-container');
-          var tagsPanel = document.getElementById('admin-panel-tags');
-
-          if (showcase) {
-            showcase.classList.add('hidden');
-            showcase.style.display = 'none';
-          }
-          if (loginView) {
-            loginView.classList.add('hidden');
-            loginView.style.setProperty('display', 'none', 'important');
-          }
-          if (adminApp) {
-            adminApp.classList.remove('hidden');
-            adminApp.style.setProperty('display', 'flex', 'important');
-          }
-          if (tagsPanel) {
-            tagsPanel.classList.remove('hidden');
-            tagsPanel.style.setProperty('display', 'block', 'important');
-          }
-          if (typeof BarcodeTags !== 'undefined' && typeof BarcodeTags.init === 'function') {
-            BarcodeTags.init();
-          }
+          window.location.replace('index.html');
+          return true;
         }
+        return false;
       }
 
-      window.addEventListener('DOMContentLoaded', forceActivateBarcodeTags);
-      window.addEventListener('hashchange', forceActivateBarcodeTags);
-      window.addEventListener('load', forceActivateBarcodeTags);
-      forceActivateBarcodeTags();
-      setTimeout(forceActivateBarcodeTags, 50);
-      setTimeout(forceActivateBarcodeTags, 200);
-      setTimeout(forceActivateBarcodeTags, 500);
+      window.addEventListener('DOMContentLoaded', checkBarcodeRedirect);
+      window.addEventListener('hashchange', checkBarcodeRedirect);
+      checkBarcodeRedirect();
     })();
   </script>
 </body>

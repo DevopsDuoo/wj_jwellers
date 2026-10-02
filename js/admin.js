@@ -175,7 +175,7 @@ const Admin = {
     const activePanel = document.getElementById('admin-panel-tags');
     if (activePanel) {
       activePanel.classList.remove('hidden');
-      activePanel.style.setProperty('display', 'block', 'important');
+      activePanel.style.display = 'block';
     }
     this.renderCurrentTab();
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -186,7 +186,7 @@ const Admin = {
     const activePanel = document.getElementById('admin-panel-tags');
     if (activePanel) {
       activePanel.classList.remove('hidden');
-      activePanel.style.setProperty('display', 'block', 'important');
+      activePanel.style.display = 'block';
     }
 
     if (typeof BarcodeTags !== 'undefined' && typeof BarcodeTags.init === 'function') {
