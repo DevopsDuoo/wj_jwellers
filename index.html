@@ -2132,8 +2132,8 @@
                   </div>
                 </div>
 
-                <!-- Date, Metal (G/S), Item Name, Pieces -->
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <!-- Date, Metal (G/S), Item Name -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                   <div>
                     <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1">
                       Date (Bold) <span class="text-[#D4AF37]">*</span>
@@ -2186,19 +2186,7 @@
                       <option value="NECKLACE">
                     </datalist>
                   </div>
-
-                  <div>
-                    <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1">
-                      Pieces (Qty)
-                    </label>
-                    <input 
-                      type="number" 
-                      name="pieces" 
-                      min="1" 
-                      value="1" 
-                      class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl px-3 py-2 text-xs text-white font-mono focus:outline-none focus:border-[#D4AF37]"
-                    />
-                  </div>
+                  <input type="hidden" name="pieces" value="1" />
                 </div>
 
                 <!-- Weight (W Parameter) & Amount -->

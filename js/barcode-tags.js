@@ -733,11 +733,9 @@ const BarcodeTags = {
                 </div>
 
                 <!-- Center Fold Line (Dashed fold guide at 28mm) -->
-                <div class="center-fold-line" title="Center Fold Guide (28mm)">
-                  <span class="center-fold-badge">FOLD</span>
-                </div>
+                <div class="center-fold-line" title="Center Fold Line (28mm)"></div>
 
-                <!-- Side 2 (Right 28mm): Date, Metal-Item Qty, Weight, Amount -->
+                <!-- Side 2 (Right 28mm): Date, Metal-Item, Weight, Amount -->
                 <div class="folded-side-2">
                   <div 
                     class="folded-date-bold editable-value"
@@ -760,12 +758,6 @@ const BarcodeTags = {
                         title="Item Name"
                       >${tag.itemName || 'RING'}</span>
                     </span>
-                    <span 
-                      class="editable-value font-mono font-bold text-gray-900 pl-1"
-                      contenteditable="true"
-                      onblur="BarcodeTags.updateTagField('${tag.id}', 'pieces', this.innerText)"
-                      title="Quantity / Pieces"
-                    >${tag.pieces || 1}</span>
                   </div>
 
                   <div class="folded-weight-row">
@@ -834,9 +826,8 @@ const BarcodeTags = {
                 <div class="border-2 border-amber-500/40 rounded-lg p-2 bg-white text-black shadow-lg" style="width: calc(28mm * 2.2); height: calc(15mm * 2.2);">
                   <div class="h-full flex flex-col justify-between text-left font-sans">
                     <div class="font-black text-xs tracking-tight leading-tight">${date}</div>
-                    <div class="flex items-center justify-between text-[11px] font-extrabold text-black leading-tight">
+                    <div class="text-[11px] font-extrabold text-black leading-tight">
                       <span>${metal}-${itemName}</span>
-                      <span class="font-mono">${pieces}</span>
                     </div>
                     <div class="text-[11px] font-extrabold text-gray-900 leading-tight">W ${weightText}</div>
                     <div class="font-black text-sm text-black tracking-tight leading-tight">${safeAmount}</div>
@@ -1125,7 +1116,6 @@ const BarcodeTags = {
               <div class="print-folded-date">${tag.date || '02/10/2026'}</div>
               <div class="print-folded-item">
                 <span>${tag.metal || 'G'}-${tag.itemName || 'RING'}</span>
-                <span>${tag.pieces || 1}</span>
               </div>
               <div class="print-folded-weight">W ${tag.weightText || '2-GRAM'}</div>
               <div class="print-folded-amount">${amount}</div>
