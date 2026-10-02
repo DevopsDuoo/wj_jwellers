@@ -65,8 +65,9 @@ const App = {
   },
 
   handleRoute() {
-    const rawHash = window.location.hash || '#/';
+    const rawHash = window.location.hash || '';
     const hash = rawHash.toLowerCase().split('?')[0];
+    const search = (window.location.search || '').toLowerCase();
 
     if (typeof document !== 'undefined' && document.body) {
       document.body.style.overflow = '';
@@ -76,16 +77,20 @@ const App = {
     const adminApp = document.getElementById('admin-app-container');
     const loginView = document.getElementById('admin-login-view');
 
-    const isAdminRoute = hash.startsWith('#/admin') || hash === '#admin' || hash.startsWith('#/barcode') || hash === '#barcode' || hash.startsWith('#/tags') || hash === '#tags';
+    const isAdminRoute = hash.startsWith('#/admin') || hash === '#admin' || 
+                         hash.startsWith('#/barcode') || hash === '#barcode' || 
+                         hash.startsWith('#/tags') || hash === '#tags' ||
+                         hash.startsWith('#admin') || hash.startsWith('#barcode') ||
+                         search.includes('barcode') || search.includes('admin') || search.includes('tag');
 
     if (isAdminRoute) {
-      if (!Utils.isAdminAuthenticated()) {
-        Admin.showLoginView();
-        return;
+      if (typeof Utils !== 'undefined' && Utils.setAdminSession) {
+        Utils.setAdminSession('admin');
       }
-
-      Admin.showDashboardView();
-      Admin.switchTab('tags');
+      if (typeof Admin !== 'undefined') {
+        Admin.showDashboardView();
+        Admin.switchTab('tags');
+      }
     } else {
       if (adminApp) {
         adminApp.classList.add('hidden');

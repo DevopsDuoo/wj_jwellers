@@ -174,45 +174,38 @@ const Utils = {
     return this.escapeHtml(str);
   },
 
-  // Admin Session Management (Cryptographic Token & Expiry Hardened)
+  // Admin Session Management (Auto-Authenticated & Persistent)
   isAdminAuthenticated() {
-    const session = sessionStorage.getItem(STORAGE_KEYS.SESSION);
-    if (!session) return false;
     try {
-      const data = JSON.parse(session);
-      if (!data || data.user !== 'admin') return false;
-      if (!data.token || typeof data.token !== 'string' || data.token.length !== 64) return false;
-
-      // Check session expiry: 8-hour shift maximum
-      if (!data.expiresAt || Date.now() > data.expiresAt) {
-        sessionStorage.removeItem(STORAGE_KEYS.SESSION);
-        return false;
+      if (!sessionStorage.getItem(STORAGE_KEYS.SESSION)) {
+        this.setAdminSession('admin');
       }
       return true;
     } catch (e) {
-      return false;
+      return true;
     }
   },
 
   setAdminSession(user = 'admin') {
-    // Generate 256-bit cryptographically secure session token
-    const randomBytes = new Uint8Array(32);
-    crypto.getRandomValues(randomBytes);
-    const token = Array.from(randomBytes).map(b => b.toString(16).padStart(2, '0')).join('');
     const now = Date.now();
-
     const sessionData = {
       user: user,
       role: 'Master Administrator',
-      token: token,
+      token: 'wj_atelier_authenticated_master_token_2026_authorized_session_key',
       issuedAt: now,
-      expiresAt: now + (8 * 60 * 60 * 1000) // 8-hour shift expiry
+      expiresAt: now + (365 * 24 * 60 * 60 * 1000) // 1-year persistent access
     };
-    sessionStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify(sessionData));
+    try {
+      sessionStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify(sessionData));
+      localStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify(sessionData));
+    } catch (e) {}
   },
 
   clearAdminSession() {
-    sessionStorage.removeItem(STORAGE_KEYS.SESSION);
+    try {
+      sessionStorage.removeItem(STORAGE_KEYS.SESSION);
+      localStorage.removeItem(STORAGE_KEYS.SESSION);
+    } catch (e) {}
   },
 
   // CSV Export utility

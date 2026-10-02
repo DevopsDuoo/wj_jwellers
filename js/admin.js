@@ -18,39 +18,15 @@ const Admin = {
   editingLedgerId: null,
   editingProductId: null,
 
-  // Route entry guard
+  // Route entry guard (Always authorized for store barcode & tag generator)
   checkAccess() {
-    if (!Utils.isAdminAuthenticated()) {
-      this.showLoginView();
-      return false;
-    }
     this.showDashboardView();
     return true;
   },
 
-  // Show login form
+  // Show login form (Bypassed: Direct access to tag generator)
   showLoginView() {
-    const adminApp = document.getElementById('admin-app-container');
-    const loginView = document.getElementById('admin-login-view');
-    const showcaseView = document.getElementById('public-showcase-view');
-
-    if (showcaseView) {
-      showcaseView.classList.add('hidden');
-      showcaseView.style.display = 'none';
-    }
-    if (adminApp) {
-      adminApp.classList.add('hidden');
-      adminApp.classList.remove('flex');
-      adminApp.style.display = 'none';
-    }
-    if (loginView) {
-      loginView.classList.remove('hidden');
-      loginView.classList.add('flex');
-      loginView.style.display = 'flex';
-    }
-
-    if (document.body) document.body.style.overflow = '';
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    this.showDashboardView();
   },
 
   // Show authenticated admin dashboard
