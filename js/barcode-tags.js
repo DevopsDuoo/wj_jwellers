@@ -125,6 +125,15 @@ const BarcodeTags = {
     }
   },
 
+  normalizeCity(city) {
+    if (!city) return 'KANNAD';
+    let c = city.trim().toUpperCase();
+    if (c === 'CHHATRAPATI SAMBHAJINAGAR' || c === 'CHH. SAMBHAJINAGAR' || c === 'CHH SAMBHAJINAGAR' || c === 'SAMBHAJINAGAR') {
+      return 'C.SAMBHAJINAGAR';
+    }
+    return c;
+  },
+
   setTodayDefaultDate() {
     const dateInput = document.getElementById('tag-input-date');
     if (dateInput && !dateInput.value) {
@@ -252,7 +261,7 @@ const BarcodeTags = {
     const firstName = form.firstName.value.trim().toUpperCase() || 'CUSTOMER';
     const middleName = form.middleName ? form.middleName.value.trim().toUpperCase() : '';
     const lastName = form.lastName.value.trim().toUpperCase() || '';
-    const city = form.city.value.trim().toUpperCase() || 'KANNAD';
+    const city = this.normalizeCity(form.city.value) || 'KANNAD';
     let loanNo = form.loanNo.value.trim().toUpperCase() || '';
     loanNo = loanNo.replace(/^[L#:\-\s]+/i, '').trim();
 
@@ -512,8 +521,10 @@ const BarcodeTags = {
       tag.huid = value.toUpperCase().trim();
     } else if (field === 'purity') {
       tag.purity = value.trim();
-    } else if (field === 'firstName' || field === 'middleName' || field === 'lastName' || field === 'city') {
+    } else if (field === 'firstName' || field === 'middleName' || field === 'lastName') {
       tag[field] = value.toUpperCase().trim();
+    } else if (field === 'city') {
+      tag.city = this.normalizeCity(value);
     } else if (field === 'loanNo') {
       tag.loanNo = value.replace(/^[L#:\-\s]+/i, '').trim();
     } else if (field === 'date') {
@@ -776,13 +787,13 @@ const BarcodeTags = {
 
                   <div class="folded-city-row">
                     <span 
-                      class="editable-value"
+                      class="folded-city-text ${(BarcodeTags.normalizeCity(tag.city || 'KANNAD')).length > 9 ? 'city-long' : ''} editable-value"
                       contenteditable="true"
                       onblur="BarcodeTags.updateTagField('${tag.id}', 'city', this.innerText)"
                       title="Click to edit City"
-                    >${tag.city || 'KANNAD'}</span>
+                    >${BarcodeTags.normalizeCity(tag.city || 'KANNAD')}</span>
                     <span 
-                      class="editable-value font-mono font-bold text-gray-900"
+                      class="folded-loan-text editable-value"
                       contenteditable="true"
                       onblur="BarcodeTags.updateTagField('${tag.id}', 'loanNo', this.innerText)"
                       title="Click to edit Loan Number"
@@ -1166,7 +1177,8 @@ const BarcodeTags = {
 
       if (isFolded) {
         let amount = tag.amount ? String(tag.amount).trim() : '15000/-';
-        if (!amount.endsWith('/-') && !amount.endsWith('/=')) amount += '/-';
+        const cityText = this.normalizeCity(tag.city || 'KANNAD');
+        const isCityLong = cityText.length > 9;
 
         tagSheet.innerHTML = `
           <!-- 56mm PRINTABLE BLADE (CENTER-FOLDED AT 28mm) -->
@@ -1177,8 +1189,8 @@ const BarcodeTags = {
               <div class="print-folded-name">${tag.middleName || 'HEMANT'}</div>
               <div class="print-folded-name">${tag.lastName || 'WADNERE'}</div>
               <div class="print-folded-city">
-                <span>${tag.city || 'KANNAD'}</span>
-                <span>${tag.loanNo ? 'L:' + tag.loanNo : ''}</span>
+                <span class="print-city-text ${isCityLong ? 'city-long' : ''}">${cityText}</span>
+                <span class="print-loan-text">${tag.loanNo ? 'L:' + tag.loanNo : ''}</span>
               </div>
             </div>
 
