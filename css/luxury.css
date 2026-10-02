@@ -1352,3 +1352,26 @@ body.theme-burgundy .text-gray-500 {
     opacity: 0 !important;
   }
 }
+
+/* ==========================================================================
+   NETLIFY DRAWER & BADGE SUPPRESSION
+   Suppresses Netlify's automatic feedback drawer, badge widget & deploy preview bar
+   ========================================================================== */
+#netlify-drawer,
+[data-netlify-deploy-id],
+iframe[src*="netlify"],
+iframe[id*="netlify"],
+div[class*="netlify-drawer"],
+div[id*="netlify-drawer"],
+.netlify-badge,
+a[href*="netlify.com"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
+
