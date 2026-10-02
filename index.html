@@ -1,31 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WJ Jewellers · Heritage Gold, Diamonds & Royal Polki Est. 1984</title>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="WJ Jewellers - Premier Indian high jewelry boutique specializing in 22K hallmarked gold, royal Jadau Polki bridal sets, uncut diamonds, and temple Nakashi jewelry. Est. 1984." />
-  <meta name="keywords" content="WJ Jewellers, Indian bridal jewelry, 22k gold necklace, jadau polki choker, temple kadas, uncut diamonds, BIS 916 gold rate today" />
-  <meta name="author" content="WJ Jewellers" />
-  
-  <!-- Security & Privacy Meta Headers -->
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>WJ Jewellers · 56mm Jewellery Barcode & Tag Generator</title>
+  <meta name="description" content="Dedicated 56mm center-folded jewellery tag and barcode thermal printing system for WJ Jewellers, Kannad. Supports TSC, Zebra, TVS & Honeywell 86mm x 15mm rat-tail labels." />
 
-  <!-- Favicon with Royal Indian Surya Gold Monogram -->
-  <link rel="icon" type="image/svg+xml" href="assets/wj_sun_logo.svg" />
-
-  <!-- Google Fonts: Cormorant Garamond, Cinzel, Montserrat -->
+  <!-- Preconnect & Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Font Awesome 6 Icons -->
+  <!-- FontAwesome 6 Pro CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS Play CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -34,19 +23,20 @@
         extend: {
           colors: {
             gold: {
-              50: '#FDFBF2',
-              100: '#FAF4DC',
-              200: '#F3E5AB',
-              300: '#E5C558',
-              400: '#D4AF37', // Signature Warm Gold
-              500: '#C59B27',
-              600: '#AA771C',
-              700: '#8B6508',
-              800: '#5C4308',
-              900: '#2E2204'
+              50: '#FDFBF7',
+              100: '#FBF6EE',
+              200: '#F5E8D2',
+              300: '#EED6B1',
+              400: '#E2BD82',
+              500: '#D4AF37',
+              600: '#BA8540',
+              700: '#8E6028',
+              800: '#644219',
+              900: '#3D270D',
+              950: '#221506'
             },
-            obsidian: {
-              950: '#070707',
+            royal: {
+              950: '#070709',
               900: '#0A0A0A',
               850: '#111111',
               800: '#141416',
@@ -64,1188 +54,98 @@
     };
   </script>
 
-  <!-- Custom Luxury Styling & Animations -->
+  <!-- Custom Luxury Styling & Tag Animations -->
   <link rel="stylesheet" href="css/luxury.css" />
 </head>
-<body class="bg-[#150409] text-[#FCF7F6] min-h-screen flex flex-col font-sans selection:bg-[#E8B676] selection:text-black theme-burgundy">
+<body class="bg-[#0A0A0C] text-[#FCF7F6] min-h-screen flex flex-col font-sans selection:bg-[#E8B676] selection:text-black">
 
   <!-- Toast Notification Floating Container -->
   <div id="toast-container" class="fixed top-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none max-w-sm w-full"></div>
 
-  <!-- =========================================================================
-       PUBLIC-FACING SHOWCASE VIEW (#/)
-       ========================================================================= -->
-  <div id="public-showcase-view" class="flex-1 flex flex-col">
+  <!-- Main Direct Application Container (Zero Login, Zero Redirects) -->
+  <div id="app" class="min-h-screen w-full flex flex-col bg-[#0A0A0C]">
     
-    <!-- Top Live Bullion Marquee Ticker with Automated API Sync -->
-    <aside class="top-bullion-bar py-2 overflow-hidden relative z-40">
-      <div class="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
+    <!-- Top Sticky Header -->
+    <header class="main-luxury-nav sticky top-0 z-30 shadow-xl px-4 sm:px-8 py-3.5 border-b border-white/5 bg-[#101014]/95 backdrop-blur-md">
+      <div class="max-w-[1850px] mx-auto w-full flex items-center justify-between">
         
-        <!-- Live Ticker Label & Auto Sync Trigger -->
-        <div class="flex items-center gap-2.5 pr-4 z-10 shrink-0 border-r border-white/10 whitespace-nowrap">
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-green"></span>
-          <span class="text-[10px] font-cinzel font-semibold tracking-widest text-[#E5C558] uppercase">
-            Live Bullion Feed
+        <!-- Brand Logo & Title -->
+        <div class="flex items-center gap-3.5">
+          <a href="/" class="flex items-center gap-2.5 group">
+            <img src="assets/wj_sun_logo.svg" alt="WJ Jewellers Logo" class="wj-sun-logo w-8 h-8 shrink-0" />
+            <div>
+              <span class="font-cinzel text-sm sm:text-base font-bold text-white tracking-widest block leading-tight">WJ JEWELLERS</span>
+              <span class="text-[9px] font-cinzel text-[#E8B676] tracking-wider block">56mm TAG &amp; BARCODE PRINTING SYSTEM</span>
+            </div>
+          </a>
+          <span class="hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-cinzel bg-emerald-950/80 text-emerald-300 border border-emerald-800/40">
+            <i class="fa-solid fa-circle-check mr-1 text-[8px]"></i> Kannad Atelier · Direct Mode
           </span>
+        </div>
+
+        <!-- Quick Actions & View Boutique -->
+        <div class="flex items-center gap-2.5 sm:gap-3">
           <button 
-            onclick="Showcase.syncLiveGoldRates()" 
-            class="trigger-api-sync-btn text-[10px] text-gray-400 hover:text-[#F3E5AB] p-1 rounded hover:bg-white/5 transition-all"
-            title="Fetch Latest Bullion API Price"
+            type="button" 
+            onclick="BarcodeTags.showPrinterGuideModal()"
+            class="px-3.5 py-1.5 rounded-xl text-xs font-cinzel text-gray-300 hover:text-white border border-white/10 hover:border-[#D4AF37]/40 bg-[#161619] transition-all flex items-center gap-1.5"
+            title="View thermal printer calibration guide"
           >
-            <i class="api-sync-icon fa-solid fa-arrows-rotate text-[10px] text-[#D4AF37]"></i>
+            <i class="fa-solid fa-sliders text-xs text-[#E8B676]"></i>
+            <span class="hidden sm:inline">Printer Guide</span>
           </button>
-        </div>
 
-        <!-- Marquee Ticker Track with Soft Fade Mask -->
-        <div class="overflow-hidden flex-1 relative ticker-fade-mask px-4">
-          <div id="metal-rates-marquee" class="ticker-track">
-            <!-- Dynamic Rates Rendered via Showcase.renderMetalRates() -->
-          </div>
-        </div>
-
-        <!-- Timestamp & Tag Generator Shortcut -->
-        <div class="hidden sm:flex items-center gap-3 pl-4 z-10 shrink-0 border-l border-white/10 whitespace-nowrap">
-          <i class="fa-solid fa-signal text-[9px] text-[#E8B676]"></i>
-          <span id="rates-sync-timestamp" class="text-[10px] font-mono text-gray-400">
-            Automated API Feed
-          </span>
-          <a href="#/barcode" class="text-[10px] font-cinzel text-[#E8B676] hover:text-[#F3E5AB] flex items-center gap-1 px-2 py-0.5 rounded bg-white/5 border border-white/10 transition-colors">
-            <i class="fa-solid fa-barcode text-[9px]"></i> Tag Generator
-          </a>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Floating Luxury Glassmorphism Navbar -->
-    <nav id="main-navbar" class="main-luxury-nav sticky top-0 z-40 transition-all duration-300">
-      <div class="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 h-20 flex items-center justify-between gap-6">
-        
-        <!-- Brand Emblem & Logo (Royal Indian Surya Motif) -->
-        <a href="#/" class="flex items-center gap-3.5 group shrink-0 whitespace-nowrap" title="WJ Jewellers Homepage">
-          <svg class="wj-sun-logo w-11 h-11 sm:w-12 sm:h-12 shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="wjNavGoldGrad" x1="15%" y1="0%" x2="85%" y2="100%">
-                <stop offset="0%" stop-color="#FBE0B8"/>
-                <stop offset="40%" stop-color="#E8B676"/>
-                <stop offset="75%" stop-color="#D4AF37"/>
-                <stop offset="100%" stop-color="#BA8540"/>
-              </linearGradient>
-              <radialGradient id="wjNavSunCoreGrad" cx="40%" cy="35%" r="65%">
-                <stop offset="0%" stop-color="#340C18"/>
-                <stop offset="70%" stop-color="#1E070D"/>
-                <stop offset="100%" stop-color="#120207"/>
-              </radialGradient>
-              <radialGradient id="wjNavAuraGrad" cx="50%" cy="50%" r="50%">
-                <stop offset="60%" stop-color="#E8B676" stop-opacity="0.35"/>
-                <stop offset="100%" stop-color="#E8B676" stop-opacity="0"/>
-              </radialGradient>
-            </defs>
-            <circle cx="50" cy="50" r="48" fill="url(#wjNavAuraGrad)"/>
-            <g class="wj-sun-rays">
-              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(0 50 50)" fill="url(#wjNavGoldGrad)"/>
-              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(22.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
-              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(45 50 50)" fill="url(#wjNavGoldGrad)"/>
-              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(67.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
-              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(90 50 50)" fill="url(#wjNavGoldGrad)"/>
-              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(112.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
-              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(135 50 50)" fill="url(#wjNavGoldGrad)"/>
-              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(157.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
-              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(180 50 50)" fill="url(#wjNavGoldGrad)"/>
-              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(202.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
-              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(225 50 50)" fill="url(#wjNavGoldGrad)"/>
-              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(247.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
-              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(270 50 50)" fill="url(#wjNavGoldGrad)"/>
-              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(292.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
-              <path d="M 47.8 24.2 C 45 17, 49 10, 54.2 3.8 C 51.8 11.2, 53.4 18, 52.2 24.2 Z" transform="rotate(315 50 50)" fill="url(#wjNavGoldGrad)"/>
-              <path d="M 48.5 24.2 C 46.8 19, 49.5 14.2, 53 8.8 C 51.5 14, 52.2 19, 51.5 24.2 Z" transform="rotate(337.5 50 50)" fill="url(#wjNavGoldGrad)" opacity="0.85"/>
-            </g>
-            <circle cx="50" cy="50" r="23.5" fill="url(#wjNavSunCoreGrad)" stroke="url(#wjNavGoldGrad)" stroke-width="1.8"/>
-            <circle cx="50" cy="50" r="19.5" fill="none" stroke="url(#wjNavGoldGrad)" stroke-width="0.8" stroke-dasharray="1.8 1.4" opacity="0.75"/>
-            <text x="50" y="56.5" font-family="'Cinzel', serif" font-weight="700" font-size="16" letter-spacing="0.6" text-anchor="middle" fill="url(#wjNavGoldGrad)">WJ</text>
-          </svg>
-          <div class="flex flex-col whitespace-nowrap">
-            <span class="font-cinzel font-bold text-base sm:text-lg tracking-[0.22em] text-white group-hover:text-[#F3E5AB] transition-colors leading-none">
-              WJ JEWELLERS
-            </span>
-            <span class="text-[8px] sm:text-[9px] font-cinzel tracking-[0.25em] text-[#E8B676] uppercase mt-1">
-              Heritage Gold & Polki · Est. 1984
-            </span>
-          </div>
-        </a>
-
-        <!-- Desktop Navigation Links with Gold Underline Animation (Strictly Single Line) -->
-        <div id="nav-desktop-menu" class="nav-desktop-menu hidden lg:flex items-center space-x-4 xl:space-x-8 shrink-0 whitespace-nowrap">
-          <a href="#/bridal" class="nav-link-item whitespace-nowrap">Bridal Showcase</a>
-          <a href="#/collections" class="nav-link-item whitespace-nowrap">Curated Vault</a>
-          <a href="#/story" class="nav-link-item whitespace-nowrap">Artisanal Heritage</a>
-          <a href="#bespoke" class="nav-link-item whitespace-nowrap">Bespoke Atelier</a>
-          <a href="#/contact" class="nav-link-item whitespace-nowrap">Flagship Salon</a>
-        </div>
-
-        <!-- Right Utilities & Actions (Strictly Single Line) -->
-        <div class="flex items-center gap-2.5 sm:gap-3 shrink-0 whitespace-nowrap">
-          
-
-          <!-- Currency Selector Pill -->
-          <div class="lux-control-pill" title="Display Currency">
-            <i class="fa-solid fa-coins text-xs text-[#E8B676] hidden sm:inline"></i>
-            <select 
-              id="currency-selector" 
-              class="bg-transparent text-[#F3E5AB] text-xs font-cinzel font-medium focus:outline-none cursor-pointer"
-              title="Select Display Currency"
-            >
-              <option value="INR" class="bg-[#1E070D]">INR (₹)</option>
-              <option value="USD" class="bg-[#1E070D]">USD ($)</option>
-              <option value="GBP" class="bg-[#1E070D]">GBP (£)</option>
-              <option value="AED" class="bg-[#1E070D]">AED</option>
-            </select>
-          </div>
-
-          <!-- Wishlist Drawer Trigger -->
           <button 
-            onclick="Showcase.openWishlistDrawer()" 
-            class="lux-control-pill relative p-2.5 text-gray-300 hover:text-[#E8B676] transition-colors"
-            title="Curated Wishlist"
+            type="button" 
+            onclick="BarcodeTags.restoreDemoTags()"
+            class="px-3 py-1.5 rounded-xl text-xs font-cinzel text-amber-400/80 hover:text-amber-300 hover:bg-amber-950/20 border border-amber-800/30 transition-all flex items-center gap-1.5"
+            title="Reload default 4 calibration tags"
           >
-            <i class="fa-regular fa-heart text-sm"></i>
-            <span class="wishlist-counter-badge hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#E8B676] text-black text-[9px] font-bold flex items-center justify-center font-mono">
-              0
-            </span>
+            <i class="fa-solid fa-rotate-left text-[10px]"></i>
+            <span class="hidden sm:inline">Reset Tags</span>
           </button>
 
-          <!-- Barcode & Tag Generator Pill Button -->
           <a 
-            href="#/barcode" 
-            id="nav-barcode-btn" 
-            class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-cinzel font-semibold tracking-wider bg-[#D4AF37]/20 hover:bg-[#D4AF37]/35 text-[#F3E5AB] border border-[#D4AF37]/50 shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all shrink-0 whitespace-nowrap"
-            title="Open 56mm Barcode & Tag Generator"
+            href="boutique.html" 
+            class="px-3.5 py-1.5 rounded-xl text-xs font-cinzel text-gray-300 hover:text-[#D4AF37] border border-white/10 hover:border-[#D4AF37]/30 bg-white/5 transition-all flex items-center gap-1.5"
+            title="View Customer Retail Boutique Showcase"
           >
-            <i class="fa-solid fa-barcode text-xs text-[#E8B676]"></i>
-            <span>Barcode Tags</span>
+            <i class="fa-solid fa-store text-xs text-[#D4AF37]"></i>
+            <span class="hidden md:inline">View Boutique</span>
           </a>
-
-          <!-- Book Viewing CTA Button -->
-          <a 
-            href="#/contact" 
-            class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-cinzel font-semibold tracking-wider uppercase gold-btn-gradient shrink-0 whitespace-nowrap"
-          >
-            <i class="fa-regular fa-calendar-check text-xs"></i> 
-            <span class="hidden md:inline">Book</span> Viewing
-          </a>
-
-          <!-- Mobile Hamburger Toggle -->
-          <button 
-            id="mobile-menu-btn" 
-            class="lg:hidden lux-control-pill text-gray-300 hover:text-[#E8B676] p-2 focus:outline-none"
-            aria-label="Toggle Navigation Menu"
-          >
-            <i class="fa-solid fa-bars text-base"></i>
-          </button>
         </div>
+
       </div>
-    </nav>
+    </header>
 
-    <!-- Mobile Slide-out Drawer Menu -->
-    <div id="mobile-drawer-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden transition-opacity"></div>
-    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-[#0F0F12] border-l border-[#D4AF37]/30 z-50 transform translate-x-full transition-transform duration-300 ease-in-out p-6 flex flex-col justify-between pointer-events-none">
-      <div>
-        <div class="flex items-center justify-between pb-6 border-b border-white/10">
-          <div class="flex items-center gap-3">
-            <img src="assets/wj_sun_logo.svg" alt="WJ Jewellers Logo" class="wj-sun-logo w-9 h-9 shrink-0" />
-            <div>
-              <span class="font-cinzel text-base font-bold text-white block leading-tight">WJ JEWELLERS</span>
-              <span class="text-[9px] font-cinzel text-[#E8B676] tracking-wider block">EST. 1984</span>
-            </div>
-          </div>
-          <button id="mobile-drawer-close" class="text-gray-400 hover:text-white p-2">
-            <i class="fa-solid fa-xmark text-lg"></i>
-          </button>
-        </div>
-
-        <div class="py-6 flex flex-col space-y-4">
-          <a href="#/bridal" class="mobile-nav-link text-sm font-cinzel text-gray-200 hover:text-[#D4AF37] tracking-wider py-2">
-            Indian Bridal Showcase
-          </a>
-          <a href="#/collections" class="mobile-nav-link text-sm font-cinzel text-gray-200 hover:text-[#D4AF37] tracking-wider py-2">
-            Collections Vault
-          </a>
-          <a href="#/story" class="mobile-nav-link text-sm font-cinzel text-gray-200 hover:text-[#D4AF37] tracking-wider py-2">
-            Artisanal Heritage
-          </a>
-          <a href="#bespoke" class="mobile-nav-link text-sm font-cinzel text-gray-200 hover:text-[#D4AF37] tracking-wider py-2">
-            Bespoke Commissions
-          </a>
-          <a href="#/contact" class="mobile-nav-link text-sm font-cinzel text-gray-200 hover:text-[#D4AF37] tracking-wider py-2">
-            Flagship Salon & Contact
-          </a>
-          <a href="#/barcode" class="mobile-nav-link flex items-center gap-2.5 text-sm font-cinzel text-[#F3E5AB] bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 border border-[#D4AF37]/40 rounded-xl px-4 py-3 tracking-wider my-2">
-            <i class="fa-solid fa-barcode text-[#E8B676]"></i>
-            <span>56mm Barcode Tags</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="pt-6 border-t border-white/10 space-y-4">
-
-        <div class="flex items-center justify-between">
-          <span class="text-xs text-gray-400 font-cinzel">Currency:</span>
-          <select 
-            id="mobile-currency-selector" 
-            class="bg-[#18181A] text-[#F3E5AB] text-xs font-cinzel rounded px-2 py-1 border border-gray-700"
-          >
-            <option value="INR">INR (₹)</option>
-            <option value="USD">USD ($)</option>
-            <option value="GBP">GBP (£)</option>
-            <option value="AED">AED</option>
-          </select>
-        </div>
-
-        <a 
-          href="#/contact" 
-          class="mobile-nav-link block w-full py-3 rounded-xl text-center text-xs font-cinzel font-semibold gold-btn-gradient uppercase tracking-wider"
-        >
-          Book Private Salon Viewing
-        </a>
-      </div>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <main class="flex-1">
-
-      <!-- =====================================================================
-           HERO SECTION: High-impact banner with authentic Indian bridal imagery & slow floating animation
-           ===================================================================== -->
-      <section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden py-24 px-4 sm:px-6 lg:px-8 hero-radial-glow">
-        
-        <!-- Ambient gold floating glow spheres -->
-        <div class="ambient-gold-sphere w-96 h-96 -top-20 -left-20"></div>
-        <div class="ambient-gold-sphere w-[32rem] h-[32rem] bottom-0 -right-20"></div>
-
-        <div class="max-w-6xl mx-auto text-center relative z-10">
-          
-          <!-- Heritage Emblem Badge -->
-          <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-panel border border-[#D4AF37]/50 mb-8 shimmer-badge shadow-[0_0_25px_rgba(212,175,55,0.2)] animate-float-gentle">
-            <i class="fa-solid fa-gem text-xs text-[#D4AF37]"></i>
-            <span class="text-[11px] font-cinzel font-semibold tracking-[0.25em] text-[#F3E5AB] uppercase">
-              WJ Jewellers · Royal Indian Fine Jewelry · Est. 1984
-            </span>
-          </div>
-
-          <!-- Sophisticated Tagline & Main Title -->
-          <h1 class="font-serif-lux text-4xl sm:text-6xl lg:text-7xl font-light text-white tracking-tight leading-[1.1] mb-6">
-            Eternal Indian Splendor, <br />
-            <span class="font-normal gold-gradient-text italic font-serif">Handcrafted for Royal Celebrations</span>
-          </h1>
-
-          <p class="max-w-2xl mx-auto text-sm sm:text-base text-gray-300 font-light leading-relaxed mb-10">
-            Welcome to WJ Jewellers. For over four decades, our master goldsmiths have sculpted authentic 22K BIS hallmarked gold, royal syndicate Polki chokers, certified solitaire diamonds, and sacred temple Nakashi heirlooms.
-          </p>
-
-          <!-- Dual CTAs -->
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-16">
-            <a 
-              href="#/bridal" 
-              class="w-full sm:w-auto px-8 py-4 rounded-xl font-cinzel text-xs tracking-[0.15em] font-semibold uppercase gold-btn-gradient shadow-[0_4px_25px_rgba(212,175,55,0.35)]"
-            >
-              Explore Indian Bridal Showcase
-            </a>
-            <a 
-              href="#/contact" 
-              class="w-full sm:w-auto px-8 py-4 rounded-xl font-cinzel text-xs tracking-[0.15em] font-medium uppercase gold-outline-btn"
-            >
-              <i class="fa-regular fa-calendar-check mr-2"></i> Book Private Salon Viewing
-            </a>
-          </div>
-
-          <!-- Hero Featured Indian Bridal Showcase Card with Floating Animation -->
-          <div class="max-w-4xl mx-auto rounded-3xl overflow-hidden glass-panel-elevated p-3 sm:p-5 border border-[#D4AF37]/40 shadow-[0_20px_60px_rgba(0,0,0,0.8)] animate-float-slow">
-            <div class="relative rounded-2xl overflow-hidden aspect-[16/9] bg-black">
-              <img 
-                src="assets/indian_bridal_hero.jpg" 
-                alt="The Maharani Bikaner Emerald & Polki Grand Bridal Suite" 
-                class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6 text-left">
-                <span class="text-[10px] font-cinzel tracking-widest text-[#E5C558] uppercase">
-                  WJ Signature Bridal Suite
-                </span>
-                <h3 class="font-serif-lux text-2xl sm:text-3xl text-white font-medium">
-                  The Maharani Bikaner Emerald & Polki Grand Bridal Suite
-                </h3>
-                <p class="text-xs text-gray-300 max-w-xl mt-1 hidden sm:block">
-                  Handcrafted in pure 22K hallmarked gold with uncut syndicate polki diamonds, hanging Zambian emerald droplets, matching jhumka earrings, and royal maang tikka.
-                </p>
-                <div class="flex items-center gap-3 mt-3">
-                  <button 
-                    onclick="Showcase.openQuickView('wj-prod-03')" 
-                    class="px-4 py-1.5 rounded-lg text-xs font-semibold gold-btn-gradient"
-                  >
-                    View Royal Details
-                  </button>
-                  <button 
-                    onclick="Showcase.inquireForProduct('wj-prod-03')" 
-                    class="px-4 py-1.5 rounded-lg text-xs font-medium border border-white/20 text-white hover:bg-white/10 transition-all"
-                  >
-                    Inquire For Nuptials
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Trust & Hallmarking Indicators -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-14 border-t border-[#D4AF37]/20 max-w-4xl mx-auto mt-14">
-            <div class="flex flex-col items-center">
-              <i class="fa-solid fa-stamp text-[#D4AF37] text-xl mb-2"></i>
-              <span class="font-cinzel text-xs font-semibold text-white tracking-wider">100% BIS 916 Hallmark</span>
-              <span class="text-[11px] text-gray-400 mt-0.5">Government Assayed Purity</span>
-            </div>
-            <div class="flex flex-col items-center">
-              <i class="fa-solid fa-certificate text-[#D4AF37] text-xl mb-2"></i>
-              <span class="font-cinzel text-xs font-semibold text-white tracking-wider">GIA & IGI Certified</span>
-              <span class="text-[11px] text-gray-400 mt-0.5">Natural Solitaire Diamonds</span>
-            </div>
-            <div class="flex flex-col items-center">
-              <i class="fa-solid fa-hand-sparkles text-[#D4AF37] text-xl mb-2"></i>
-              <span class="font-cinzel text-xs font-semibold text-white tracking-wider">40+ Years Legacy</span>
-              <span class="text-[11px] text-gray-400 mt-0.5">Generational WJ Goldsmiths</span>
-            </div>
-            <div class="flex flex-col items-center">
-              <i class="fa-solid fa-shield-halved text-[#D4AF37] text-xl mb-2"></i>
-              <span class="font-cinzel text-xs font-semibold text-white tracking-wider">Ethical Sourcing</span>
-              <span class="text-[11px] text-gray-400 mt-0.5">Conflict-Free Natural Gems</span>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- =====================================================================
-           SCROLLABLE & ANIMATED INDIAN BRIDAL & TEMPLE CAROUSEL SECTION
-           ===================================================================== -->
-      <section id="indian-bridal-section" class="py-20 px-4 sm:px-6 lg:px-8 border-y border-[#D4AF37]/20 bg-gradient-to-b from-[#0A0A0A] via-[#111114] to-[#0A0A0A] scroll-mt-24">
-        <div class="max-w-7xl mx-auto">
-          
-          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
-            <div>
-              <span class="text-xs font-cinzel font-semibold tracking-[0.25em] text-[#D4AF37] uppercase block mb-1">
-                Trending Indian Masterpieces
-              </span>
-              <h2 class="font-serif-lux text-3xl sm:text-4xl text-white font-light">
-                Royal Kundan, Jadau Polki & Temple Jewelry
-              </h2>
-              <p class="text-xs text-gray-400 mt-1 max-w-xl">
-                Swipe or use the arrows to explore our most coveted Indian bridal chokers, antique peacock temple kadas, and grand wedding suites.
-              </p>
-            </div>
-
-            <!-- Carousel Controls -->
-            <div class="flex items-center gap-3 shrink-0">
-              <button 
-                id="carousel-prev-btn"
-                class="w-10 h-10 rounded-full border border-[#D4AF37]/40 text-[#F3E5AB] hover:bg-[#D4AF37]/20 hover:border-[#D4AF37] flex items-center justify-center transition-all shadow-lg active:scale-95"
-                title="Scroll Left"
-              >
-                <i class="fa-solid fa-arrow-left text-xs"></i>
-              </button>
-              <button 
-                id="carousel-next-btn"
-                class="w-10 h-10 rounded-full border border-[#D4AF37]/40 text-[#F3E5AB] hover:bg-[#D4AF37]/20 hover:border-[#D4AF37] flex items-center justify-center transition-all shadow-lg active:scale-95"
-                title="Scroll Right"
-              >
-                <i class="fa-solid fa-arrow-right text-xs"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Horizontal Scroll Container -->
-          <div id="indian-bridal-carousel" class="horizontal-scroll-container">
-            <!-- Dynamically populated via Showcase.renderIndianBridalCarousel() -->
-          </div>
-
-        </div>
-      </section>
-
-      <!-- =====================================================================
-           FEATURED COLLECTIONS SECTION (Full Vault Grid)
-           ===================================================================== -->
-      <section id="collections" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
-        
-        <!-- Section Header -->
-        <div class="text-center mb-14">
-          <span class="text-xs font-cinzel font-semibold tracking-[0.25em] text-[#D4AF37] uppercase block mb-2">
-            The Curated Vault
+    <!-- Sub-Navigation Badge Strip -->
+    <div class="bg-[#151518]/95 backdrop-blur-md border-b border-white/5 px-4 sm:px-8 py-2.5">
+      <div class="max-w-[1850px] mx-auto flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="px-3.5 py-1.5 rounded-xl text-xs font-cinzel font-semibold bg-[#D4AF37]/20 text-[#F3E5AB] border border-[#D4AF37]/50 flex items-center gap-2 shadow-sm">
+            <i class="fa-solid fa-tags text-xs text-[#E8B676]"></i>
+            <span>56mm Center-Folded Girvi &amp; Loan Tags</span>
           </span>
-          <h2 class="font-serif-lux text-3xl sm:text-5xl font-light text-white leading-tight">
-            Complete Fine Jewelry Collections
-          </h2>
-          <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-4"></div>
-        </div>
-
-        <!-- Controls: Category Pills, Search, Filters & Sorters -->
-        <div class="space-y-6 mb-12">
-          
-          <!-- Category Filter Pills -->
-          <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
-            <button 
-              data-category-filter="all" 
-              class="category-pill category-pill-active"
-            >
-              All Creations
-            </button>
-            <button 
-              data-category-filter="bridal" 
-              class="category-pill"
-            >
-              Bridal Sets
-            </button>
-            <button 
-              data-category-filter="polki" 
-              class="category-pill"
-            >
-              Polki & Kundan
-            </button>
-            <button 
-              data-category-filter="bangles" 
-              class="category-pill"
-            >
-              Gold Bangles & Kadas
-            </button>
-            <button 
-              data-category-filter="diamonds" 
-              class="category-pill"
-            >
-              Diamond Rings
-            </button>
-          </div>
-
-          <!-- Secondary Toolbar: Search, Metal Purity & Sort -->
-          <div class="flex flex-col md:flex-row items-center justify-between gap-4 bg-[#141416]/80 p-4 rounded-2xl border border-white/5 backdrop-blur-md">
-            
-            <!-- Search Bar -->
-            <div class="relative w-full md:w-80">
-              <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-xs"></i>
-              <input 
-                id="collection-search" 
-                type="text" 
-                placeholder="Search Polki, Temple kada, Kundan, Solitaire..." 
-                class="w-full bg-[#1A1A1E] border border-gray-700/60 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#D4AF37] transition-all"
-              />
-            </div>
-
-            <!-- Total count and dropdowns -->
-            <div class="flex flex-wrap items-center justify-between md:justify-end gap-3 w-full md:w-auto">
-              
-              <span id="collection-count-badge" class="text-xs font-cinzel text-gray-400">
-                12 Masterpieces
-              </span>
-
-              <!-- Purity filter -->
-              <select 
-                id="collection-purity" 
-                class="bg-[#1A1A1E] text-gray-300 text-xs rounded-xl px-3 py-2 border border-gray-700/60 focus:outline-none focus:border-[#D4AF37] cursor-pointer"
-              >
-                <option value="all">Purity: All Metals</option>
-                <option value="22K">22K Yellow Gold (916 BIS)</option>
-                <option value="18K">18K White / Rose Gold</option>
-                <option value="Platinum">950 Platinum</option>
-              </select>
-
-              <!-- Sort dropdown -->
-              <select 
-                id="collection-sort" 
-                class="bg-[#1A1A1E] text-gray-300 text-xs rounded-xl px-3 py-2 border border-gray-700/60 focus:outline-none focus:border-[#D4AF37] cursor-pointer"
-              >
-                <option value="featured">Sort: Curated Heritage</option>
-                <option value="price-low">Price: Low to High</option>
-                <option value="price-high">Price: High to Low</option>
-                <option value="name">Name (A-Z)</option>
-              </select>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- Collections Cards Grid -->
-        <div id="collection-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Dynamically populated via Showcase.renderCollections() -->
-        </div>
-
-        <!-- Empty state fallback -->
-        <div id="collection-empty-state" class="hidden py-16 text-center">
-          <i class="fa-regular fa-gem text-4xl text-gray-600 mb-3"></i>
-          <h3 class="font-cinzel text-base text-gray-300">No matching creations found</h3>
-          <p class="text-xs text-gray-500 mt-1">Try adjusting your keyword search or metal purity filter.</p>
-        </div>
-
-      </section>
-
-      <!-- =====================================================================
-           BESPOKE ATELIER CALLOUT
-           ===================================================================== -->
-      <section id="bespoke" class="py-20 px-4 sm:px-6 lg:px-8 border-y border-[#D4AF37]/20 bg-gradient-to-b from-[#0A0A0A] via-[#121214] to-[#0A0A0A] scroll-mt-24">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          
-          <div class="space-y-6">
-            <span class="text-xs font-cinzel font-semibold tracking-[0.25em] text-[#D4AF37] uppercase">
-              Bespoke Bridal Commissions
-            </span>
-            <h2 class="font-serif-lux text-3xl sm:text-4xl text-white font-light leading-snug">
-              From Custom Gouache Sketches <br />
-              <span class="italic text-[#F3E5AB]">to an Immortal Family Heirloom</span>
-            </h2>
-            <p class="text-sm text-gray-300 leading-relaxed">
-              Every bespoke WJ Jewellers creation begins with an intimate dialogue. Whether remounting ancestral gemstones into a modern Jadau choker or crafting a one-of-a-kind royal wedding set, our master goldsmiths bring generations of Indian jewelry mastery to your family legacy.
-            </p>
-            <div class="flex items-center gap-6 pt-2">
-              <div>
-                <span class="block font-cinzel text-xl text-[#D4AF37] font-bold">1-on-1</span>
-                <span class="text-[11px] text-gray-400">Master Craftsman</span>
-              </div>
-              <div class="h-8 w-px bg-white/10"></div>
-              <div>
-                <span class="block font-cinzel text-xl text-[#D4AF37] font-bold">24K Foil</span>
-                <span class="text-[11px] text-gray-400">Lac-Free Jadau</span>
-              </div>
-              <div class="h-8 w-px bg-white/10"></div>
-              <div>
-                <span class="block font-cinzel text-xl text-[#D4AF37] font-bold">100%</span>
-                <span class="text-[11px] text-gray-400">BIS 916 Assayed</span>
-              </div>
-            </div>
-            <div>
-              <a 
-                href="#/contact" 
-                class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-cinzel font-semibold gold-btn-gradient uppercase tracking-wider shadow-lg"
-              >
-                Inquire For Custom Commission <i class="fa-solid fa-arrow-right text-[10px]"></i>
-              </a>
-            </div>
-          </div>
-
-          <div class="relative rounded-2xl overflow-hidden border border-[#D4AF37]/30 shadow-[0_10px_40px_rgba(0,0,0,0.8)]">
-            <img 
-              src="https://images.unsplash.com/photo-1600003014755-ba31aa59c4b6?auto=format&fit=crop&w=1000&q=80" 
-              alt="WJ Jewellers master goldsmith crafting fine jewelry" 
-              class="w-full h-80 lg:h-96 object-cover"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
-              <div class="text-xs text-gray-300">
-                <span class="font-cinzel text-[#F3E5AB] font-semibold block">The WJ Jewellers Benchmark</span>
-                Over 240 artisan hours dedicated to each royal wedding set.
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- =====================================================================
-           BRAND STORY & ARTISANAL CRAFTSMANSHIP SECTION
-           ===================================================================== -->
-      <section id="craftsmanship" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
-        <div class="text-center mb-16">
-          <span class="text-xs font-cinzel font-semibold tracking-[0.25em] text-[#D4AF37] uppercase block mb-2">
-            The WJ Jewellers Heritage
+          <span class="hidden md:inline-flex items-center px-3 py-1 rounded-lg text-[11px] font-mono bg-white/5 text-gray-300 border border-white/10">
+            28mm + 28mm Center Fold · 86×15mm Thermal Roll Printer
           </span>
-          <h2 class="font-serif-lux text-3xl sm:text-5xl font-light text-white leading-tight">
-            Four Decades of Indian Jewelry Excellence
-          </h2>
-          <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-4"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
-          <div class="p-8 rounded-2xl bg-[#141416] border border-white/5 hover:border-[#D4AF37]/40 transition-all flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] text-xl mb-6">
-                <i class="fa-solid fa-hammer"></i>
-              </div>
-              <h3 class="font-cinzel text-base text-white font-semibold mb-3">1. Induction Metallurgy</h3>
-              <p class="text-xs text-gray-400 leading-relaxed">
-                Hand-alloyed 22K (916) precious gold smelted with pure copper and silver alloys, achieving a signature rich royal luster with maximum ductility.
-              </p>
-            </div>
-            <div class="pt-6 border-t border-white/5 mt-6 text-[11px] text-[#D4AF37] font-cinzel">
-              Zero Porosity Casting
-            </div>
-          </div>
-
-          <div class="p-8 rounded-2xl bg-[#141416] border border-white/5 hover:border-[#D4AF37]/40 transition-all flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] text-xl mb-6">
-                <i class="fa-solid fa-gem"></i>
-              </div>
-              <h3 class="font-cinzel text-base text-white font-semibold mb-3">2. Syndicate Polki Selection</h3>
-              <p class="text-xs text-gray-400 leading-relaxed">
-                Each uncut diamond is individually checked for transparency, fire, and natural pavilion geometry, backed by pure 24K gold foil for unmatched glow.
-              </p>
-            </div>
-            <div class="pt-6 border-t border-white/5 mt-6 text-[11px] text-[#D4AF37] font-cinzel">
-              High Transparency Polki
-            </div>
-          </div>
-
-          <div class="p-8 rounded-2xl bg-[#141416] border border-white/5 hover:border-[#D4AF37]/40 transition-all flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] text-xl mb-6">
-                <i class="fa-solid fa-paint-roller"></i>
-              </div>
-              <h3 class="font-cinzel text-base text-white font-semibold mb-3">3. Banarasi Meenakari</h3>
-              <p class="text-xs text-gray-400 leading-relaxed">
-                The reverse of our Polki jewelry features hand-painted Banarasi and Jaipur champlevé enamel fired at 850°C, transforming every angle into wearable art.
-              </p>
-            </div>
-            <div class="pt-6 border-t border-white/5 mt-6 text-[11px] text-[#D4AF37] font-cinzel">
-              Heritage Enameling
-            </div>
-          </div>
-
-          <div class="p-8 rounded-2xl bg-[#141416] border border-white/5 hover:border-[#D4AF37]/40 transition-all flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] text-xl mb-6">
-                <i class="fa-solid fa-shield-check"></i>
-              </div>
-              <h3 class="font-cinzel text-base text-white font-semibold mb-3">4. Lifetime Archival Care</h3>
-              <p class="text-xs text-gray-400 leading-relaxed">
-                Every WJ creation carries laser-inscribed BIS hallmark certificates, archival buyback guarantees, and complimentary lifetime ultrasonic cleaning.
-              </p>
-            </div>
-            <div class="pt-6 border-t border-white/5 mt-6 text-[11px] text-[#D4AF37] font-cinzel">
-              Lifetime Buyback
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- =====================================================================
-           VIP CONTACT, SALON VIEWING & LOCATION SECTION
-           ===================================================================== -->
-      <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 border-t border-[#D4AF37]/20 bg-[#0E0E10] scroll-mt-24">
-        <div class="max-w-7xl mx-auto">
-          
-          <div class="text-center mb-16">
-            <span class="text-xs font-cinzel font-semibold tracking-[0.25em] text-[#D4AF37] uppercase block mb-2">
-              Private Concierge
-            </span>
-            <h2 class="font-serif-lux text-3xl sm:text-5xl font-light text-white leading-tight">
-              Arrange a Private Salon Appointment
-            </h2>
-            <p class="text-xs text-gray-400 mt-2 max-w-xl mx-auto">
-              Visit WJ Jewellers flagship salon for an intimate private viewing of bridal sets, wedding trousseaus, and custom gold ornaments.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            
-            <!-- Salon Information -->
-            <div class="lg:col-span-5 space-y-8">
-              
-              <div class="p-8 rounded-2xl bg-[#141416] border border-[#D4AF37]/25 shadow-xl space-y-6">
-                <h3 class="font-cinzel text-lg text-white font-semibold pb-3 border-b border-white/10">
-                  WJ Jewellers Flagship Salon
-                </h3>
-
-                <div class="flex items-start gap-4">
-                  <div class="w-9 h-9 rounded-lg bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] shrink-0 mt-0.5">
-                    <i class="fa-solid fa-location-dot"></i>
-                  </div>
-                  <div>
-                    <span class="font-cinzel text-xs text-gray-400 block uppercase">Boutique Address</span>
-                    <p class="text-xs text-white mt-1 leading-relaxed">
-                      WJ Jewellers Grand Atelier<br />
-                      Main Market Promenade, Jewellers Row<br />
-                      Maharashtra · India
-                    </p>
-                  </div>
-                </div>
-
-                <div class="flex items-start gap-4">
-                  <div class="w-9 h-9 rounded-lg bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] shrink-0 mt-0.5">
-                    <i class="fa-solid fa-clock"></i>
-                  </div>
-                  <div>
-                    <span class="font-cinzel text-xs text-gray-400 block uppercase">Boutique Hours</span>
-                    <p class="text-xs text-white mt-1 leading-relaxed">
-                      Monday – Saturday: 10:30 AM – 8:30 PM<br />
-                      Sunday: By Private Salon Appointment Only
-                    </p>
-                  </div>
-                </div>
-
-                <div class="flex items-start gap-4">
-                  <div class="w-9 h-9 rounded-lg bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] shrink-0 mt-0.5">
-                    <i class="fa-solid fa-phone"></i>
-                  </div>
-                  <div>
-                    <span class="font-cinzel text-xs text-gray-400 block uppercase">Direct Concierge</span>
-                    <p class="text-xs text-white mt-1">
-                      +91 98201 54321 / +91 (22) 2284-8899<br />
-                      <span class="text-gray-400">concierge@wjjewellers.com</span>
-                    </p>
-                  </div>
-                </div>
-
-              </div>
-
-              <!-- Hospitality Box -->
-              <div class="p-6 rounded-2xl bg-black/40 border border-white/5 text-xs text-gray-400 space-y-2">
-                <span class="font-cinzel text-[#F3E5AB] font-semibold block uppercase">
-                  <i class="fa-solid fa-crown mr-1.5 text-[#D4AF37]"></i> Bridal Suite Experience
-                </span>
-                <p class="leading-relaxed">
-                  Every bridal consultation includes dedicated styling with bridal lehengas, 1-on-1 GIA gemologist stone inspection, customized gold weight calculations, and private salon refreshments.
-                </p>
-              </div>
-
-            </div>
-
-            <!-- VIP Consultation Booking Form -->
-            <div class="lg:col-span-7">
-              <div class="p-8 sm:p-10 rounded-2xl bg-[#141416] border border-[#D4AF37]/30 shadow-2xl">
-                
-                <h3 class="font-cinzel text-lg text-white font-semibold mb-2">
-                  Request Private Salon Viewing
-                </h3>
-                <p class="text-xs text-gray-400 mb-8">
-                  Please submit your consultation request. Our concierge team will connect with you via phone or WhatsApp.
-                </p>
-
-                <form id="vip-inquiry-form" class="space-y-5">
-                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1.5">
-                        Client Full Name *
-                      </label>
-                      <input 
-                        type="text" 
-                        name="clientName" 
-                        required 
-                        placeholder="e.g. Ananya Singhania"
-                        class="w-full bg-[#1A1A1E] border border-gray-700/70 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-[#D4AF37] transition-all"
-                      />
-                    </div>
-
-                    <div>
-                      <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1.5">
-                        Email Address *
-                      </label>
-                      <input 
-                        type="email" 
-                        name="email" 
-                        required 
-                        placeholder="ananya@example.com"
-                        class="w-full bg-[#1A1A1E] border border-gray-700/70 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-[#D4AF37] transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1.5">
-                        Phone / WhatsApp Number *
-                      </label>
-                      <input 
-                        type="tel" 
-                        name="phone" 
-                        required 
-                        placeholder="+91 98200 00000"
-                        class="w-full bg-[#1A1A1E] border border-gray-700/70 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-[#D4AF37] transition-all"
-                      />
-                    </div>
-
-                    <div>
-                      <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1.5">
-                        Jewelry Category of Interest
-                      </label>
-                      <select 
-                        id="inquiry-category" 
-                        name="category"
-                        class="w-full bg-[#1A1A1E] border border-gray-700/70 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-[#D4AF37] transition-all cursor-pointer"
-                      >
-                        <option value="bridal">Royal Indian Bridal Sets</option>
-                        <option value="polki">Jadau Polki & Kundan Chokers</option>
-                        <option value="bangles">22K Temple Kadas & Bangles</option>
-                        <option value="diamonds">Solitaire Engagement Rings</option>
-                        <option value="bespoke">Custom Heirloom Commission</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1.5">
-                        Preferred Date / Time Window
-                      </label>
-                      <input 
-                        type="text" 
-                        name="preferredDate" 
-                        placeholder="e.g. Next Saturday at 4:00 PM"
-                        class="w-full bg-[#1A1A1E] border border-gray-700/70 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-[#D4AF37] transition-all"
-                      />
-                    </div>
-
-                    <div>
-                      <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1.5">
-                        Estimated Budget
-                      </label>
-                      <select 
-                        name="budget"
-                        class="w-full bg-[#1A1A1E] border border-gray-700/70 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-[#D4AF37] transition-all cursor-pointer"
-                      >
-                        <option value="₹5,00,000 - ₹15,00,000">₹5,00,000 - ₹15,00,000</option>
-                        <option value="₹15,00,000 - ₹35,00,000">₹15,00,000 - ₹35,00,000</option>
-                        <option value="₹35,00,000 - ₹75,00,000">₹35,00,000 - ₹75,00,000</option>
-                        <option value="₹75,00,000+ (Grand Bridal Suite)">₹75,00,000+ (Grand Bridal Suite)</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1.5">
-                      Special Viewing Requests / Selected Pieces
-                    </label>
-                    <textarea 
-                      id="inquiry-notes" 
-                      name="notes" 
-                      rows="4" 
-                      placeholder="Mention any specific pieces from our vault, wrist size for kadas, ring size, or custom design requirements..."
-                      class="w-full bg-[#1A1A1E] border border-gray-700/70 rounded-xl p-4 text-xs text-white focus:outline-none focus:border-[#D4AF37] transition-all"
-                    ></textarea>
-                  </div>
-
-                  <button 
-                    type="submit" 
-                    class="w-full py-4 rounded-xl font-cinzel text-xs tracking-[0.2em] font-semibold uppercase gold-btn-gradient shadow-xl"
-                  >
-                    Submit Salon Viewing Request
-                  </button>
-
-                  <p class="text-[10px] text-center text-gray-500 mt-2">
-                    <i class="fa-solid fa-lock text-[8px] mr-1"></i> Discretion Guaranteed · Strict Non-Disclosure Clienteling Policy
-                  </p>
-                </form>
-
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-    </main>
-
-    <!-- Public Showcase Luxury Footer -->
-    <footer class="bg-[#070708] border-t border-white/5 py-16 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/5">
-        
-        <div class="space-y-4">
-          <div class="flex items-center gap-3">
-            <img src="assets/wj_sun_logo.svg" alt="WJ Jewellers Logo" class="wj-sun-logo w-9 h-9 shrink-0" />
-            <span class="font-cinzel text-base tracking-[0.2em] text-white font-bold">WJ JEWELLERS</span>
-          </div>
-          <p class="text-xs text-gray-400 leading-relaxed">
-            Premier Indian jewelry atelier celebrating four decades of royal heritage, 22K hallmarked gold masterworks, and certified natural diamonds.
-          </p>
-          <div class="flex items-center gap-3 pt-2 text-gray-400 text-sm">
-            <a href="#" class="hover:text-[#D4AF37]"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="hover:text-[#D4AF37]"><i class="fa-brands fa-pinterest"></i></a>
-            <a href="#" class="hover:text-[#D4AF37]"><i class="fa-brands fa-whatsapp"></i></a>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="font-cinzel text-xs text-white uppercase tracking-widest font-semibold mb-4">Indian Collections</h4>
-          <ul class="space-y-2 text-xs text-gray-400">
-            <li><a href="#/bridal" class="hover:text-[#F3E5AB]">Royal Indian Bridal Sets</a></li>
-            <li><a href="#/collections" class="hover:text-[#F3E5AB]">Jadau Polki Chokers</a></li>
-            <li><a href="#/collections" class="hover:text-[#F3E5AB]">22K Temple Nakashi Kadas</a></li>
-            <li><a href="#/collections" class="hover:text-[#F3E5AB]">Solitaire Engagement Rings</a></li>
-            <li><a href="#bespoke" class="hover:text-[#F3E5AB]">Bespoke Bridal Commissions</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="font-cinzel text-xs text-white uppercase tracking-widest font-semibold mb-4">Certifications & Trust</h4>
-          <ul class="space-y-2 text-xs text-gray-400">
-            <li><span class="text-amber-300">✓ 100% BIS Hallmark 916</span> (Govt Assayed)</li>
-            <li><span class="text-amber-300">✓ GIA & IGI Certificates</span> (Natural Diamonds)</li>
-            <li><span class="text-amber-300">✓ Daily Automated Bullion API</span> Sync</li>
-            <li><span class="text-amber-300">✓ Lifetime Buyback</span> & Exchange Policy</li>
-            <li><span class="text-amber-300">✓ 100% Insured</span> Logistics</li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="font-cinzel text-xs text-white uppercase tracking-widest font-semibold mb-4">Salon Concierge</h4>
-          <p class="text-xs text-gray-400 leading-relaxed mb-4">
-            Arrange a private bridal suite consultation, certified gemstone appraisal, or bespoke heirloom restoration with our master goldsmiths.
-          </p>
-          <a 
-            href="#/contact" 
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-cinzel font-semibold gold-btn-gradient"
-          >
-            <i class="fa-regular fa-calendar-check text-xs"></i> Book Private Viewing
-          </a>
-        </div>
-
-      </div>
-
-      <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-        <p>© 2026 WJ Jewellers. All Rights Reserved.</p>
-        <div class="flex items-center gap-4">
-          <a href="#/barcode" class="text-xs text-[#E8B676] hover:text-[#F3E5AB] font-cinzel flex items-center gap-1.5 transition-colors">
-            <i class="fa-solid fa-barcode text-[11px]"></i> Barcode & Tag Generator
-          </a>
-          <span class="text-gray-700">·</span>
-          <p class="font-cinzel text-[11px] text-gray-400">Crafted with Pure Gold & Diamonds</p>
-        </div>
-      </div>
-    </footer>
-
-  </div>
-
-  <!-- =========================================================================
-       WISHLIST SLIDE-OUT DRAWER
-       ========================================================================= -->
-  <div id="wishlist-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden transition-opacity" onclick="Showcase.closeWishlistDrawer()"></div>
-  <div id="wishlist-drawer" class="fixed top-0 right-0 h-full w-96 max-w-[90vw] bg-[#0F0F12] border-l border-[#D4AF37]/30 z-50 transform translate-x-full transition-transform duration-300 ease-in-out p-6 flex flex-col justify-between shadow-2xl pointer-events-none">
-    <div>
-      <div class="flex items-center justify-between pb-5 border-b border-white/10">
         <div class="flex items-center gap-2">
-          <i class="fa-solid fa-heart text-[#D4AF37]"></i>
-          <h3 class="font-cinzel text-sm font-semibold tracking-wider text-white">Your Curated Vault</h3>
-        </div>
-        <button onclick="Showcase.closeWishlistDrawer()" class="text-gray-400 hover:text-white p-1">
-          <i class="fa-solid fa-xmark text-lg"></i>
-        </button>
-      </div>
-
-      <!-- Bookmarked Items Container -->
-      <div id="wishlist-items-container" class="py-6 space-y-3 max-h-[60vh] overflow-y-auto pr-1">
-        <!-- Rendered dynamically -->
-      </div>
-    </div>
-
-    <!-- Wishlist Total & Bulk Action -->
-    <div class="pt-5 border-t border-white/10 space-y-3">
-      <div class="flex items-center justify-between text-xs font-cinzel">
-        <span class="text-gray-400 uppercase">Estimated Valuation:</span>
-        <span id="wishlist-total-value" class="text-base font-bold gold-gradient-text">₹0</span>
-      </div>
-
-      <button 
-        onclick="Showcase.inquireAllWishlist()" 
-        class="w-full py-3 rounded-xl font-cinzel text-xs font-semibold uppercase tracking-wider gold-btn-gradient"
-      >
-        Inquire All Curated Pieces
-      </button>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       INTERACTIVE QUICK-VIEW MODAL
-       ========================================================================= -->
-  <div id="quick-view-modal" class="fixed inset-0 z-50 modal-backdrop hidden items-center justify-center p-4">
-    <div class="glass-panel-elevated modal-content-animation rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative">
-      <button 
-        onclick="Utils.closeModal('quick-view-modal')" 
-        class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 border border-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all z-20"
-      >
-        <i class="fa-solid fa-xmark text-base"></i>
-      </button>
-
-      <div id="quick-view-modal-content">
-        <!-- Injected dynamically via Showcase.openQuickView() -->
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       PROTECTED ADMIN: LOGIN SCREEN VIEW (#/admin without session)
-       ========================================================================= -->
-  <div id="admin-login-view" class="hidden min-h-screen w-full flex-col items-center justify-center p-4 hero-radial-glow" style="display: none !important;">
-    <div id="login-card-container" class="glass-panel-elevated rounded-3xl p-8 sm:p-10 max-w-md w-full border border-[#D4AF37]/40 shadow-[0_15px_50px_rgba(0,0,0,0.9)] relative">
-      
-      <!-- Back to Public Boutique Link -->
-      <a href="#/" class="absolute top-6 left-6 text-xs text-gray-400 hover:text-[#F3E5AB] font-cinzel flex items-center gap-1.5 transition-colors">
-        <i class="fa-solid fa-arrow-left text-[10px]"></i> Boutique
-      </a>
-
-      <!-- Security Crest with WJ Sun Emblem -->
-      <div class="text-center pt-4 mb-8">
-        <img src="assets/wj_sun_logo.svg" alt="WJ Jewellers Security Emblem" class="wj-sun-logo w-16 h-16 mx-auto mb-4" />
-        <span class="text-[10px] font-cinzel font-semibold tracking-[0.25em] text-[#D4AF37] uppercase block">
-          WJ Jewellers Security
-        </span>
-        <h2 class="font-serif-lux text-2xl text-white font-medium mt-1">
-          Atelier Operations Portal
-        </h2>
-        <p class="text-xs text-gray-400 mt-1">
-          Restricted access for payroll, shop ledger, and vault inventory.
-        </p>
-      </div>
-
-      <!-- Error Message Notice -->
-      <div id="login-error-msg" class="hidden mb-6 p-3 rounded-xl bg-rose-950/80 border border-rose-800 text-rose-200 text-xs text-center"></div>
-
-      <!-- Login Form -->
-      <form id="admin-login-form" onsubmit="Admin.handleLogin(event)" class="space-y-4">
-        <div>
-          <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1.5">
-            Admin Username
-          </label>
-          <div class="relative">
-            <i class="fa-solid fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-xs"></i>
-            <input 
-              type="text" 
-              name="username" 
-              required 
-              autocomplete="username"
-              placeholder="Username"
-              class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl pl-9 pr-4 py-3 text-xs text-white focus:outline-none focus:border-[#D4AF37] transition-all"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1.5">
-            Passphrase
-          </label>
-          <div class="relative">
-            <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-xs"></i>
-            <input 
-              type="password" 
-              name="password" 
-              required 
-              autocomplete="current-password"
-              placeholder="••••••••"
-              class="w-full bg-[#1A1A1E] border border-gray-700 rounded-xl pl-9 pr-4 py-3 text-xs text-white focus:outline-none focus:border-[#D4AF37] transition-all"
-            />
-          </div>
-        </div>
-
-        <!-- Security Badge Advisory -->
-        <div class="pt-2 flex items-center justify-between text-[11px] text-gray-400 font-cinzel">
-          <span class="flex items-center gap-1.5">
-            <i class="fa-solid fa-shield-halved text-[#D4AF37]"></i> Authorized Personnel Only
-          </span>
-          <span class="text-[10px] text-emerald-400 font-mono flex items-center gap-1">
-            <i class="fa-solid fa-lock text-[8px]"></i> SHA-256
+          <span class="text-[11px] font-mono text-emerald-400 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-green"></span>
+            TSC · Zebra · TVS · Honeywell Ready (203/300 DPI)
           </span>
         </div>
-
-        <button 
-          type="submit" 
-          class="w-full py-3.5 rounded-xl font-cinzel text-xs tracking-[0.2em] font-semibold uppercase gold-btn-gradient mt-4 shadow-xl"
-        >
-          Authenticate Access
-        </button>
-      </form>
-
-      <div class="mt-8 pt-4 border-t border-white/5 text-center text-[10px] text-gray-500">
-        Strict Client-Side Session State Protected · SHA Authenticated
-      </div>
-
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       PROTECTED ADMIN: OPERATIONS DASHBOARD VIEW (#/admin with active session)
-       ========================================================================= -->
-  <div id="admin-app-container" class="hidden min-h-screen w-full flex-col bg-[#0A0A0C]" style="display: none;">
-    
-    <!-- Admin Sticky Topbar & Sub-Navigation Header -->
-    <div class="sticky top-0 z-30 shadow-xl">
-      <!-- Admin Topbar -->
-      <header class="main-luxury-nav px-4 sm:px-8 py-3.5">
-        <div class="max-w-[1850px] mx-auto w-full flex items-center justify-between">
-          <div class="flex items-center gap-4">
-            <a href="#/admin" class="flex items-center gap-2.5 group">
-              <img src="assets/wj_sun_logo.svg" alt="WJ Jewellers Logo" class="wj-sun-logo w-8 h-8 shrink-0" />
-              <div>
-                <span class="font-cinzel text-sm font-bold text-white tracking-widest block leading-tight">WJ JEWELLERS</span>
-                <span class="text-[9px] font-cinzel text-[#E8B676] tracking-wider block">ATELIER OPERATIONS</span>
-              </div>
-            </a>
-            <span class="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-[10px] font-cinzel bg-emerald-950/80 text-emerald-300 border border-emerald-800/40">
-              <i class="fa-solid fa-shield-check mr-1 text-[8px]"></i> Session Verified
-            </span>
-          </div>
-
-          <div class="flex items-center gap-3">
-            
-
-            <!-- Live Link to public site -->
-            <a 
-              href="#/" 
-              class="text-xs text-[#F3E5AB] hover:text-white font-cinzel tracking-wider flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-[#D4AF37]/40 bg-[#D4AF37]/15 hover:bg-[#D4AF37]/30 transition-all"
-            >
-              <i class="fa-solid fa-store text-xs text-[#D4AF37]"></i>
-              <span>← View Boutique</span>
-            </a>
-
-            <!-- Master Administrator pill -->
-            <div class="hidden sm:flex items-center gap-2">
-              <div class="w-7 h-7 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 flex items-center justify-center text-xs text-[#F3E5AB]">
-                <i class="fa-solid fa-user-shield"></i>
-              </div>
-              <span class="text-xs font-mono text-gray-300">Kannad Atelier</span>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <!-- Admin Sub-Navigation Bar: Dedicated Exclusively to Barcode & Tag Generator -->
-      <div id="admin-subnav-bar" class="bg-[#151518]/95 backdrop-blur-md border-b border-white/5 px-4 sm:px-8 py-2.5">
-        <div class="max-w-[1850px] mx-auto flex flex-wrap items-center justify-between gap-3">
-          <div class="flex items-center gap-3">
-            <span class="px-4 py-2 rounded-xl text-xs font-cinzel font-semibold bg-[#D4AF37]/20 text-[#F3E5AB] border border-[#D4AF37]/50 flex items-center gap-2 shadow-sm">
-              <i class="fa-solid fa-tags text-xs text-[#E8B676]"></i>
-              <span>Jewellery Barcode & Tag Generator</span>
-            </span>
-            <span class="hidden md:inline-flex items-center px-3 py-1 rounded-lg text-[11px] font-mono bg-white/5 text-gray-300 border border-white/10">
-              56mm Center-Folded (28mm + 28mm) · 86×15mm Thermal Roll Printer
-            </span>
-          </div>
-
-          <div class="flex items-center gap-2.5">
-            <button 
-              type="button" 
-              onclick="BarcodeTags.showPrinterGuideModal()"
-              class="px-3.5 py-2 rounded-xl text-xs font-cinzel text-gray-300 hover:text-white border border-white/10 hover:border-[#D4AF37]/40 bg-[#161619] transition-all flex items-center gap-1.5"
-            >
-              <i class="fa-solid fa-sliders text-xs text-[#E8B676]"></i>
-              <span class="hidden sm:inline">Printer Guide</span>
-            </button>
-            <button 
-              type="button" 
-              onclick="BarcodeTags.restoreDemoTags()"
-              class="px-3.5 py-2 rounded-xl text-xs font-cinzel text-amber-400/80 hover:text-amber-300 hover:bg-amber-950/20 border border-amber-800/30 transition-all flex items-center gap-1.5"
-              title="Reset tags back to factory defaults"
-            >
-              <i class="fa-solid fa-rotate-left text-[10px]"></i>
-              <span class="hidden sm:inline">Reset Tags</span>
-            </button>
-          </div>
-        </div>
       </div>
     </div>
 
-    <!-- Admin Content Area (Expanded to 1850px for spacious tag management) -->
+    <!-- Main Workspace (Spacious 1850px Full-Width Tag Management) -->
     <main class="flex-1 p-4 sm:p-6 lg:p-8 pb-28 sm:pb-36 max-w-[1850px] mx-auto w-full">
 
-      <!-- Dedicated Exclusively to Jewellery Barcode & Tag Generator -->
-<!-- ===================================================================
-           TAB 7: JEWELLERY BARCODE & QR TAG GENERATOR (86mm x 15mm Thermal)
-           =================================================================== -->
       <section id="admin-panel-tags" class="space-y-6" style="display: block !important;">
 
-        <!-- Top Header & Action Strip -->
+        <!-- Top Header & Primary Action Strip -->
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-white/5">
           <div>
             <div class="flex items-center gap-2.5">
@@ -1253,12 +153,12 @@
                 <i class="fa-solid fa-qrcode text-sm"></i>
               </span>
               <div>
-                <h2 class="font-cinzel text-lg text-white font-semibold flex items-center gap-2">
-                  Jewellery Barcode & QR Tag Generator
+                <h1 class="font-cinzel text-lg sm:text-xl text-white font-semibold flex items-center gap-2">
+                  Jewellery Barcode &amp; Tag Generator
                   <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-950/80 text-emerald-300 border border-emerald-800/40">
                     203/300 DPI Thermal Roll Ready
                   </span>
-                </h2>
+                </h1>
                 <p class="text-xs text-gray-400 mt-0.5">
                   Client-side tag engine for 86mm × 15mm rat-tail / cricket bat labels · 56mm printable blade + 30mm ink-free looping strap.
                 </p>
@@ -1266,7 +166,7 @@
             </div>
           </div>
 
-          <!-- Top Actions -->
+          <!-- Top Actions: Print Selected / Test Calib -->
           <div class="flex flex-wrap items-center gap-2.5">
             <button 
               type="button" 
@@ -1297,13 +197,13 @@
               <i class="fa-solid fa-print text-xs"></i>
               <span>Print Selected Tags</span>
               <span id="selected-tags-count" class="px-2 py-0.5 rounded-full bg-black/40 text-[10px] font-mono font-bold">
-                0 Selected
+                4 Selected
               </span>
             </button>
           </div>
         </div>
 
-        <!-- Hardware & Mechanical Spec Cards (5 metrics) -->
+        <!-- Hardware & Mechanical Spec Cards (5 Metrics) -->
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           <div class="p-3.5 rounded-xl bg-[#141416] border border-white/5">
             <span class="text-[9px] font-cinzel uppercase text-gray-400 block tracking-wider">Total Tag Dimension</span>
@@ -1343,7 +243,7 @@
           <div class="lg:col-span-5 space-y-6">
             
             <!-- Quick Add Tag Card -->
-            <div class="bg-[#141416] p-6 rounded-2xl border border-white/5 space-y-4">
+            <div class="bg-[#141416] p-6 rounded-2xl border border-white/5 space-y-4 shadow-xl">
               <div class="flex items-center justify-between border-b border-white/10 pb-3">
                 <div>
                   <h3 class="font-cinzel text-sm text-white font-semibold">Generate Jewellery Tag</h3>
@@ -1358,8 +258,9 @@
                 </button>
               </div>
 
-              <!-- FORM 1: 56mm Center-Folded Girvi / Loan Tag (Default Matching Sketch) -->
+              <!-- FORM: 56mm Center-Folded Girvi / Loan Tag (Default Matching User Sketch) -->
               <form id="tag-form-folded" onsubmit="BarcodeTags.handleFoldedTagSubmit(event)" class="space-y-4">
+                
                 <!-- Customer Full Name (Side 1 - Bold Lines) -->
                 <div>
                   <label class="block text-[10px] font-cinzel uppercase text-gray-400 mb-1">
@@ -1529,7 +430,7 @@
                 <div class="flex items-center gap-3 pt-2">
                   <button 
                     type="submit" 
-                    class="flex-1 py-2.5 rounded-xl font-cinzel text-xs font-semibold gold-btn-gradient uppercase tracking-wider flex items-center justify-center gap-2"
+                    class="flex-1 py-2.5 rounded-xl font-cinzel text-xs font-semibold gold-btn-gradient uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg"
                   >
                     <i class="fa-solid fa-plus text-xs"></i> Add Folded Tag to Queue
                   </button>
@@ -1543,8 +444,8 @@
               </form>
             </div>
 
-            <!-- Batch Imports Card: Stock Catalog & CSV File -->
-            <div class="bg-[#141416] p-6 rounded-2xl border border-white/5 space-y-4">
+            <!-- Batch Inventory Import Card: Stock Catalog & CSV File -->
+            <div class="bg-[#141416] p-6 rounded-2xl border border-white/5 space-y-4 shadow-xl">
               <div class="border-b border-white/10 pb-2">
                 <h3 class="font-cinzel text-sm text-white font-semibold flex items-center gap-2">
                   <i class="fa-solid fa-boxes-stacked text-[#D4AF37] text-xs"></i> Batch Inventory Import
@@ -1573,7 +474,7 @@
                   type="file" 
                   id="csv-file-input" 
                   accept=".csv,.txt" 
-                  onchange="BarcodeTags.handleCsvUpload(event)"
+                  onchange="BarcodeTags.handleCsvUpload(event)" 
                   class="hidden" 
                 />
                 <label 
@@ -1610,7 +511,7 @@
           <div class="lg:col-span-7 space-y-4">
 
             <!-- Toolbar: Scale / Select All / Clear -->
-            <div class="bg-[#141416] p-4 rounded-2xl border border-white/5 flex flex-wrap items-center justify-between gap-3 text-xs">
+            <div class="bg-[#141416] p-4 rounded-2xl border border-white/5 flex flex-wrap items-center justify-between gap-3 text-xs shadow-xl">
               <div class="flex items-center gap-3">
                 <label class="flex items-center gap-2 cursor-pointer select-none">
                   <input 
@@ -1682,22 +583,22 @@
 
     </main>
 
-    <!-- Atelier Operations Protected Admin Footer -->
+    <!-- Footer -->
     <footer class="mt-auto border-t border-white/5 bg-[#0D0D0F] py-6 px-4 sm:px-8">
       <div class="max-w-[1850px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 font-cinzel">
         <div class="flex items-center gap-3">
           <img src="assets/wj_sun_logo.svg" alt="WJ Sun Emblem" class="wj-sun-logo w-6 h-6 shrink-0 opacity-80" />
           <div>
-            <span class="text-white font-bold tracking-widest block leading-tight">WJ JEWELLERS · ATELIER OPERATIONS</span>
-            <span class="text-[10px] text-[#E8B676] block">Strict Client-Side Session State Protected · SHA-256</span>
+            <span class="text-white font-bold tracking-widest block leading-tight">WJ JEWELLERS · KANNAD ATELIER</span>
+            <span class="text-[10px] text-[#E8B676] block">56mm Center-Folded Jewellery Tag &amp; Barcode Printing Engine</span>
           </div>
         </div>
         <div class="flex items-center gap-4 text-[11px] text-gray-400">
           <span class="flex items-center gap-1.5 text-emerald-400">
-            <i class="fa-solid fa-circle-check text-[9px]"></i> Daily Ledger Reconciled
+            <i class="fa-solid fa-circle-check text-[9px]"></i> Thermal Printing Engine Active
           </span>
           <span class="text-white/20">|</span>
-          <span class="text-gray-400">Bullion Spot Feed Active</span>
+          <a href="boutique.html" class="hover:text-[#F3E5AB] transition-colors">Customer Boutique Showcase →</a>
         </div>
       </div>
     </footer>
@@ -1714,7 +615,7 @@
           </div>
           <div>
             <h3 class="font-cinzel text-base text-white font-bold">Thermal Barcode Printer Setup Guide</h3>
-            <p class="text-xs text-gray-400">Calibration instructions for TSC, Zebra, TVS & Honeywell 86mm × 15mm labels.</p>
+            <p class="text-xs text-gray-400">Calibration instructions for TSC, Zebra, TVS &amp; Honeywell 86mm × 15mm labels.</p>
           </div>
         </div>
         <button type="button" onclick="BarcodeTags.closePrinterGuideModal()" class="text-gray-400 hover:text-white p-2">
@@ -1734,12 +635,12 @@
         </div>
 
         <div class="p-4 rounded-xl bg-[#1A1A1E] border border-white/5 space-y-2">
-          <h4 class="font-cinzel text-xs font-bold text-[#F3E5AB] uppercase">2. Driver & Print Dialog Settings (Ctrl+P / Cmd+P)</h4>
+          <h4 class="font-cinzel text-xs font-bold text-[#F3E5AB] uppercase">2. Driver &amp; Print Dialog Settings (Ctrl+P / Cmd+P)</h4>
           <ul class="list-disc pl-5 space-y-1 text-gray-300">
             <li><strong>Destination:</strong> Select your thermal printer (e.g. TSC DA210, Zebra ZD230, TVS LP 46 Neo).</li>
             <li><strong>Paper Size:</strong> Choose user-defined <code>86mm × 15mm</code> (or <code>3.38" × 0.59"</code>).</li>
             <li><strong>Margins:</strong> Set strictly to <strong>None (0 mm)</strong>.</li>
-            <li><strong>Headers & Footers:</strong> Uncheck (disabled).</li>
+            <li><strong>Headers &amp; Footers:</strong> Uncheck (disabled).</li>
             <li><strong>Scale:</strong> Set to <strong>100%</strong> (Default).</li>
           </ul>
         </div>
@@ -1773,7 +674,7 @@
           onclick="BarcodeTags.closePrinterGuideModal()"
           class="px-5 py-2 rounded-xl text-xs font-cinzel font-semibold gold-btn-gradient"
         >
-          Understood & Done
+          Understood &amp; Done
         </button>
       </div>
     </div>
@@ -1782,59 +683,25 @@
   <!-- Thermal Barcode & QR Print Stage (Populated strictly on window.print) -->
   <div id="thermal-print-stage" class="hidden"></div>
 
-  <!-- Scripts (Versioned with cache-busting timestamp to prevent stale browser disk caching) -->
-  <script src="js/data.js?v=20261002_02"></script>
-  <script src="js/utils.js?v=20261002_02"></script>
-  <script src="js/qrcode.min.js?v=20261002_02"></script>
-  <script src="js/barcode-tags.js?v=20261002_02"></script>
-  <script src="js/showcase.js?v=20261002_02"></script>
-  <script src="js/admin.js?v=20261002_02"></script>
-  <script src="js/app.js?v=20261002_02"></script>
+  <!-- Scripts (Versioned with cache buster query) -->
+  <script src="js/data.js?v=20261002_03"></script>
+  <script src="js/utils.js?v=20261002_03"></script>
+  <script src="js/qrcode.min.js?v=20261002_03"></script>
+  <script src="js/barcode-tags.js?v=20261002_03"></script>
+  <script src="js/app.js?v=20261002_03"></script>
 
-  <!-- Instant Fail-Safe Direct Activation Script -->
+  <!-- Instant Initialization -->
   <script>
-    (function() {
-      function forceActivateBarcodeTags() {
-        var hash = (window.location.hash || '').toLowerCase();
-        var search = (window.location.search || '').toLowerCase();
-        var isBarcodeOrAdmin = hash.includes('admin') || hash.includes('barcode') || hash.includes('tag') || search.includes('barcode') || search.includes('admin');
-        
-        if (isBarcodeOrAdmin) {
-          var showcase = document.getElementById('public-showcase-view');
-          var loginView = document.getElementById('admin-login-view');
-          var adminApp = document.getElementById('admin-app-container');
-          var tagsPanel = document.getElementById('admin-panel-tags');
-
-          if (showcase) {
-            showcase.classList.add('hidden');
-            showcase.style.display = 'none';
-          }
-          if (loginView) {
-            loginView.classList.add('hidden');
-            loginView.style.setProperty('display', 'none', 'important');
-          }
-          if (adminApp) {
-            adminApp.classList.remove('hidden');
-            adminApp.style.setProperty('display', 'flex', 'important');
-          }
-          if (tagsPanel) {
-            tagsPanel.classList.remove('hidden');
-            tagsPanel.style.setProperty('display', 'block', 'important');
-          }
-          if (typeof BarcodeTags !== 'undefined' && typeof BarcodeTags.init === 'function') {
-            BarcodeTags.init();
-          }
-        }
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof BarcodeTags !== 'undefined' && typeof BarcodeTags.init === 'function') {
+        BarcodeTags.init();
       }
-
-      window.addEventListener('DOMContentLoaded', forceActivateBarcodeTags);
-      window.addEventListener('hashchange', forceActivateBarcodeTags);
-      window.addEventListener('load', forceActivateBarcodeTags);
-      forceActivateBarcodeTags();
-      setTimeout(forceActivateBarcodeTags, 50);
-      setTimeout(forceActivateBarcodeTags, 200);
-      setTimeout(forceActivateBarcodeTags, 500);
-    })();
+    });
+    window.addEventListener('load', function() {
+      if (typeof BarcodeTags !== 'undefined' && typeof BarcodeTags.init === 'function') {
+        BarcodeTags.init();
+      }
+    });
   </script>
 </body>
 </html>
