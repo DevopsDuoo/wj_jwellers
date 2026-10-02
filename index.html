@@ -1138,130 +1138,96 @@
     <!-- Admin Sticky Topbar & Sub-Navigation Header -->
     <div class="sticky top-0 z-30 shadow-xl">
       <!-- Admin Topbar -->
-      <header class="main-luxury-nav px-4 sm:px-8 py-3.5 flex items-center justify-between">
-        <div class="flex items-center gap-4">
-          <a href="#/admin" class="flex items-center gap-2.5 group">
-            <img src="assets/wj_sun_logo.svg" alt="WJ Jewellers Logo" class="wj-sun-logo w-8 h-8 shrink-0" />
-            <div>
-              <span class="font-cinzel text-sm font-bold text-white tracking-widest block leading-tight">WJ JEWELLERS</span>
-              <span class="text-[9px] font-cinzel text-[#E8B676] tracking-wider block">ATELIER OPERATIONS</span>
-            </div>
-          </a>
-          <span class="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-[10px] font-cinzel bg-emerald-950/80 text-emerald-300 border border-emerald-800/40">
-            <i class="fa-solid fa-shield-check mr-1 text-[8px]"></i> Session Verified
-          </span>
-        </div>
-
-        <div class="flex items-center gap-3">
-          
-
-          <!-- Live Link to public site -->
-          <a 
-            href="#/" 
-            class="text-xs text-gray-300 hover:text-[#D4AF37] font-cinzel tracking-wider hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 hover:border-[#D4AF37]/40 transition-all"
-          >
-            <i class="fa-solid fa-store text-xs text-[#D4AF37]"></i> View Boutique
-          </a>
-
-          <!-- Master Administrator pill -->
-          <div class="flex items-center gap-2">
-            <div class="w-7 h-7 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 flex items-center justify-center text-xs text-[#F3E5AB]">
-              <i class="fa-solid fa-user-shield"></i>
-            </div>
-            <span class="text-xs font-mono text-gray-300 hidden md:inline">admin</span>
+      <header class="main-luxury-nav px-4 sm:px-8 py-3.5">
+        <div class="max-w-[1850px] mx-auto w-full flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <a href="#/admin" class="flex items-center gap-2.5 group">
+              <img src="assets/wj_sun_logo.svg" alt="WJ Jewellers Logo" class="wj-sun-logo w-8 h-8 shrink-0" />
+              <div>
+                <span class="font-cinzel text-sm font-bold text-white tracking-widest block leading-tight">WJ JEWELLERS</span>
+                <span class="text-[9px] font-cinzel text-[#E8B676] tracking-wider block">ATELIER OPERATIONS</span>
+              </div>
+            </a>
+            <span class="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-[10px] font-cinzel bg-emerald-950/80 text-emerald-300 border border-emerald-800/40">
+              <i class="fa-solid fa-shield-check mr-1 text-[8px]"></i> Session Verified
+            </span>
           </div>
 
-          <!-- Logout Button -->
-          <button 
-            onclick="Admin.handleLogout()" 
-            class="px-3 py-1.5 rounded-lg text-xs font-cinzel text-rose-300 border border-rose-900/40 bg-rose-950/30 hover:bg-rose-900/50 transition-all flex items-center gap-1.5"
-            title="Sign out of Atelier Portal"
-          >
-            <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
-            <span class="hidden sm:inline">Logout</span>
-          </button>
+          <div class="flex items-center gap-3">
+            
+
+            <!-- Live Link to public site -->
+            <a 
+              href="#/" 
+              class="text-xs text-gray-300 hover:text-[#D4AF37] font-cinzel tracking-wider hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 hover:border-[#D4AF37]/40 transition-all"
+            >
+              <i class="fa-solid fa-store text-xs text-[#D4AF37]"></i> View Boutique
+            </a>
+
+            <!-- Master Administrator pill -->
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 flex items-center justify-center text-xs text-[#F3E5AB]">
+                <i class="fa-solid fa-user-shield"></i>
+              </div>
+              <span class="text-xs font-mono text-gray-300 hidden md:inline">admin</span>
+            </div>
+
+            <!-- Logout Button -->
+            <button 
+              onclick="Admin.handleLogout()" 
+              class="px-3 py-1.5 rounded-lg text-xs font-cinzel text-rose-300 border border-rose-900/40 bg-rose-950/30 hover:bg-rose-900/50 transition-all flex items-center gap-1.5"
+              title="Sign out of Atelier Portal"
+            >
+              <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
+              <span class="hidden sm:inline">Logout</span>
+            </button>
+          </div>
         </div>
       </header>
 
-      <!-- Admin Sub-Navigation Tabs Bar -->
-      <div id="admin-subnav-bar" class="bg-[#151518]/95 backdrop-blur-md border-b border-white/5 px-4 sm:px-8 py-2 overflow-x-auto">
-        <div class="flex items-center space-x-2 min-w-max">
-          <button 
-            data-admin-tab="dashboard"
-            onclick="Admin.switchTab('dashboard')"
-            class="px-4 py-2 rounded-xl text-xs font-cinzel tracking-wider border border-transparent transition-all flex items-center gap-2 bg-[#D4AF37]/15 text-[#F3E5AB] border-[#D4AF37]/50"
-          >
-            <i class="fa-solid fa-chart-pie text-xs"></i> Overview
-          </button>
+      <!-- Admin Sub-Navigation Bar: Dedicated Exclusively to Barcode & Tag Generator -->
+      <div id="admin-subnav-bar" class="bg-[#151518]/95 backdrop-blur-md border-b border-white/5 px-4 sm:px-8 py-2.5">
+        <div class="max-w-[1850px] mx-auto flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="px-4 py-2 rounded-xl text-xs font-cinzel font-semibold bg-[#D4AF37]/20 text-[#F3E5AB] border border-[#D4AF37]/50 flex items-center gap-2 shadow-sm">
+              <i class="fa-solid fa-tags text-xs text-[#E8B676]"></i>
+              <span>Jewellery Barcode & Tag Generator</span>
+            </span>
+            <span class="hidden md:inline-flex items-center px-3 py-1 rounded-lg text-[11px] font-mono bg-white/5 text-gray-300 border border-white/10">
+              56mm Center-Folded (28mm + 28mm) · 86×15mm Thermal Roll Printer
+            </span>
+          </div>
 
-          <button 
-            data-admin-tab="payroll"
-            onclick="Admin.switchTab('payroll')"
-            class="px-4 py-2 rounded-xl text-xs font-cinzel tracking-wider border border-transparent transition-all flex items-center gap-2 text-gray-400 hover:text-white"
-          >
-            <i class="fa-solid fa-users text-xs"></i> Staff Salary & Payroll
-          </button>
-
-          <button 
-            data-admin-tab="ledger"
-            onclick="Admin.switchTab('ledger')"
-            class="px-4 py-2 rounded-xl text-xs font-cinzel tracking-wider border border-transparent transition-all flex items-center gap-2 text-gray-400 hover:text-white"
-          >
-            <i class="fa-solid fa-book-journal-whills text-xs"></i> Daily Shop Ledger
-          </button>
-
-          <button 
-            data-admin-tab="stock"
-            onclick="Admin.switchTab('stock')"
-            class="px-4 py-2 rounded-xl text-xs font-cinzel tracking-wider border border-transparent transition-all flex items-center gap-2 text-gray-400 hover:text-white"
-          >
-            <i class="fa-solid fa-boxes-stacked text-xs"></i> Stock & Catalog
-          </button>
-
-          <button 
-            data-admin-tab="inquiries"
-            onclick="Admin.switchTab('inquiries')"
-            class="px-4 py-2 rounded-xl text-xs font-cinzel tracking-wider border border-transparent transition-all flex items-center gap-2 text-gray-400 hover:text-white"
-          >
-            <i class="fa-solid fa-envelope-open-text text-xs"></i> VIP Inquiries
-          </button>
-
-          <button 
-            data-admin-tab="rates"
-            onclick="Admin.switchTab('rates')"
-            class="px-4 py-2 rounded-xl text-xs font-cinzel tracking-wider border border-transparent transition-all flex items-center gap-2 text-gray-400 hover:text-white"
-          >
-            <i class="fa-solid fa-coins text-xs"></i> Bullion Rates (Live API)
-          </button>
-
-          <button 
-            data-admin-tab="tags"
-            onclick="Admin.switchTab('tags')"
-            class="px-4 py-2 rounded-xl text-xs font-cinzel tracking-wider border border-transparent transition-all flex items-center gap-2 text-gray-400 hover:text-white"
-          >
-            <i class="fa-solid fa-qrcode text-xs text-[#E8B676]"></i> Barcode & QR Tags
-          </button>
-
-          <div class="h-5 w-px bg-white/10 mx-2"></div>
-
-          <button 
-            onclick="Admin.resetAllDemoData()"
-            class="px-3 py-1.5 rounded-lg text-[11px] font-cinzel text-amber-400/80 hover:text-amber-300 hover:bg-amber-950/20 border border-amber-800/30 transition-all flex items-center gap-1.5"
-            title="Reset sample data back to factory demo defaults"
-          >
-            <i class="fa-solid fa-rotate-left text-[10px]"></i> Reset Demo Data
-          </button>
+          <div class="flex items-center gap-2.5">
+            <button 
+              type="button" 
+              onclick="BarcodeTags.showPrinterGuideModal()"
+              class="px-3.5 py-2 rounded-xl text-xs font-cinzel text-gray-300 hover:text-white border border-white/10 hover:border-[#D4AF37]/40 bg-[#161619] transition-all flex items-center gap-1.5"
+            >
+              <i class="fa-solid fa-sliders text-xs text-[#E8B676]"></i>
+              <span class="hidden sm:inline">Printer Guide</span>
+            </button>
+            <button 
+              type="button" 
+              onclick="BarcodeTags.restoreDemoTags()"
+              class="px-3.5 py-2 rounded-xl text-xs font-cinzel text-amber-400/80 hover:text-amber-300 hover:bg-amber-950/20 border border-amber-800/30 transition-all flex items-center gap-1.5"
+              title="Reset tags back to factory defaults"
+            >
+              <i class="fa-solid fa-rotate-left text-[10px]"></i>
+              <span class="hidden sm:inline">Reset Tags</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Admin Content Area -->
-    <main class="flex-1 p-4 sm:p-8 pb-28 sm:pb-36 max-w-7xl mx-auto w-full">
+    <!-- Admin Content Area (Expanded to 1850px for spacious tag management) -->
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 pb-28 sm:pb-36 max-w-[1850px] mx-auto w-full">
 
       <!-- ===================================================================
-           TAB 1: EXECUTIVE DASHBOARD OVERVIEW
+           TAB 1: EXECUTIVE DASHBOARD OVERVIEW (Hidden - Focused on Tags)
            =================================================================== -->
-      <section id="admin-panel-dashboard" class="space-y-8">
+      <section id="admin-panel-dashboard" class="hidden space-y-8">
         
         <!-- Header banner -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/5">
@@ -1914,7 +1880,7 @@
       <!-- ===================================================================
            TAB 7: JEWELLERY BARCODE & QR TAG GENERATOR (86mm x 15mm Thermal)
            =================================================================== -->
-      <section id="admin-panel-tags" class="hidden space-y-6">
+      <section id="admin-panel-tags" class="space-y-6">
 
         <!-- Top Header & Action Strip -->
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-white/5">
@@ -2564,7 +2530,7 @@
 
     <!-- Atelier Operations Protected Admin Footer -->
     <footer class="mt-auto border-t border-white/5 bg-[#0D0D0F] py-6 px-4 sm:px-8">
-      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 font-cinzel">
+      <div class="max-w-[1850px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 font-cinzel">
         <div class="flex items-center gap-3">
           <img src="assets/wj_sun_logo.svg" alt="WJ Sun Emblem" class="wj-sun-logo w-6 h-6 shrink-0 opacity-80" />
           <div>

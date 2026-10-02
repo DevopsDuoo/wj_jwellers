@@ -5,7 +5,7 @@
  */
 
 const Admin = {
-  currentTab: 'dashboard',
+  currentTab: 'tags',
   payrollFilter: 'all',
   payrollSearch: '',
   ledgerFilter: 'all',

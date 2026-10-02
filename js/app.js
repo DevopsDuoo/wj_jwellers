@@ -83,22 +83,7 @@ const App = {
       }
 
       Admin.showDashboardView();
-
-      if (hash === '#/admin/payroll') {
-        Admin.switchTab('payroll');
-      } else if (hash === '#/admin/ledger') {
-        Admin.switchTab('ledger');
-      } else if (hash === '#/admin/stock') {
-        Admin.switchTab('stock');
-      } else if (hash === '#/admin/inquiries') {
-        Admin.switchTab('inquiries');
-      } else if (hash === '#/admin/rates') {
-        Admin.switchTab('rates');
-      } else if (hash === '#/admin/tags') {
-        Admin.switchTab('tags');
-      } else {
-        Admin.switchTab('dashboard');
-      }
+      Admin.switchTab('tags');
     } else {
       if (adminApp) {
         adminApp.classList.add('hidden');
