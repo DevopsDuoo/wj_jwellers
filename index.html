@@ -548,6 +548,23 @@
                     title="200% (High-DPI inspection)"
                   >200%</button>
                 </div>
+                <span class="text-white/20">|</span>
+                <div class="flex items-center gap-1.5" title="Calibrate top padding to prevent print cut-off on thermal roll printers">
+                  <i class="fa-solid fa-arrows-up-down text-[10px] text-[#D4AF37]"></i>
+                  <span class="text-[11px] text-gray-300 font-cinzel">Top Shift:</span>
+                  <select 
+                    id="print-top-offset-select" 
+                    onchange="BarcodeTags.setTopOffset(this.value)"
+                    class="bg-[#1A1A1E] border border-[#D4AF37]/40 rounded-md px-2 py-0.5 text-[10px] font-mono text-[#F3E5AB] cursor-pointer focus:border-[#D4AF37] focus:outline-none"
+                    title="Fine-tune top margin to align with thermal roll feed"
+                  >
+                    <option value="1.0">+1.0 mm (Tight)</option>
+                    <option value="1.5">+1.5 mm (Normal)</option>
+                    <option value="1.8" selected>+1.8 mm (Safe / Recommended)</option>
+                    <option value="2.2">+2.2 mm (Extra Safe)</option>
+                    <option value="2.6">+2.6 mm (Max Drop)</option>
+                  </select>
+                </div>
               </div>
 
               <div class="flex items-center gap-2">
@@ -660,10 +677,27 @@
           </div>
         </div>
 
-        <div class="p-3.5 rounded-xl bg-amber-950/20 border border-amber-800/30 flex items-start gap-3">
-          <i class="fa-solid fa-lightbulb text-amber-400 text-sm mt-0.5 shrink-0"></i>
+        <div class="p-4 rounded-xl bg-amber-950/20 border border-amber-800/30 space-y-2">
+          <h4 class="font-cinzel text-xs font-bold text-amber-300 uppercase flex items-center gap-1.5">
+            <i class="fa-solid fa-circle-exclamation text-amber-400"></i>
+            <span>3. Upper-Side Text Cutting? Easy 3-Step Fix</span>
+          </h4>
           <p class="text-[11px] text-amber-200/90 leading-relaxed">
-            <strong>Ribbon Protection Tip:</strong> The 30mm looping tail is configured as ink-free in this generator. The thermal head will omit heating on the tail, saving resin ribbon while keeping the label loop clean and non-stick.
+            Thermal barcode rolls have a 2mm–3mm physical sensor gap. If your printer roller has a slight lead offset, the top line (e.g. Item Name, Customer Name, or Store Name) might touch the top edge:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-gray-300 text-[11px]">
+            <li><strong>Use Top Shift Dropdown:</strong> Select <code>+1.8 mm</code> (Default) or <code>+2.2 mm</code> in the queue toolbar. This moves the top line down into the safe printable area.</li>
+            <li><strong>Print Dialog Margins:</strong> In Chrome/Edge, ensure <em>Margins</em> are set to <strong>None</strong> and <em>Scale</em> is <strong>100%</strong>.</li>
+            <li><strong>1-Minute Sensor Gap Calibration:</strong>
+              Turn printer power <strong>OFF</strong> &rarr; Hold down the <strong>FEED / PAUSE</strong> button &rarr; Turn printer power <strong>ON</strong> while holding button &rarr; Release when the printer beeps and feeds 2-3 blank labels. The printer will accurately lock onto the label gap!
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-[#18181C] border border-white/5 flex items-start gap-3">
+          <i class="fa-solid fa-lightbulb text-amber-400 text-sm mt-0.5 shrink-0"></i>
+          <p class="text-[11px] text-gray-300 leading-relaxed">
+            <strong>Ribbon Protection Tip:</strong> The 30mm looping tail is configured as strictly ink-free in this generator. The thermal head will omit heating on the tail, saving thermal ribbon while keeping the label loop clean and non-stick.
           </p>
         </div>
       </div>

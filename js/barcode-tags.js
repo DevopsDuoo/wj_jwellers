@@ -15,6 +15,7 @@ const BarcodeTags = {
   // Current working state
   tags: [],
   previewScale: 1.5, // 1.0 (100% 1:1 scale), 1.5 (150%), 2.0 (200%)
+  topOffsetMm: 1.8,  // Calibrated top padding in mm to eliminate thermal roll edge clipping
   showLoopTailBorder: true,
   autoIncrementSku: true,
   activeFormTab: 'folded',
@@ -88,10 +89,40 @@ const BarcodeTags = {
   ],
 
   init() {
+    this.initTopOffset();
     this.loadTags();
     this.setTodayDefaultDate();
     this.render();
     this.setupEventListeners();
+  },
+
+  initTopOffset() {
+    const saved = localStorage.getItem('wj_print_top_offset');
+    if (saved) {
+      const val = parseFloat(saved);
+      if (!isNaN(val) && val >= 0) {
+        this.topOffsetMm = val;
+      }
+    }
+    const selectEl = document.getElementById('print-top-offset-select');
+    if (selectEl) {
+      selectEl.value = String(this.topOffsetMm);
+    }
+  },
+
+  setTopOffset(val) {
+    const num = parseFloat(val);
+    if (!isNaN(num)) {
+      this.topOffsetMm = num;
+      localStorage.setItem('wj_print_top_offset', String(this.topOffsetMm));
+      const stage = document.getElementById('thermal-print-stage');
+      if (stage) {
+        stage.style.setProperty('--print-top-offset', `${this.topOffsetMm}mm`);
+      }
+      if (typeof Utils !== 'undefined') {
+        Utils.showToast('Top Margin Calibrated', `Print top offset adjusted to +${this.topOffsetMm}mm.`, 'success');
+      }
+    }
   },
 
   setTodayDefaultDate() {
@@ -1111,11 +1142,13 @@ const BarcodeTags = {
     }
 
     stage.innerHTML = '';
+    stage.style.setProperty('--print-top-offset', `${this.topOffsetMm}mm`);
 
     tagsToPrint.forEach(tag => {
       const isFolded = tag.tagType !== 'retail';
       const tagSheet = document.createElement('div');
       tagSheet.className = 'thermal-tag-sheet';
+      tagSheet.style.setProperty('--print-top-offset', `${this.topOffsetMm}mm`);
 
       if (isFolded) {
         let amount = tag.amount ? String(tag.amount).trim() : '15000/-';

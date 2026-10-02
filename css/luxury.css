@@ -721,8 +721,9 @@ body.theme-burgundy .text-gray-500 {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: calc(0.5mm * var(--tag-scale, 1.5)) calc(0.8mm * var(--tag-scale, 1.5));
+  justify-content: flex-start;
+  gap: calc(0.35mm * var(--tag-scale, 1.5));
+  padding: calc(1.4mm * var(--tag-scale, 1.5)) calc(0.8mm * var(--tag-scale, 1.5)) calc(0.6mm * var(--tag-scale, 1.5)) calc(0.8mm * var(--tag-scale, 1.5));
   font-size: calc(6.2pt * var(--tag-scale, 1.5));
   font-weight: 700;
   line-height: 1.05;
@@ -772,8 +773,9 @@ body.theme-burgundy .text-gray-500 {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: calc(0.5mm * var(--tag-scale, 1.5)) calc(0.6mm * var(--tag-scale, 1.5));
+  justify-content: flex-start;
+  gap: calc(0.7mm * var(--tag-scale, 1.5));
+  padding: calc(1.4mm * var(--tag-scale, 1.5)) calc(0.6mm * var(--tag-scale, 1.5)) calc(0.6mm * var(--tag-scale, 1.5)) calc(0.6mm * var(--tag-scale, 1.5));
   font-size: calc(6pt * var(--tag-scale, 1.5));
   font-weight: 700;
   line-height: 1.05;
@@ -788,9 +790,10 @@ body.theme-burgundy .text-gray-500 {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: calc(0.35mm * var(--tag-scale, 1.5));
   align-items: center;
-  padding: calc(0.4mm * var(--tag-scale, 1.5)) calc(0.5mm * var(--tag-scale, 1.5));
+  padding: calc(1.4mm * var(--tag-scale, 1.5)) calc(0.5mm * var(--tag-scale, 1.5)) calc(0.6mm * var(--tag-scale, 1.5)) calc(0.5mm * var(--tag-scale, 1.5));
   box-sizing: border-box;
   text-align: center;
   overflow: hidden;
@@ -884,8 +887,9 @@ body.theme-burgundy .text-gray-500 {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: calc(0.6mm * var(--tag-scale, 1.5)) calc(1.2mm * var(--tag-scale, 1.5));
+  justify-content: flex-start;
+  gap: calc(0.4mm * var(--tag-scale, 1.5));
+  padding: calc(1.4mm * var(--tag-scale, 1.5)) calc(1.2mm * var(--tag-scale, 1.5)) calc(0.6mm * var(--tag-scale, 1.5)) calc(1.2mm * var(--tag-scale, 1.5));
   box-sizing: border-box;
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -908,8 +912,9 @@ body.theme-burgundy .text-gray-500 {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: calc(0.6mm * var(--tag-scale, 1.5)) calc(1.2mm * var(--tag-scale, 1.5));
+  justify-content: flex-start;
+  gap: calc(0.4mm * var(--tag-scale, 1.5));
+  padding: calc(1.4mm * var(--tag-scale, 1.5)) calc(1.2mm * var(--tag-scale, 1.5)) calc(0.6mm * var(--tag-scale, 1.5)) calc(1.2mm * var(--tag-scale, 1.5));
   box-sizing: border-box;
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -1049,9 +1054,10 @@ body.theme-burgundy .text-gray-500 {
     height: 15mm !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
+    justify-content: flex-start !important;
+    gap: 0.3mm !important;
     box-sizing: border-box !important;
-    padding: 0.4mm 0.8mm !important;
+    padding: var(--print-top-offset, 1.8mm) 0.8mm 0.5mm 0.8mm !important;
     font-size: 6.2pt !important;
     font-weight: 700 !important;
     line-height: 1.05 !important;
@@ -1085,9 +1091,10 @@ body.theme-burgundy .text-gray-500 {
     height: 15mm !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
+    justify-content: flex-start !important;
+    gap: 0.6mm !important;
     box-sizing: border-box !important;
-    padding: 0.4mm 0.4mm !important;
+    padding: var(--print-top-offset, 1.8mm) 0.4mm 0.5mm 0.4mm !important;
     font-size: 6pt !important;
     font-weight: 700 !important;
     line-height: 1.05 !important;
@@ -1110,10 +1117,11 @@ body.theme-burgundy .text-gray-500 {
     height: 15mm !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
+    justify-content: flex-start !important;
+    gap: 0.35mm !important;
     align-items: center !important;
     box-sizing: border-box !important;
-    padding: 0.4mm 0.5mm !important;
+    padding: var(--print-top-offset, 1.8mm) 0.5mm 0.5mm 0.5mm !important;
     text-align: center !important;
     overflow: hidden !important;
     color: #000000 !important;
@@ -1128,8 +1136,8 @@ body.theme-burgundy .text-gray-500 {
   }
 
   .print-qr-box {
-    width: 6.8mm !important;
-    height: 6.8mm !important;
+    width: 6.2mm !important;
+    height: 6.2mm !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -1140,8 +1148,8 @@ body.theme-burgundy .text-gray-500 {
   .print-qr-box canvas,
   .print-qr-box img,
   .print-qr-box svg {
-    width: 6.8mm !important;
-    height: 6.8mm !important;
+    width: 6.2mm !important;
+    height: 6.2mm !important;
     image-rendering: pixelated !important;
   }
 
@@ -1170,9 +1178,10 @@ body.theme-burgundy .text-gray-500 {
     height: 15mm !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
+    justify-content: flex-start !important;
+    gap: 0.35mm !important;
     box-sizing: border-box !important;
-    padding: 0.5mm 1mm !important;
+    padding: var(--print-top-offset, 1.8mm) 1.2mm 0.6mm 1.2mm !important;
     font-size: 6.8pt !important;
     line-height: 1.1 !important;
     text-align: left !important;
@@ -1209,9 +1218,10 @@ body.theme-burgundy .text-gray-500 {
     height: 15mm !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
+    justify-content: flex-start !important;
+    gap: 0.35mm !important;
     box-sizing: border-box !important;
-    padding: 0.5mm 1mm !important;
+    padding: var(--print-top-offset, 1.8mm) 1.2mm 0.6mm 1.2mm !important;
     font-size: 6.8pt !important;
     line-height: 1.1 !important;
     text-align: left !important;
