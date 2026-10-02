@@ -103,14 +103,17 @@
           </div>
         </div>
 
-        <!-- Timestamp & Tag Generator Shortcut -->
-        <div class="hidden sm:flex items-center gap-3 pl-4 z-10 shrink-0 border-l border-white/10 whitespace-nowrap">
+        <!-- Timestamp & App Shortcuts -->
+        <div class="hidden sm:flex items-center gap-2.5 pl-4 z-10 shrink-0 border-l border-white/10 whitespace-nowrap">
           <i class="fa-solid fa-signal text-[9px] text-[#E8B676]"></i>
           <span id="rates-sync-timestamp" class="text-[10px] font-mono text-gray-400">
-            Automated API Feed
+            Live GoldAPI.io Feed
           </span>
-          <a href="#/barcode" class="text-[10px] font-cinzel text-[#E8B676] hover:text-[#F3E5AB] flex items-center gap-1 px-2 py-0.5 rounded bg-white/5 border border-white/10 transition-colors">
-            <i class="fa-solid fa-barcode text-[9px]"></i> Tag Generator
+          <a href="index.html#live-rates" class="text-[10px] font-cinzel text-[#E8B676] hover:text-[#F3E5AB] flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-colors" title="View Full Indian Gold &amp; Silver Market Rates">
+            <i class="fa-solid fa-coins text-[9px]"></i> Live Rates
+          </a>
+          <a href="index.html#tag-generator" class="text-[10px] font-cinzel text-gray-300 hover:text-white flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-colors" title="Open 56mm Tag Generator">
+            <i class="fa-solid fa-tags text-[9px]"></i> Tag Generator
           </a>
         </div>
       </div>
@@ -1797,10 +1800,14 @@
       function checkBarcodeRedirect() {
         var hash = (window.location.hash || '').toLowerCase();
         var search = (window.location.search || '').toLowerCase();
-        var isBarcodeOrAdmin = hash.includes('admin') || hash.includes('barcode') || hash.includes('tag') || search.includes('barcode') || search.includes('admin');
+        var isBarcodeOrAdmin = hash.includes('admin') || hash.includes('barcode') || hash.includes('tag') || search.includes('barcode') || search.includes('admin') || hash.includes('rate');
         
         if (isBarcodeOrAdmin) {
-          window.location.replace('index.html');
+          if (hash.includes('rate')) {
+            window.location.replace('index.html#live-rates');
+          } else {
+            window.location.replace('index.html#tag-generator');
+          }
           return true;
         }
         return false;
