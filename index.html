@@ -688,6 +688,87 @@
           </div>
         </div>
 
+        <!-- Daily Morning Rate Lock & Google Verification Control Bar -->
+        <div class="bg-gradient-to-r from-[#171510] via-[#131316] to-[#121215] border-2 border-[#D4AF37]/40 rounded-2xl p-4 sm:p-5 shadow-lg">
+          <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+            
+            <!-- Left Info -->
+            <div class="flex items-start sm:items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-sun text-base"></i>
+              </span>
+              <div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="font-cinzel text-xs sm:text-sm font-bold text-[#F3E5AB]">Daily Morning Market Lock</span>
+                  <span id="rates-lock-time" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800/40">
+                    Locked for Today (09:00 AM)
+                  </span>
+                  <span id="rates-source-label" class="text-[10px] font-mono text-gray-400">
+                    Google / Maharashtra Sarafa Benchmark
+                  </span>
+                </div>
+                <p class="text-[11px] text-gray-300 mt-0.5">
+                  Update once in the morning as per live Google rates to keep prices uniform all day across all tags, calculators, and boutique.
+                </p>
+              </div>
+            </div>
+
+            <!-- Right: Quick Set Inputs & Actions -->
+            <div class="flex flex-wrap items-center gap-2.5">
+              
+              <!-- Quick 24K Input -->
+              <div class="flex items-center bg-black/60 rounded-xl border border-white/10 px-3 py-1.5">
+                <span class="text-[10px] font-cinzel text-gray-400 mr-2">24K (₹/10g):</span>
+                <input 
+                  type="number" 
+                  id="quick-morning-24k-input" 
+                  value="149200" 
+                  step="100" 
+                  class="w-24 bg-transparent text-white font-mono text-xs font-bold focus:outline-none text-right"
+                  title="Today's 24K gold rate per 10 grams"
+                />
+              </div>
+
+              <!-- Quick Silver Input -->
+              <div class="flex items-center bg-black/60 rounded-xl border border-white/10 px-3 py-1.5">
+                <span class="text-[10px] font-cinzel text-gray-400 mr-2">Silver (₹/kg):</span>
+                <input 
+                  type="number" 
+                  id="quick-morning-silver-input" 
+                  value="195000" 
+                  step="500" 
+                  class="w-24 bg-transparent text-white font-mono text-xs font-bold focus:outline-none text-right"
+                  title="Today's Silver rate per 1 kilogram"
+                />
+              </div>
+
+              <!-- Lock Button -->
+              <button 
+                type="button" 
+                onclick="LiveRates.setMorningRates(document.getElementById('quick-morning-24k-input').value, document.getElementById('quick-morning-silver-input').value)"
+                class="px-3.5 py-2 rounded-xl text-xs font-cinzel font-bold text-black gold-btn-gradient flex items-center gap-1.5 shadow-md"
+                title="Lock these rates for today across all tags and calculators"
+              >
+                <i class="fa-solid fa-check text-[10px]"></i>
+                <span>Set Today's Rates</span>
+              </button>
+
+              <!-- Live Google Search Button -->
+              <button 
+                type="button" 
+                onclick="LiveRates.openGoogleGoldRate()"
+                class="px-3 py-2 rounded-xl text-xs font-cinzel text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 flex items-center gap-1.5 transition-colors"
+                title="Open live Google search to see today's published rate in Maharashtra"
+              >
+                <i class="fa-brands fa-google text-xs text-amber-400"></i>
+                <span>Check on Google ↗</span>
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+
         <!-- Top 5 Live Benchmark Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
           
