@@ -15,7 +15,7 @@ const BarcodeTags = {
   // Current working state
   tags: [],
   previewScale: 1.5, // 1.0 (100% 1:1 scale), 1.5 (150%), 2.0 (200%)
-  topOffsetMm: 1.8,  // Calibrated top padding in mm to eliminate thermal roll edge clipping
+  topOffsetMm: 2.0,  // Calibrated default for TSC TTP-244 Pro (203 DPI) to eliminate top-edge clipping
   showLoopTailBorder: true,
   autoIncrementSku: true,
   activeFormTab: 'folded',
@@ -106,7 +106,7 @@ const BarcodeTags = {
     }
     const selectEl = document.getElementById('print-top-offset-select');
     if (selectEl) {
-      selectEl.value = String(this.topOffsetMm);
+      selectEl.value = Number(this.topOffsetMm).toFixed(1);
     }
   },
 
@@ -876,9 +876,9 @@ const BarcodeTags = {
                     <div class="font-black text-xs uppercase tracking-tight leading-tight">${firstName}</div>
                     <div class="font-black text-xs uppercase tracking-tight leading-tight">${middleName}</div>
                     <div class="font-black text-xs uppercase tracking-tight leading-tight">${lastName}</div>
-                    <div class="flex items-center justify-between text-[11px] font-normal text-gray-800 leading-tight">
+                    <div class="flex items-center justify-between text-[11px] font-bold text-black leading-tight">
                       <span>${city}</span>
-                      <span class="font-mono">${loanNo ? 'L:' + loanNo : ''}</span>
+                      <span class="font-mono font-bold">${loanNo ? 'L:' + loanNo : ''}</span>
                     </div>
                   </div>
                 </div>
@@ -895,10 +895,10 @@ const BarcodeTags = {
                 <div class="border-2 border-amber-500/40 rounded-lg p-2 bg-white text-black shadow-lg" style="width: calc(28mm * 2.2); height: calc(15mm * 2.2);">
                   <div class="h-full flex flex-col justify-between text-left font-sans">
                     <div class="font-black text-xs tracking-tight leading-tight">${date}</div>
-                    <div class="text-[11px] font-normal text-black leading-tight">
+                    <div class="text-[11px] font-bold text-black leading-tight">
                       <span>${metal}-${itemName}</span>
                     </div>
-                    <div class="text-[11px] font-normal text-gray-900 leading-tight">W ${weightText}</div>
+                    <div class="text-[11px] font-bold text-black leading-tight">W ${weightText}</div>
                     <div class="font-black text-sm text-black tracking-tight leading-tight">${safeAmount}</div>
                   </div>
                 </div>

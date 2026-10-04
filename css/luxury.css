@@ -944,8 +944,8 @@ body.theme-burgundy .text-gray-500 {
 
 .thermal-rat-tail-preview .folded-city-text {
   font-size: calc(5.6pt * var(--tag-scale, 1.5));
-  font-weight: 500;
-  color: #1e293b;
+  font-weight: 800;
+  color: #000000;
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
@@ -958,16 +958,17 @@ body.theme-burgundy .text-gray-500 {
 .thermal-rat-tail-preview .folded-city-text.city-long {
   font-size: calc(4.8pt * var(--tag-scale, 1.5));
   letter-spacing: -0.2px;
+  font-weight: 800;
 }
 
 .thermal-rat-tail-preview .folded-loan-text {
   font-size: calc(5.8pt * var(--tag-scale, 1.5));
-  font-weight: 500;
-  color: #0f172a;
+  font-weight: 900;
+  color: #000000;
   white-space: nowrap;
   flex: 0 0 auto;
   margin-left: calc(0.8mm * var(--tag-scale, 1.5));
-  font-family: monospace;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .thermal-rat-tail-preview .folded-date-bold {
@@ -983,7 +984,7 @@ body.theme-burgundy .text-gray-500 {
   align-items: center;
   justify-content: flex-start;
   font-size: calc(6.8pt * var(--tag-scale, 1.5));
-  font-weight: 500;
+  font-weight: 900;
   color: #000000;
   text-transform: uppercase;
   white-space: nowrap;
@@ -992,13 +993,13 @@ body.theme-burgundy .text-gray-500 {
 
 .thermal-rat-tail-preview .folded-item-row strong,
 .thermal-rat-tail-preview .folded-item-row .folded-metal-badge {
-  font-weight: 500;
+  font-weight: 900;
 }
 
 .thermal-rat-tail-preview .folded-weight-row {
   font-size: calc(6.4pt * var(--tag-scale, 1.5));
-  font-weight: 500;
-  color: #0f172a;
+  font-weight: 900;
+  color: #000000;
   text-transform: uppercase;
   white-space: nowrap;
   line-height: 1.05;
@@ -1108,18 +1109,21 @@ body.theme-burgundy .text-gray-500 {
     justify-content: flex-start !important;
     gap: 0.3mm !important;
     box-sizing: border-box !important;
-    padding: var(--print-top-offset, 1.8mm) 0.8mm 0.5mm 0.8mm !important;
+    padding: var(--print-top-offset, 2.0mm) 0.8mm 0.5mm 0.8mm !important;
     font-size: 6.2pt !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     line-height: 1.05 !important;
     text-align: left !important;
     overflow: hidden !important;
     color: #000000 !important;
+    text-rendering: geometricPrecision !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif !important;
   }
 
   .print-item-name {
     font-size: 6.2pt !important;
-    font-weight: 800 !important;
+    font-weight: 900 !important;
     text-transform: uppercase !important;
     white-space: nowrap !important;
     overflow: hidden !important;
@@ -1128,7 +1132,7 @@ body.theme-burgundy .text-gray-500 {
 
   .print-row {
     font-size: 5.8pt !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     line-height: 1.05 !important;
     white-space: nowrap !important;
   }
@@ -1145,22 +1149,25 @@ body.theme-burgundy .text-gray-500 {
     justify-content: flex-start !important;
     gap: 0.6mm !important;
     box-sizing: border-box !important;
-    padding: var(--print-top-offset, 1.8mm) 0.4mm 0.5mm 0.4mm !important;
+    padding: var(--print-top-offset, 2.0mm) 0.4mm 0.5mm 0.4mm !important;
     font-size: 6pt !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     line-height: 1.05 !important;
     text-align: left !important;
     overflow: hidden !important;
     color: #000000 !important;
+    text-rendering: geometricPrecision !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif !important;
   }
 
   .print-purity {
-    font-weight: 800 !important;
+    font-weight: 900 !important;
   }
 
   .print-huid {
     font-size: 5.2pt !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
   }
 
   .print-col-3 {
@@ -1172,10 +1179,13 @@ body.theme-burgundy .text-gray-500 {
     gap: 0.35mm !important;
     align-items: center !important;
     box-sizing: border-box !important;
-    padding: var(--print-top-offset, 1.8mm) 0.5mm 0.5mm 0.5mm !important;
+    padding: var(--print-top-offset, 2.0mm) 0.5mm 0.5mm 0.5mm !important;
     text-align: center !important;
     overflow: hidden !important;
     color: #000000 !important;
+    text-rendering: geometricPrecision !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif !important;
   }
 
   .print-store-name {
@@ -1232,12 +1242,15 @@ body.theme-burgundy .text-gray-500 {
     justify-content: flex-start !important;
     gap: 0.35mm !important;
     box-sizing: border-box !important;
-    padding: var(--print-top-offset, 1.8mm) 1.2mm 0.6mm 1.2mm !important;
+    padding: var(--print-top-offset, 2.0mm) 1.2mm 0.6mm 1.2mm !important;
     font-size: 6.8pt !important;
     line-height: 1.1 !important;
     text-align: left !important;
     overflow: hidden !important;
     color: #000000 !important;
+    text-rendering: geometricPrecision !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif !important;
   }
 
   .print-folded-name {
@@ -1247,6 +1260,8 @@ body.theme-burgundy .text-gray-500 {
     white-space: nowrap !important;
     overflow: hidden !important;
     line-height: 1.1 !important;
+    color: #000000 !important;
+    letter-spacing: 0.1px !important;
   }
 
   .print-folded-city {
@@ -1261,7 +1276,7 @@ body.theme-burgundy .text-gray-500 {
 
   .print-city-text {
     font-size: 5.6pt !important;
-    font-weight: 500 !important;
+    font-weight: 800 !important;
     text-transform: uppercase !important;
     white-space: nowrap !important;
     overflow: hidden !important;
@@ -1274,12 +1289,12 @@ body.theme-burgundy .text-gray-500 {
   .print-city-text.city-long {
     font-size: 4.8pt !important;
     letter-spacing: -0.2px !important;
-    font-weight: 500 !important;
+    font-weight: 800 !important;
   }
 
   .print-loan-text {
     font-size: 5.8pt !important;
-    font-weight: 500 !important;
+    font-weight: 900 !important;
     white-space: nowrap !important;
     flex: 0 0 auto !important;
     margin-left: 0.8mm !important;
@@ -1301,12 +1316,15 @@ body.theme-burgundy .text-gray-500 {
     justify-content: flex-start !important;
     gap: 0.3mm !important;
     box-sizing: border-box !important;
-    padding: var(--print-top-offset, 1.8mm) 1.2mm 0.6mm 1.2mm !important;
+    padding: var(--print-top-offset, 2.0mm) 1.2mm 0.6mm 1.2mm !important;
     font-size: 6.8pt !important;
     line-height: 1.1 !important;
     text-align: left !important;
     overflow: hidden !important;
     color: #000000 !important;
+    text-rendering: geometricPrecision !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif !important;
   }
 
   .print-folded-date {
@@ -1314,22 +1332,25 @@ body.theme-burgundy .text-gray-500 {
     font-weight: 900 !important;
     white-space: nowrap !important;
     line-height: 1.1 !important;
+    color: #000000 !important;
   }
 
   .print-folded-item {
     font-size: 6.8pt !important;
-    font-weight: 500 !important;
+    font-weight: 900 !important;
     display: flex !important;
     justify-content: flex-start !important;
     white-space: nowrap !important;
     line-height: 1.1 !important;
+    color: #000000 !important;
   }
 
   .print-folded-weight {
     font-size: 6.8pt !important;
-    font-weight: 500 !important;
+    font-weight: 900 !important;
     white-space: nowrap !important;
     line-height: 1.1 !important;
+    color: #000000 !important;
   }
 
   .print-folded-amount {
@@ -1338,6 +1359,7 @@ body.theme-burgundy .text-gray-500 {
     white-space: nowrap !important;
     line-height: 1.05 !important;
     margin-top: -0.35mm !important;
+    color: #000000 !important;
   }
 
   /* 30mm Tail is strictly INK-FREE to prevent thermal resin ribbon waste */

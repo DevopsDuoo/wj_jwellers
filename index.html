@@ -55,7 +55,7 @@
   </script>
 
   <!-- Custom Luxury Styling & Tag Animations -->
-  <link rel="stylesheet" href="css/luxury.css?v=20261002_09" />
+  <link rel="stylesheet" href="css/luxury.css?v=20261004_01" />
 </head>
 <body class="bg-[#0A0A0C] text-[#FCF7F6] min-h-screen flex flex-col font-sans selection:bg-[#E8B676] selection:text-black">
 
@@ -158,7 +158,7 @@
 
           <span class="hidden sm:inline-flex items-center text-[11px] font-mono text-emerald-400 gap-1.5 bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-800/30">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-green"></span>
-            TSC · Zebra · TVS (203/300 DPI)
+            TSC TTP-244 Pro · 203 DPI HD Ready
           </span>
         </div>
 
@@ -181,7 +181,7 @@
                 <h1 class="font-cinzel text-lg sm:text-xl text-white font-semibold flex items-center gap-2">
                   Jewellery Barcode &amp; Tag Generator
                   <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-950/80 text-emerald-300 border border-emerald-800/40">
-                    203/300 DPI Thermal Roll Ready
+                    TSC TTP-244 Pro Calibrated
                   </span>
                 </h1>
                 <p class="text-xs text-gray-400 mt-0.5">
@@ -256,8 +256,8 @@
 
           <div class="p-3.5 rounded-xl bg-[#141416] border border-white/5">
             <span class="text-[9px] font-cinzel uppercase text-gray-400 block tracking-wider">Thermal Engines</span>
-            <span class="font-mono text-xs font-bold text-amber-300 block mt-1">TSC · Zebra · TVS</span>
-            <span class="text-[9px] text-gray-400 block mt-0.5">Honeywell · Citizen (203/300 DPI)</span>
+            <span class="font-mono text-xs font-bold text-amber-300 block mt-1">TSC TTP-244 Pro</span>
+            <span class="text-[9px] text-gray-400 block mt-0.5">203 DPI · 8 dots/mm HD Mode</span>
           </div>
         </div>
 
@@ -589,9 +589,10 @@
                   >
                     <option value="1.0">+1.0 mm (Tight)</option>
                     <option value="1.5">+1.5 mm (Normal)</option>
-                    <option value="1.8" selected>+1.8 mm (Safe / Recommended)</option>
-                    <option value="2.2">+2.2 mm (Extra Safe)</option>
-                    <option value="2.6">+2.6 mm (Max Drop)</option>
+                    <option value="1.8">+1.8 mm (Standard)</option>
+                    <option value="2.0" selected>+2.0 mm (TSC TTP-244 Pro Calibrated)</option>
+                    <option value="2.4">+2.4 mm (Extra Safe)</option>
+                    <option value="2.8">+2.8 mm (Max Drop)</option>
                   </select>
                 </div>
               </div>
@@ -1124,7 +1125,7 @@
           </div>
           <div>
             <h3 class="font-cinzel text-base text-white font-bold">Thermal Barcode Printer Setup Guide</h3>
-            <p class="text-xs text-gray-400">Calibration instructions for TSC, Zebra, TVS &amp; Honeywell 86mm × 15mm labels.</p>
+            <p class="text-xs text-gray-400">Calibrated specifically for TSC TTP-244 Pro (203 DPI), Zebra, TVS &amp; Honeywell 86mm × 15mm labels.</p>
           </div>
         </div>
         <button type="button" onclick="BarcodeTags.closePrinterGuideModal()" class="text-gray-400 hover:text-white p-2">
@@ -1146,7 +1147,7 @@
         <div class="p-4 rounded-xl bg-[#1A1A1E] border border-white/5 space-y-2">
           <h4 class="font-cinzel text-xs font-bold text-[#F3E5AB] uppercase">2. Driver &amp; Print Dialog Settings (Ctrl+P / Cmd+P)</h4>
           <ul class="list-disc pl-5 space-y-1 text-gray-300">
-            <li><strong>Destination:</strong> Select your thermal printer (e.g. TSC DA210, Zebra ZD230, TVS LP 46 Neo).</li>
+            <li><strong>Destination:</strong> Select <strong>TSC TTP-244 Pro</strong> (or Zebra / TVS thermal printer).</li>
             <li><strong>Paper Size:</strong> Choose user-defined <code>86mm × 15mm</code> (or <code>3.38" × 0.59"</code>).</li>
             <li><strong>Margins:</strong> Set strictly to <strong>None (0 mm)</strong>.</li>
             <li><strong>Headers &amp; Footers:</strong> Uncheck (disabled).</li>
@@ -1155,16 +1156,26 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div class="p-3.5 rounded-xl bg-[#18181C] border border-white/5 space-y-1">
-            <span class="font-cinzel text-[11px] font-bold text-white block">TSC Printers (DA210 / TE200)</span>
-            <p class="text-[10px] text-gray-400 leading-normal">
-              In DiagTool or driver: Sensor Type = <em>Transmissive / Gap</em>. Gap Size = 3.0mm. Print Speed = 2.0 - 3.0 ips. Darkness = 12-14 for resin ribbon.
+          <div class="p-3.5 rounded-xl bg-amber-950/20 border border-amber-600/40 space-y-1.5">
+            <span class="font-cinzel text-xs font-bold text-[#F3E5AB] flex items-center gap-1.5">
+              <i class="fa-solid fa-print text-amber-400"></i>
+              TSC TTP-244 Pro (203 DPI HD)
+            </span>
+            <p class="text-[10px] text-gray-300 leading-normal">
+              <strong>Sensor Type:</strong> Die-cut with Gap (3.0mm)<br>
+              <strong>Print Speed:</strong> 2.0 or 3.0 ips (maximum darkness &amp; razor-sharp bold lines)<br>
+              <strong>Darkness / Density:</strong> 12 – 14 (with resin/wax-resin ribbon)<br>
+              <strong>Top Clearance:</strong> Pre-calibrated at <strong>+2.0mm</strong> (zero cutting)<br>
+              <strong>Dithering:</strong> None (Pure Black / Solid HD Text)
             </p>
           </div>
-          <div class="p-3.5 rounded-xl bg-[#18181C] border border-white/5 space-y-1">
-            <span class="font-cinzel text-[11px] font-bold text-white block">Zebra Printers (ZD220 / ZD230)</span>
+          <div class="p-3.5 rounded-xl bg-[#18181C] border border-white/5 space-y-1.5">
+            <span class="font-cinzel text-[11px] font-bold text-white flex items-center gap-1.5">
+              <i class="fa-solid fa-barcode text-gray-400"></i>
+              Zebra · TVS · Honeywell
+            </span>
             <p class="text-[10px] text-gray-400 leading-normal">
-              In Zebra Setup Utilities: Media Type = <em>Mark / Web Sensing</em>. Calibrate media feed. Darkness = 18-22. Dither = None (Black/White Threshold).
+              In driver / Zebra Setup Utilities: Media Type = <em>Web / Gap Sensing</em>. Calibrate media feed. Darkness = 18-22. Dither = None (Black/White Threshold).
             </p>
           </div>
         </div>
@@ -1172,16 +1183,16 @@
         <div class="p-4 rounded-xl bg-amber-950/20 border border-amber-800/30 space-y-2">
           <h4 class="font-cinzel text-xs font-bold text-amber-300 uppercase flex items-center gap-1.5">
             <i class="fa-solid fa-circle-exclamation text-amber-400"></i>
-            <span>3. Upper-Side Text Cutting? Easy 3-Step Fix</span>
+            <span>3. Zero-Cut Calibration for TSC TTP-244 Pro</span>
           </h4>
           <p class="text-[11px] text-amber-200/90 leading-relaxed">
-            Thermal barcode rolls have a 2mm–3mm physical sensor gap. If your printer roller has a slight lead offset, the top line (e.g. Item Name, Customer Name, or Store Name) might touch the top edge:
+            The TSC TTP-244 Pro features a 203 DPI thermal printhead with an 8 dots/mm resolution. To guarantee zero text cutting and HD bold clarity:
           </p>
           <ul class="list-disc pl-5 space-y-1 text-gray-300 text-[11px]">
-            <li><strong>Use Top Shift Dropdown:</strong> Select <code>+1.8 mm</code> (Default) or <code>+2.2 mm</code> in the queue toolbar. This moves the top line down into the safe printable area.</li>
-            <li><strong>Print Dialog Margins:</strong> In Chrome/Edge, ensure <em>Margins</em> are set to <strong>None</strong> and <em>Scale</em> is <strong>100%</strong>.</li>
-            <li><strong>1-Minute Sensor Gap Calibration:</strong>
-              Turn printer power <strong>OFF</strong> &rarr; Hold down the <strong>FEED / PAUSE</strong> button &rarr; Turn printer power <strong>ON</strong> while holding button &rarr; Release when the printer beeps and feeds 2-3 blank labels. The printer will accurately lock onto the label gap!
+            <li><strong>Pre-calibrated +2.0 mm Top Shift:</strong> The system default is set to +2.0mm, placing all text safely below the physical tear bar and roller lead.</li>
+            <li><strong>All Text HD Bold:</strong> Pure black (#000000) 800/900-weight typography guarantees crisp edge transfer on thermal resin ribbons without fuzzy dithering.</li>
+            <li><strong>1-Minute TSC Gap Calibration:</strong>
+              Turn printer power <strong>OFF</strong> &rarr; Hold down the <strong>PAUSE</strong> button &rarr; Turn printer power <strong>ON</strong> while holding PAUSE &rarr; Release when the printer feeds 2 labels. The printer will instantly lock onto the 3mm label gap!
             </li>
           </ul>
         </div>
@@ -1213,7 +1224,7 @@
   <script src="js/data.js?v=20261002_03"></script>
   <script src="js/utils.js?v=20261002_03"></script>
   <script src="js/qrcode.min.js?v=20261002_03"></script>
-  <script src="js/barcode-tags.js?v=20261002_07"></script>
+  <script src="js/barcode-tags.js?v=20261004_01"></script>
   <script src="js/live-rates.js?v=20261002_08"></script>
   <script src="js/app.js?v=20261002_03"></script>
 
